@@ -1,4 +1,4 @@
-import { ReactWidget } from "@components";
+import { ReactWidget } from "components";
 import { render } from "react-dom";
 
 export const init = (elementInput: string | HTMLElement) => {

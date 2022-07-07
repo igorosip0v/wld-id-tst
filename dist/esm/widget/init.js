@@ -1,5 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { ReactWidget } from "@components";
+import { ReactWidget } from "components";
 import { render } from "react-dom";
 export var init = function (elementInput) {
     var mountNode = null;

@@ -27,7 +27,7 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@components": ["./src/components"]
+      "components": ["./src/components"]
     },
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
