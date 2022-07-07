@@ -95,8 +95,8 @@ $parcel$exportWildcard($16627e03c7b02029$exports, $f3424e8cc89f9945$exports);
 
 
 $parcel$exportWildcard(module.exports, $be8240ea0d7c4a94$exports);
-$parcel$exportWildcard(module.exports, $16627e03c7b02029$exports);
 $parcel$exportWildcard(module.exports, $0b3e125eada488ae$exports);
+$parcel$exportWildcard(module.exports, $16627e03c7b02029$exports);
 
 
 //# sourceMappingURL=main.cjs.map

@@ -10,6 +10,7 @@
     "iife": {
       "context": "browser",
       "source": "src/browser/index.tsx",
+      "distDir": "dist",
       "includeNodeModules": true,
       "outputFormat": "global"
     },
