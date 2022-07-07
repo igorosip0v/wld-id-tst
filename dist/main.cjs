@@ -1,7 +1,13 @@
 var $b4te3$reactjsxruntime = require("react/jsx-runtime");
-var $b4te3$react = require("react");
 var $b4te3$reactdom = require("react-dom");
+var $b4te3$react = require("react");
 
+function $parcel$defineInteropFlag(a) {
+  Object.defineProperty(a, '__esModule', {value: true, configurable: true});
+}
+function $parcel$export(e, n, v, s) {
+  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
+}
 function $parcel$exportWildcard(dest, source) {
   Object.keys(source).forEach(function(key) {
     if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) {
@@ -18,9 +24,30 @@ function $parcel$exportWildcard(dest, source) {
 
   return dest;
 }
-function $parcel$export(e, n, v, s) {
-  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
-}
+
+$parcel$defineInteropFlag(module.exports);
+
+$parcel$export(module.exports, "utils", function () { return $a196c1ed25598f0e$export$eab97d15b1788b8d; });
+$parcel$export(module.exports, "default", function () { return $a196c1ed25598f0e$export$2e2bcd8739ae039; });
+var $0b3e125eada488ae$exports = {};
+var $f5619f0a0f3d506a$exports = {};
+
+$parcel$export($f5619f0a0f3d506a$exports, "calc", function () { return $f5619f0a0f3d506a$export$42bfa9b2d4dad91a; });
+const $f5619f0a0f3d506a$export$42bfa9b2d4dad91a = (a, b)=>a + b;
+
+
+var $0df06050474ce45f$exports = {};
+
+$parcel$export($0df06050474ce45f$exports, "test", function () { return $0df06050474ce45f$export$e0969da9b8fb378d; });
+const $0df06050474ce45f$export$e0969da9b8fb378d = ()=>"test";
+
+
+$parcel$exportWildcard($0b3e125eada488ae$exports, $f5619f0a0f3d506a$exports);
+$parcel$exportWildcard($0b3e125eada488ae$exports, $0df06050474ce45f$exports);
+
+
+
+
 var $be8240ea0d7c4a94$exports = {};
 var $cbb6a26f2ddcae9f$exports = {};
 
@@ -59,30 +86,6 @@ $parcel$exportWildcard($be8240ea0d7c4a94$exports, $cbb6a26f2ddcae9f$exports);
 $parcel$exportWildcard($be8240ea0d7c4a94$exports, $eb50fefaea28bf9f$exports);
 
 
-var $0b3e125eada488ae$exports = {};
-var $f5619f0a0f3d506a$exports = {};
-
-$parcel$export($f5619f0a0f3d506a$exports, "calc", function () { return $f5619f0a0f3d506a$export$42bfa9b2d4dad91a; });
-const $f5619f0a0f3d506a$export$42bfa9b2d4dad91a = (a, b)=>a + b;
-
-
-var $0df06050474ce45f$exports = {};
-
-$parcel$export($0df06050474ce45f$exports, "test", function () { return $0df06050474ce45f$export$e0969da9b8fb378d; });
-const $0df06050474ce45f$export$e0969da9b8fb378d = ()=>"test";
-
-
-$parcel$exportWildcard($0b3e125eada488ae$exports, $f5619f0a0f3d506a$exports);
-$parcel$exportWildcard($0b3e125eada488ae$exports, $0df06050474ce45f$exports);
-
-
-var $16627e03c7b02029$exports = {};
-var $f3424e8cc89f9945$exports = {};
-
-$parcel$export($f3424e8cc89f9945$exports, "init", function () { return $f3424e8cc89f9945$export$2cd8252107eb640b; });
-
-
-
 const $f3424e8cc89f9945$export$2cd8252107eb640b = (elementInput)=>{
     let mountNode = null;
     if (typeof elementInput !== "string") mountNode = elementInput;
@@ -91,12 +94,14 @@ const $f3424e8cc89f9945$export$2cd8252107eb640b = (elementInput)=>{
 };
 
 
-$parcel$exportWildcard($16627e03c7b02029$exports, $f3424e8cc89f9945$exports);
 
 
+
+const $a196c1ed25598f0e$export$eab97d15b1788b8d = $0b3e125eada488ae$exports;
+var $a196c1ed25598f0e$export$2e2bcd8739ae039 = {
+    init: $f3424e8cc89f9945$export$2cd8252107eb640b
+};
 $parcel$exportWildcard(module.exports, $be8240ea0d7c4a94$exports);
-$parcel$exportWildcard(module.exports, $0b3e125eada488ae$exports);
-$parcel$exportWildcard(module.exports, $16627e03c7b02029$exports);
 
 
 //# sourceMappingURL=main.cjs.map

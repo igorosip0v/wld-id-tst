@@ -2,8 +2,10 @@ export function SayHello(props: {
     name: string;
 }): JSX.Element;
 export const ReactWidget: () => JSX.Element;
-export const calc: (a: number, b: number) => number;
-export const test: () => string;
-export const init: (elementInput: string | HTMLElement) => void;
+export const utils: typeof utilities;
+declare const _default: {
+    init: (elementInput: string | HTMLElement) => void;
+};
+export default _default;
 
 //# sourceMappingURL=types.d.ts.map

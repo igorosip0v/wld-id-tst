@@ -1,6 +1,6 @@
-import {jsxs as $6PEjo$jsxs, jsx as $6PEjo$jsx} from "react/jsx-runtime";
-import {useState as $6PEjo$useState, useEffect as $6PEjo$useEffect} from "react";
+import {jsx as $6PEjo$jsx, jsxs as $6PEjo$jsxs} from "react/jsx-runtime";
 import {render as $6PEjo$render} from "react-dom";
+import {useState as $6PEjo$useState, useEffect as $6PEjo$useEffect} from "react";
 
 function $parcel$exportWildcard(dest, source) {
   Object.keys(source).forEach(function(key) {
@@ -21,6 +21,25 @@ function $parcel$exportWildcard(dest, source) {
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
+var $4a7b1e2c54f713d5$exports = {};
+var $18c8fdf29a985438$exports = {};
+
+$parcel$export($18c8fdf29a985438$exports, "calc", function () { return $18c8fdf29a985438$export$42bfa9b2d4dad91a; });
+const $18c8fdf29a985438$export$42bfa9b2d4dad91a = (a, b)=>a + b;
+
+
+var $a726fa4a3e600747$exports = {};
+
+$parcel$export($a726fa4a3e600747$exports, "test", function () { return $a726fa4a3e600747$export$e0969da9b8fb378d; });
+const $a726fa4a3e600747$export$e0969da9b8fb378d = ()=>"test";
+
+
+$parcel$exportWildcard($4a7b1e2c54f713d5$exports, $18c8fdf29a985438$exports);
+$parcel$exportWildcard($4a7b1e2c54f713d5$exports, $a726fa4a3e600747$exports);
+
+
+
+
 var $ee197dfdceb09b19$exports = {};
 var $f8a9d2f20f06cb4e$exports = {};
 
@@ -59,30 +78,6 @@ $parcel$exportWildcard($ee197dfdceb09b19$exports, $f8a9d2f20f06cb4e$exports);
 $parcel$exportWildcard($ee197dfdceb09b19$exports, $3dbd16f1671f3864$exports);
 
 
-var $4a7b1e2c54f713d5$exports = {};
-var $18c8fdf29a985438$exports = {};
-
-$parcel$export($18c8fdf29a985438$exports, "calc", function () { return $18c8fdf29a985438$export$42bfa9b2d4dad91a; });
-const $18c8fdf29a985438$export$42bfa9b2d4dad91a = (a, b)=>a + b;
-
-
-var $a726fa4a3e600747$exports = {};
-
-$parcel$export($a726fa4a3e600747$exports, "test", function () { return $a726fa4a3e600747$export$e0969da9b8fb378d; });
-const $a726fa4a3e600747$export$e0969da9b8fb378d = ()=>"test";
-
-
-$parcel$exportWildcard($4a7b1e2c54f713d5$exports, $18c8fdf29a985438$exports);
-$parcel$exportWildcard($4a7b1e2c54f713d5$exports, $a726fa4a3e600747$exports);
-
-
-var $2680f0eb1c5c8a5b$exports = {};
-var $31b9c2b20e72f367$exports = {};
-
-$parcel$export($31b9c2b20e72f367$exports, "init", function () { return $31b9c2b20e72f367$export$2cd8252107eb640b; });
-
-
-
 const $31b9c2b20e72f367$export$2cd8252107eb640b = (elementInput)=>{
     let mountNode = null;
     if (typeof elementInput !== "string") mountNode = elementInput;
@@ -91,10 +86,14 @@ const $31b9c2b20e72f367$export$2cd8252107eb640b = (elementInput)=>{
 };
 
 
-$parcel$exportWildcard($2680f0eb1c5c8a5b$exports, $31b9c2b20e72f367$exports);
 
 
 
+const $643fcf18b2d2e76f$export$eab97d15b1788b8d = $4a7b1e2c54f713d5$exports;
+var $643fcf18b2d2e76f$export$2e2bcd8739ae039 = {
+    init: $31b9c2b20e72f367$export$2cd8252107eb640b
+};
 
-export {$f8a9d2f20f06cb4e$export$b999473040af7d92 as SayHello, $3dbd16f1671f3864$export$329c003aa6b744f8 as ReactWidget, $18c8fdf29a985438$export$42bfa9b2d4dad91a as calc, $a726fa4a3e600747$export$e0969da9b8fb378d as test, $31b9c2b20e72f367$export$2cd8252107eb640b as init};
+
+export {$643fcf18b2d2e76f$export$eab97d15b1788b8d as utils, $643fcf18b2d2e76f$export$2e2bcd8739ae039 as default, $f8a9d2f20f06cb4e$export$b999473040af7d92 as SayHello, $3dbd16f1671f3864$export$329c003aa6b744f8 as ReactWidget};
 //# sourceMappingURL=module.js.map
