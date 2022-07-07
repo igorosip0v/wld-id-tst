@@ -28,8 +28,7 @@
     },
     "react": {
       "source": "src/components/index.ts",
-      "outputFormat": "esmodule",
-      "isLibrary": true
+      "outputFormat": "esmodule"
     },
     "react-types": {
       "source": "src/components/index.ts"
@@ -44,7 +43,7 @@
     }
   },
   "files": [
-    "/dist"
+    "/dist/*"
   ],
   "alias": {
     "components": "./src/components",
