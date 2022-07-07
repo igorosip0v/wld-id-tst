@@ -1,3 +1,6 @@
+import { useState } from "react";
+
 export function SayHello(props: { name: string }): JSX.Element {
-  return <div>`Hey ${props.name}, say hello to TypeScript.`</div>;
+  const [name, _setName] = useState(props.name);
+  return <div>Hey {name}, say hello to TypeScript.</div>;
 }

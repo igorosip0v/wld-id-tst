@@ -1,8 +1,26 @@
 "use strict";
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SayHello = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
+var react_1 = require("react");
 function SayHello(props) {
-    return (0, jsx_runtime_1.jsxs)("div", { children: ["`Hey $", props.name, ", say hello to TypeScript.`"] });
+    var _a = __read((0, react_1.useState)(props.name), 2), name = _a[0], _setName = _a[1];
+    return (0, jsx_runtime_1.jsxs)("div", { children: ["Hey ", name, ", say hello to TypeScript."] });
 }
 exports.SayHello = SayHello;
