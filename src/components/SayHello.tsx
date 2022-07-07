@@ -1,3 +1,3 @@
-export function SayHello(name: string): JSX.Element {
-  return <div>`Hey ${name}, say hello to TypeScript.`</div>;
+export function SayHello(props: { name: string }): JSX.Element {
+  return <div>`Hey ${props.name}, say hello to TypeScript.`</div>;
 }
