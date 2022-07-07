@@ -6,10 +6,6 @@
   "module": "dist/module.js",
   "iife": "dist/world-id.js",
   "types": "dist/types.d.ts",
-  "react": "dist/react/index.js",
-  "react-types": "dist/react/index.d.ts",
-  "utils": "dist/utils/index.js",
-  "utils-types": "dist/utils/index.d.ts",
   "targets": {
     "iife": {
       "context": "browser",
@@ -18,28 +14,13 @@
       "outputFormat": "global"
     },
     "main": {
-      "source": "src/widget/index.ts"
+      "source": "src/index.ts"
     },
     "module": {
-      "source": "src/widget/index.ts"
+      "source": "src/index.ts"
     },
     "types": {
-      "source": "src/widget/index.ts"
-    },
-    "react": {
-      "source": "src/components/index.ts",
-      "outputFormat": "esmodule"
-    },
-    "react-types": {
-      "source": "src/components/index.ts"
-    },
-    "utils": {
-      "source": "src/utils/index.ts",
-      "outputFormat": "esmodule",
-      "isLibrary": true
-    },
-    "utils-types": {
-      "source": "src/utils/index.ts"
+      "source": "src/index.ts"
     }
   },
   "files": [
@@ -47,7 +28,8 @@
   ],
   "alias": {
     "components": "./src/components",
-    "widget": "./src/widget"
+    "widget": "./src/widget",
+    "utils": "./src/utils"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {

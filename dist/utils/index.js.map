@@ -1,1 +1,0 @@
-{"mappings":";;;;;;;ACAO,MAAM,yCAAI,GAAG,CAAC,CAAS,EAAE,CAAS,GAAK,CAAC,GAAG,CAAC,AAAC;AAC7C,MAAM,yCAAI,GAAG,IAAM,MAAM,AAAC;;ADDjC","sources":["src/utils/index.ts","src/utils/calc.ts"],"sourcesContent":["export * from \"./calc\";\n","export const calc = (a: number, b: number) => a + b;\nexport const test = () => \"test\";\n"],"names":[],"version":3,"file":"index.js.map"}
