@@ -6,9 +6,8 @@ export const utils: {
     calc: (a: number, b: number) => number;
     test: () => string;
 };
-declare const _default: {
+export const worldID: {
     init: (elementInput: string | HTMLElement) => void;
 };
-export default _default;
 
 //# sourceMappingURL=types.d.ts.map

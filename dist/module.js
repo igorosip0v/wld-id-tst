@@ -84,10 +84,10 @@ const $643fcf18b2d2e76f$export$eab97d15b1788b8d = {
     calc: $18c8fdf29a985438$export$42bfa9b2d4dad91a,
     test: $a726fa4a3e600747$export$e0969da9b8fb378d
 };
-var $643fcf18b2d2e76f$export$2e2bcd8739ae039 = {
+const $643fcf18b2d2e76f$export$5d7e4e1146addb8e = {
     init: $31b9c2b20e72f367$export$2cd8252107eb640b
 };
 
 
-export {$643fcf18b2d2e76f$export$eab97d15b1788b8d as utils, $643fcf18b2d2e76f$export$2e2bcd8739ae039 as default, $f8a9d2f20f06cb4e$export$b999473040af7d92 as SayHello, $3dbd16f1671f3864$export$329c003aa6b744f8 as ReactWidget};
+export {$643fcf18b2d2e76f$export$eab97d15b1788b8d as utils, $643fcf18b2d2e76f$export$5d7e4e1146addb8e as worldID, $f8a9d2f20f06cb4e$export$b999473040af7d92 as SayHello, $3dbd16f1671f3864$export$329c003aa6b744f8 as ReactWidget};
 //# sourceMappingURL=module.js.map

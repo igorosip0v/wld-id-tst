@@ -2,9 +2,6 @@ var $b4te3$reactjsxruntime = require("react/jsx-runtime");
 var $b4te3$reactdom = require("react-dom");
 var $b4te3$react = require("react");
 
-function $parcel$defineInteropFlag(a) {
-  Object.defineProperty(a, '__esModule', {value: true, configurable: true});
-}
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
@@ -25,10 +22,8 @@ function $parcel$exportWildcard(dest, source) {
   return dest;
 }
 
-$parcel$defineInteropFlag(module.exports);
-
 $parcel$export(module.exports, "utils", function () { return $a196c1ed25598f0e$export$eab97d15b1788b8d; });
-$parcel$export(module.exports, "default", function () { return $a196c1ed25598f0e$export$2e2bcd8739ae039; });
+$parcel$export(module.exports, "worldID", function () { return $a196c1ed25598f0e$export$5d7e4e1146addb8e; });
 const $f5619f0a0f3d506a$export$42bfa9b2d4dad91a = (a, b)=>a + b;
 
 
@@ -92,7 +87,7 @@ const $a196c1ed25598f0e$export$eab97d15b1788b8d = {
     calc: $f5619f0a0f3d506a$export$42bfa9b2d4dad91a,
     test: $0df06050474ce45f$export$e0969da9b8fb378d
 };
-var $a196c1ed25598f0e$export$2e2bcd8739ae039 = {
+const $a196c1ed25598f0e$export$5d7e4e1146addb8e = {
     init: $f3424e8cc89f9945$export$2cd8252107eb640b
 };
 $parcel$exportWildcard(module.exports, $be8240ea0d7c4a94$exports);
