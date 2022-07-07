@@ -1,1 +1,0 @@
-{"version":3,"file":"SayHello.js","sourceRoot":"","sources":["../../../src/components/SayHello.tsx"],"names":[],"mappings":";;;;;;;;;;;;;;;;;AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,OAAO,CAAC;AAEjC,MAAM,UAAU,QAAQ,CAAC,KAAuB;IACxC,IAAA,KAAA,OAAmB,QAAQ,CAAC,KAAK,CAAC,IAAI,CAAC,IAAA,EAAtC,IAAI,QAAA,EAAE,QAAQ,QAAwB,CAAC;IAC9C,OAAO,kCAAU,IAAI,kCAAiC,CAAC;AACzD,CAAC"}
