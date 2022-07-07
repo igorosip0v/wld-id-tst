@@ -29,21 +29,12 @@ $parcel$defineInteropFlag(module.exports);
 
 $parcel$export(module.exports, "utils", function () { return $a196c1ed25598f0e$export$eab97d15b1788b8d; });
 $parcel$export(module.exports, "default", function () { return $a196c1ed25598f0e$export$2e2bcd8739ae039; });
-var $0b3e125eada488ae$exports = {};
-var $f5619f0a0f3d506a$exports = {};
-
-$parcel$export($f5619f0a0f3d506a$exports, "calc", function () { return $f5619f0a0f3d506a$export$42bfa9b2d4dad91a; });
 const $f5619f0a0f3d506a$export$42bfa9b2d4dad91a = (a, b)=>a + b;
 
 
-var $0df06050474ce45f$exports = {};
-
-$parcel$export($0df06050474ce45f$exports, "test", function () { return $0df06050474ce45f$export$e0969da9b8fb378d; });
 const $0df06050474ce45f$export$e0969da9b8fb378d = ()=>"test";
 
 
-$parcel$exportWildcard($0b3e125eada488ae$exports, $f5619f0a0f3d506a$exports);
-$parcel$exportWildcard($0b3e125eada488ae$exports, $0df06050474ce45f$exports);
 
 
 
@@ -97,7 +88,10 @@ const $f3424e8cc89f9945$export$2cd8252107eb640b = (elementInput)=>{
 
 
 
-const $a196c1ed25598f0e$export$eab97d15b1788b8d = $0b3e125eada488ae$exports;
+const $a196c1ed25598f0e$export$eab97d15b1788b8d = {
+    calc: $f5619f0a0f3d506a$export$42bfa9b2d4dad91a,
+    test: $0df06050474ce45f$export$e0969da9b8fb378d
+};
 var $a196c1ed25598f0e$export$2e2bcd8739ae039 = {
     init: $f3424e8cc89f9945$export$2cd8252107eb640b
 };

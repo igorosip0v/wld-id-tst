@@ -21,21 +21,12 @@ function $parcel$exportWildcard(dest, source) {
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
-var $4a7b1e2c54f713d5$exports = {};
-var $18c8fdf29a985438$exports = {};
-
-$parcel$export($18c8fdf29a985438$exports, "calc", function () { return $18c8fdf29a985438$export$42bfa9b2d4dad91a; });
 const $18c8fdf29a985438$export$42bfa9b2d4dad91a = (a, b)=>a + b;
 
 
-var $a726fa4a3e600747$exports = {};
-
-$parcel$export($a726fa4a3e600747$exports, "test", function () { return $a726fa4a3e600747$export$e0969da9b8fb378d; });
 const $a726fa4a3e600747$export$e0969da9b8fb378d = ()=>"test";
 
 
-$parcel$exportWildcard($4a7b1e2c54f713d5$exports, $18c8fdf29a985438$exports);
-$parcel$exportWildcard($4a7b1e2c54f713d5$exports, $a726fa4a3e600747$exports);
 
 
 
@@ -89,7 +80,10 @@ const $31b9c2b20e72f367$export$2cd8252107eb640b = (elementInput)=>{
 
 
 
-const $643fcf18b2d2e76f$export$eab97d15b1788b8d = $4a7b1e2c54f713d5$exports;
+const $643fcf18b2d2e76f$export$eab97d15b1788b8d = {
+    calc: $18c8fdf29a985438$export$42bfa9b2d4dad91a,
+    test: $a726fa4a3e600747$export$e0969da9b8fb378d
+};
 var $643fcf18b2d2e76f$export$2e2bcd8739ae039 = {
     init: $31b9c2b20e72f367$export$2cd8252107eb640b
 };
