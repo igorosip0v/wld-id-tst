@@ -17,4 +17,6 @@ const worldID = (elementInput: string | HTMLElement) => {
   }
 };
 
-export default worldID;
+if (typeof window !== "undefined") {
+  window["worldID"] = worldID;
+}
