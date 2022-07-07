@@ -13,7 +13,7 @@
     "build": "rimraf dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "rebuild": "git add . && git commit -m \"rebuild\" && git push"
+    "rebuild": "npm run build && git add . && git commit -m \"rebuild\" && git push"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
