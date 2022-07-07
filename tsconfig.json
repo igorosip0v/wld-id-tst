@@ -27,7 +27,7 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "~*": ["./src/*"]
+      "*": ["./src/*"]
     },
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,

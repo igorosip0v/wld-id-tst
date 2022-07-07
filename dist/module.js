@@ -1,5 +1,5 @@
 import {jsxs as $6PEjo$jsxs, jsx as $6PEjo$jsx} from "react/jsx-runtime";
-import {useState as $6PEjo$useState} from "react";
+import {useState as $6PEjo$useState, useEffect as $6PEjo$useEffect} from "react";
 import {render as $6PEjo$render} from "react-dom";
 
 function $parcel$exportWildcard(dest, source) {
@@ -28,7 +28,12 @@ $parcel$export($f8a9d2f20f06cb4e$exports, "SayHello", function () { return $f8a9
 
 
 function $f8a9d2f20f06cb4e$export$b999473040af7d92(props) {
-    const [name, _setName] = (0, $6PEjo$useState)(props.name);
+    const [name, setName] = (0, $6PEjo$useState)(props.name);
+    (0, $6PEjo$useEffect)(()=>{
+        setName(props.name);
+    }, [
+        props
+    ]);
     return /*#__PURE__*/ (0, $6PEjo$jsxs)("div", {
         children: [
             "Hey ",

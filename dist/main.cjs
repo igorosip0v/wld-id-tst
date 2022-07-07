@@ -28,7 +28,12 @@ $parcel$export($cbb6a26f2ddcae9f$exports, "SayHello", function () { return $cbb6
 
 
 function $cbb6a26f2ddcae9f$export$b999473040af7d92(props) {
-    const [name, _setName] = (0, $b4te3$react.useState)(props.name);
+    const [name, setName] = (0, $b4te3$react.useState)(props.name);
+    (0, $b4te3$react.useEffect)(()=>{
+        setName(props.name);
+    }, [
+        props
+    ]);
     return /*#__PURE__*/ (0, $b4te3$reactjsxruntime.jsxs)("div", {
         children: [
             "Hey ",
