@@ -1,14 +1,13 @@
-declare function SayHello(props: {
+export function SayHello(props: {
     name: string;
 }): JSX.Element;
+export const ReactWidget: () => JSX.Element;
+export const utils: {
+    calc: (a: number, b: number) => number;
+    test: () => string;
+};
 declare const _default: {
     init: (elementInput: string | HTMLElement) => void;
-    ReactWidget: () => JSX.Element;
-    SayHello: typeof SayHello;
-    utils: {
-        calc: (a: number, b: number) => number;
-        test: () => string;
-    };
 };
 export default _default;
 
