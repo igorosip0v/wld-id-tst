@@ -25,9 +25,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "resolveJsonModule": true,
-    "baseUrl": "src",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@components": ["./src/components"]
     },
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
