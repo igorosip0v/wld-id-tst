@@ -5,7 +5,26 @@
   "source": "src/index.ts",
   "main": "dist/main.cjs",
   "module": "dist/module.js",
+  "iife": "dist/world-id.js",
   "types": "dist/types.d.ts",
+  "targets": {
+    "iife": {
+      "context": "browser",
+      "source": "src/iife/index.tsx",
+      "distDir": "dist",
+      "includeNodeModules": true,
+      "outputFormat": "global"
+    },
+    "main": {
+      "source": "src/index.ts"
+    },
+    "module": {
+      "source": "src/index.ts"
+    },
+    "types": {
+      "source": "src/index.ts"
+    }
+  },
   "files": [
     "/dist"
   ],
