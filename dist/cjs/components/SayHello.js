@@ -24,3 +24,4 @@ function SayHello(props) {
     return (0, jsx_runtime_1.jsxs)("div", { children: ["Hey ", name, ", say hello to TypeScript."] });
 }
 exports.SayHello = SayHello;
+//# sourceMappingURL=SayHello.js.map

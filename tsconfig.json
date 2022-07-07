@@ -33,7 +33,8 @@
     "forceConsistentCasingInFileNames": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "sourceMap": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

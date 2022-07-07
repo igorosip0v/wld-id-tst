@@ -20,3 +20,4 @@ export function SayHello(props) {
     var _a = __read(useState(props.name), 2), name = _a[0], _setName = _a[1];
     return _jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] });
 }
+//# sourceMappingURL=SayHello.js.map

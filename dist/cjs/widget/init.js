@@ -17,3 +17,4 @@ var init = function (elementInput) {
     }
 };
 exports.init = init;
+//# sourceMappingURL=init.js.map

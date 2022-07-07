@@ -13,3 +13,4 @@ export var init = function (elementInput) {
         render(_jsx(ReactWidget, {}), mountNode);
     }
 };
+//# sourceMappingURL=init.js.map

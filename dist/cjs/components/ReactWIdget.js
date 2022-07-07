@@ -6,3 +6,4 @@ var ReactWidget = function () {
     return (0, jsx_runtime_1.jsx)("div", { children: "I am React Widget" });
 };
 exports.ReactWidget = ReactWidget;
+//# sourceMappingURL=ReactWIdget.js.map
