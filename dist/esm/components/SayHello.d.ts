@@ -1,1 +1,2 @@
-export declare function SayHello(name: string): string;
+/// <reference types="react" />
+export declare function SayHello(name: string): JSX.Element;

@@ -1,3 +1,4 @@
+import { jsxs as _jsxs } from "react/jsx-runtime";
 export function SayHello(name) {
-    return "Hey ".concat(name, ", say hello to TypeScript.");
+    return _jsxs("div", { children: ["`Hey $", name, ", say hello to TypeScript.`"] });
 }
