@@ -1,6 +1,25 @@
-import { calc, test } from "utils";
-import { init } from "widget";
+import {
+  buildVerificationRequest,
+  hashBytes,
+  keccak256,
+  randomNumber,
+  validateABILikeEncoding,
+  validateInputParams,
+  verifyVerificationResponse,
+} from "./utils";
 
-export * from "components";
-export const utils = { calc, test };
+import { init } from "./widget";
+
+export * from "./components";
+
+export const utils = {
+  buildVerificationRequest,
+  hashBytes,
+  keccak256,
+  randomNumber,
+  validateABILikeEncoding,
+  validateInputParams,
+  verifyVerificationResponse,
+};
+
 export default { init };

@@ -1,101 +1,176 @@
-var $b4te3$reactjsxruntime = require("react/jsx-runtime");
-var $b4te3$reactdom = require("react-dom");
-var $b4te3$react = require("react");
+'use strict';
 
-function $parcel$defineInteropFlag(a) {
-  Object.defineProperty(a, '__esModule', {value: true, configurable: true});
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var sha3 = require('js-sha3');
+var bytes = require('@ethersproject/bytes');
+var jsxRuntime = require('react/jsx-runtime');
+var reactDom = require('react-dom');
+var react = require('react');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var sha3__default = /*#__PURE__*/_interopDefaultLegacy(sha3);
+
+/**
+ * Partial implementation of `keccak256` hash from @ethersproject/solidity; only supports hashing a single BytesLike value
+ * @param value value to hash
+ * @returns
+ */
+function keccak256(value) {
+    const tight = [bytes.arrayify(value)];
+    const data = bytes.hexlify(bytes.concat(tight));
+    return "0x" + sha3__default["default"].keccak_256(bytes.arrayify(data));
 }
-function $parcel$export(e, n, v, s) {
-  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
+
+/**
+ * Hashes an input using the `keccak256` hashing function used across the World ID protocol, to be used as
+ * a ZKP input.
+ * @param input - Input to hash (if it's a string, it'll be converted to bytes first)
+ * @returns hash
+ */
+function hashBytes(input) {
+    const bytesInput = Buffer.isBuffer(input) ? input : Buffer.from(input);
+    const hash = BigInt(keccak256(bytesInput)) >> BigInt(8);
+    const rawDigest = hash.toString(16);
+    return { hash, digest: `0x${rawDigest.padStart(64, "0")}` };
 }
-function $parcel$exportWildcard(dest, source) {
-  Object.keys(source).forEach(function(key) {
-    if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) {
-      return;
+
+/**
+ * Generates a random integer between a specified range
+ * @param min Minimum number in range (inclusive)
+ * @param max Maximum number in range (inclusive)
+ * @returns Number between range
+ */
+const randomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const buildVerificationRequest = (props) => {
+    if (!props.signal) {
+        throw new Error("Unexpectedly trying to build verification request without a `signal`.");
     }
+    const params = {
+        signal: props.advanced_use_raw_signal
+            ? props.signal
+            : hashBytes(props.signal).digest,
+        action_id: props.advanced_use_raw_action_id
+            ? props.action_id
+            : hashBytes(props.action_id).digest,
+    };
+    if (props.app_name) {
+        params.app_name = props.app_name;
+    }
+    if (props.signal_description) {
+        params.signal_description = props.signal_description;
+    }
+    return {
+        id: randomNumber(100000, 9999999),
+        jsonrpc: "2.0",
+        method: "wld_worldIDVerification",
+        params: [params],
+    };
+};
 
-    Object.defineProperty(dest, key, {
-      enumerable: true,
-      get: function get() {
-        return source[key];
-      }
-    });
-  });
+/**
+ * Validates that an string looks like an ABI-encoded string. Very basic format-like check.
+ * The WLD app validates the actual values.
+ * @param value string to validate
+ * @returns `true` if the value looks like an ABI-encoded string; `false` otherwise
+ */
+const validateABILikeEncoding = (value) => {
+    const ABI_REGEX = /^0x[\dabcdef]+$/;
+    return !!value.toString().match(ABI_REGEX) && value.length >= 66; // Because `0` contains 66 characters
+};
 
-  return dest;
-}
+/**
+ * Validates the input parameters passed to the package when initializing.
+ * @param params `AppProps`
+ * @returns `true` if parameters are valid; error is raised otherwise.
+ */
+const validateInputParams = (params) => {
+    if (!params.action_id) {
+        return {
+            valid: false,
+            error: "The `action_id` parameter is always required.",
+        };
+    }
+    if (params.advanced_use_raw_action_id &&
+        !validateABILikeEncoding(params.action_id)) {
+        return {
+            valid: false,
+            error: `You enabled 'advanced_use_raw_action_id' which uses the action ID raw (without any additional hashing or encoding),
+        but the action ID you provided does not look to be validly hashed or encoded. Please check
+        https://id.worldcoin.org/docs/js/reference#parameters for details.`,
+        };
+    }
+    if (params.advanced_use_raw_signal &&
+        params.signal &&
+        !validateABILikeEncoding(params.signal)) {
+        return {
+            valid: false,
+            error: `You enabled 'advanced_use_raw_signal' which uses the signal raw (without any additional hashing or encoding),
+        but the signal you provided does not look to be validly hashed or encoded. Please check
+        https://id.worldcoin.org/docs/js/reference#parameters for details.`,
+        };
+    }
+    return { valid: true };
+};
 
-$parcel$defineInteropFlag(module.exports);
+/**
+ * Verifies that the response from the WLD app is valid
+ * @param result expects a valid `VerificationResponse`
+ */
+const verifyVerificationResponse = (result) => {
+    const merkle_root = "merkle_root" in result ? result.merkle_root : undefined;
+    const nullifier_hash = "nullifier_hash" in result ? result.nullifier_hash : undefined;
+    const proof = "proof" in result ? result.proof : undefined;
+    for (const attr of [merkle_root, nullifier_hash, proof]) {
+        if (!attr || !validateABILikeEncoding(attr)) {
+            return false;
+        }
+    }
+    return true;
+};
 
-$parcel$export(module.exports, "utils", function () { return $a196c1ed25598f0e$export$eab97d15b1788b8d; });
-$parcel$export(module.exports, "default", function () { return $a196c1ed25598f0e$export$2e2bcd8739ae039; });
-const $f5619f0a0f3d506a$export$42bfa9b2d4dad91a = (a, b)=>a + b;
-
-
-const $0df06050474ce45f$export$e0969da9b8fb378d = ()=>"test";
-
-
-
-
-
-
-var $be8240ea0d7c4a94$exports = {};
-var $cbb6a26f2ddcae9f$exports = {};
-
-$parcel$export($cbb6a26f2ddcae9f$exports, "SayHello", function () { return $cbb6a26f2ddcae9f$export$b999473040af7d92; });
-
-
-function $cbb6a26f2ddcae9f$export$b999473040af7d92(props) {
-    const [name, setName] = (0, $b4te3$react.useState)(props.name);
-    (0, $b4te3$react.useEffect)(()=>{
+function SayHello(props) {
+    const [name, setName] = react.useState(props.name);
+    react.useEffect(() => {
         setName(props.name);
-    }, [
-        props
-    ]);
-    return /*#__PURE__*/ (0, $b4te3$reactjsxruntime.jsxs)("div", {
-        children: [
-            "Hey ",
-            name,
-            ", say hello to TypeScript."
-        ]
-    });
+    }, [props]);
+    return jsxRuntime.jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] });
 }
 
-
-var $eb50fefaea28bf9f$exports = {};
-
-$parcel$export($eb50fefaea28bf9f$exports, "ReactWidget", function () { return $eb50fefaea28bf9f$export$329c003aa6b744f8; });
-
-const $eb50fefaea28bf9f$export$329c003aa6b744f8 = ()=>{
-    return /*#__PURE__*/ (0, $b4te3$reactjsxruntime.jsx)("div", {
-        children: "I am React Widget"
-    });
+const ReactWidget = () => {
+    return jsxRuntime.jsx("div", { children: "I am React Widget" });
 };
 
-
-$parcel$exportWildcard($be8240ea0d7c4a94$exports, $cbb6a26f2ddcae9f$exports);
-$parcel$exportWildcard($be8240ea0d7c4a94$exports, $eb50fefaea28bf9f$exports);
-
-
-const $f3424e8cc89f9945$export$2cd8252107eb640b = (elementInput)=>{
+const init = (elementInput) => {
     let mountNode = null;
-    if (typeof elementInput !== "string") mountNode = elementInput;
-    if (typeof elementInput === "string") mountNode = document.getElementById(elementInput);
-    if (mountNode !== null) (0, $b4te3$reactdom.render)(/*#__PURE__*/ (0, $b4te3$reactjsxruntime.jsx)((0, $eb50fefaea28bf9f$export$329c003aa6b744f8), {}), mountNode);
+    if (typeof elementInput !== "string") {
+        mountNode = elementInput;
+    }
+    if (typeof elementInput === "string") {
+        mountNode = document.getElementById(elementInput);
+    }
+    if (mountNode !== null) {
+        reactDom.render(jsxRuntime.jsx(ReactWidget, {}), mountNode);
+    }
 };
 
-
-
-
-
-const $a196c1ed25598f0e$export$eab97d15b1788b8d = {
-    calc: $f5619f0a0f3d506a$export$42bfa9b2d4dad91a,
-    test: $0df06050474ce45f$export$e0969da9b8fb378d
+const utils = {
+    buildVerificationRequest,
+    hashBytes,
+    keccak256,
+    randomNumber,
+    validateABILikeEncoding,
+    validateInputParams,
+    verifyVerificationResponse,
 };
-var $a196c1ed25598f0e$export$2e2bcd8739ae039 = {
-    init: $f3424e8cc89f9945$export$2cd8252107eb640b
-};
-$parcel$exportWildcard(module.exports, $be8240ea0d7c4a94$exports);
+var index = { init };
 
-
+exports.ReactWidget = ReactWidget;
+exports.SayHello = SayHello;
+exports["default"] = index;
+exports.utils = utils;
 //# sourceMappingURL=main.cjs.map

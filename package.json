@@ -2,58 +2,51 @@
   "name": "wld-id-tst",
   "version": "1.0.0",
   "description": "",
-  "source": "src/index.ts",
   "main": "dist/main.cjs",
   "module": "dist/module.js",
   "iife": "dist/world-id.js",
-  "types": "dist/types.d.ts",
-  "targets": {
-    "iife": {
-      "context": "browser",
-      "source": "src/browser/index.tsx",
-      "distDir": "dist",
-      "includeNodeModules": true,
-      "outputFormat": "global"
-    },
-    "main": {
-      "source": "src/index.ts"
-    },
-    "module": {
-      "source": "src/index.ts"
-    },
-    "types": {
-      "source": "src/index.ts"
-    }
-  },
+  "types": "dist/index.d.ts",
   "files": [
     "/dist"
   ],
   "alias": {
     "components": "./src/components",
     "widget": "./src/widget",
-    "utils": "./src/utils"
+    "utils": "./src/utils",
+    "types": "./src/types",
+    "Buffer": "node_modules/@types/node"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && parcel build",
+    "build": "rimraf dist && tsc && rollup -c",
     "dev": "parcel watch -p 3000",
     "typecheck": "tsc --noEmit",
     "rebuild": "npm run build && git add . && git commit -m \"rebuild\" && git push"
   },
   "devDependencies": {
-    "@parcel/packager-ts": "^2.6.2",
-    "@parcel/transformer-typescript-tsc": "^2.6.2",
-    "@parcel/transformer-typescript-types": "^2.6.2",
+    "@ethersproject/bytes": "5.6.1",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@types/node": "^18.0.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
-    "parcel": "^2.6.2",
+    "js-sha3": "0.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^3.0.2",
+    "rollup": "^2.76.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-polyfill-node": "^0.10.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },
   "peerDependencies": {
+    "@ethersproject/bytes": "5.6.1",
+    "js-sha3": "0.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
