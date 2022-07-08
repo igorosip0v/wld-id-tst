@@ -35,14 +35,6 @@ export default [
         globals,
         exports: "named",
       },
-      {
-        file: packageJson.iife,
-        format: "iife",
-        name: "worldID",
-        sourcemap: true,
-        globals,
-        exports: "named",
-      },
     ],
     plugins: [
       nodePolyfills(),
@@ -50,7 +42,33 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      terser(),
+      // terser(),
+    ],
+  },
+  {
+    input: "src/browser/index.tsx",
+    output: {
+      file: "dist/world-id.js",
+      format: "umd",
+      name: "worldID",
+    },
+    globals: {
+      "react/jsx-runtime": "jsxRuntime",
+      "react-dom": "ReactDOM",
+    },
+    externals: ["react-dom", "react/jsx-runtime"],
+    plugins: [
+      external({ includeDependencies: true }),
+      resolve({ browser: true }),
+      nodePolyfills(),
+      commonjs({
+        include: ["node_modules/**"],
+        namedExports: {
+          "node_modules/react-dom/index.js": ["render"],
+        },
+      }),
+      typescript({ tsconfig: "./tsconfig.json", inlineSources: true }),
+      // terser(),
     ],
   },
   {

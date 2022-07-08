@@ -1,5 +1,5 @@
 import { render } from "react-dom";
-import { ReactWidget } from "components";
+import { ReactWidget } from "../components";
 
 export const init = (elementInput: string | HTMLElement) => {
   let mountNode: HTMLElement | null = null;

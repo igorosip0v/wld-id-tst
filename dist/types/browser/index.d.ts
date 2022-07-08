@@ -1,1 +1,1 @@
-export declare const worldID: (elementInput: string | HTMLElement) => void;
+export declare const init: (elementInput: string | HTMLElement) => void;

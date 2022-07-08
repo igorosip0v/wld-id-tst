@@ -1,2 +1,28 @@
-var worldID=function(e,i,a,n,t,r){"use strict";function o(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}var d=o(i);function s(e){const i=[a.arrayify(e)],n=a.hexlify(a.concat(i));return"0x"+d.default.keccak_256(a.arrayify(n))}function c(e){const i=Buffer.isBuffer(e)?e:Buffer.from(e),a=BigInt(s(i))>>BigInt(8),n=a.toString(16);return{hash:a,digest:`0x${n.padStart(64,"0")}`}}const l=(e,i)=>Math.floor(Math.random()*(i-e+1)+e),u=e=>!!e.toString().match(/^0x[\dabcdef]+$/)&&e.length>=66;const f=()=>n.jsx("div",{children:"I am React Widget"}),h={buildVerificationRequest:e=>{if(!e.signal)throw new Error("Unexpectedly trying to build verification request without a `signal`.");const i={signal:e.advanced_use_raw_signal?e.signal:c(e.signal).digest,action_id:e.advanced_use_raw_action_id?e.action_id:c(e.action_id).digest};return e.app_name&&(i.app_name=e.app_name),e.signal_description&&(i.signal_description=e.signal_description),{id:l(1e5,9999999),jsonrpc:"2.0",method:"wld_worldIDVerification",params:[i]}},hashBytes:c,keccak256:s,randomNumber:l,validateABILikeEncoding:u,validateInputParams:e=>e.action_id?e.advanced_use_raw_action_id&&!u(e.action_id)?{valid:!1,error:"You enabled 'advanced_use_raw_action_id' which uses the action ID raw (without any additional hashing or encoding),\n        but the action ID you provided does not look to be validly hashed or encoded. Please check\n        https://id.worldcoin.org/docs/js/reference#parameters for details."}:e.advanced_use_raw_signal&&e.signal&&!u(e.signal)?{valid:!1,error:"You enabled 'advanced_use_raw_signal' which uses the signal raw (without any additional hashing or encoding),\n        but the signal you provided does not look to be validly hashed or encoded. Please check\n        https://id.worldcoin.org/docs/js/reference#parameters for details."}:{valid:!0}:{valid:!1,error:"The `action_id` parameter is always required."},verifyVerificationResponse:e=>{const i="merkle_root"in e?e.merkle_root:void 0,a="nullifier_hash"in e?e.nullifier_hash:void 0,n="proof"in e?e.proof:void 0;for(const e of[i,a,n])if(!e||!u(e))return!1;return!0}};var _={init:e=>{let i=null;"string"!=typeof e&&(i=e),"string"==typeof e&&(i=document.getElementById(e)),null!==i&&t.render(n.jsx(f,{}),i)}};return e.ReactWidget=f,e.SayHello=function(e){const[i,a]=r.useState(e.name);return r.useEffect((()=>{a(e.name)}),[e]),n.jsxs("div",{children:["Hey ",i,", say hello to TypeScript."]})},e.default=_,e.utils=h,Object.defineProperty(e,"__esModule",{value:!0}),e}({},sha3,bytes,jsxRuntime,reactDom,react);
-//# sourceMappingURL=world-id.js.map
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react/jsx-runtime'), require('react-dom'), require('react')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'react/jsx-runtime', 'react-dom', 'react'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.worldID = {}, global.jsxRuntime, global.reactDom));
+})(this, (function (exports, jsxRuntime, reactDom) { 'use strict';
+
+    var ReactWidget = function () {
+        return jsxRuntime.jsx("div", { children: "I am React Widget" });
+    };
+
+    var init = function (elementInput) {
+        var mountNode = null;
+        if (typeof elementInput !== "string") {
+            mountNode = elementInput;
+        }
+        if (typeof elementInput === "string") {
+            mountNode = document.getElementById(elementInput);
+        }
+        if (mountNode !== null) {
+            reactDom.render(jsxRuntime.jsx(ReactWidget, {}), mountNode);
+        }
+    };
+
+    exports.init = init;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
