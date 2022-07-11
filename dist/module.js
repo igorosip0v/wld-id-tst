@@ -1,9 +1,10 @@
 import sha3 from 'js-sha3';
 import { arrayify, hexlify, concat } from '@ethersproject/bytes';
 import { jsxs, jsx } from 'react/jsx-runtime';
-import { render } from 'react-dom';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { kea, path, actions, reducers, useValues, useActions } from 'kea';
 import { styled } from '@stitches/react';
+import { render } from 'react-dom';
 
 /**
  * Partial implementation of `keccak256` hash from @ethersproject/solidity; only supports hashing a single BytesLike value
@@ -121,6 +122,17 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
 function __values(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -177,12 +189,29 @@ var verifyVerificationResponse = function (result) {
     return true;
 };
 
+var widgetLogic = kea([
+    path(["worldId", "widgetLogic"]),
+    actions({
+        setName: function (name) { return ({ name: name }); },
+    }),
+    reducers({
+        name: [
+            "Default Name",
+            { setName: function (_, _a) {
+                    var name = _a.name;
+                    return name;
+                } },
+        ],
+    }),
+]);
+
 function SayHello(props) {
-    var _a = __read(useState(props.name), 2), name = _a[0], setName = _a[1];
+    var name = useValues(widgetLogic).name;
+    var setName = useActions(widgetLogic).setName;
     useEffect(function () {
         setName(props.name);
     }, [props]);
-    return jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] });
+    return (jsxs("div", { children: [jsx("button", __assign({ onClick: function () { return setName(crypto.randomUUID()); } }, { children: name })), jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] })] }));
 }
 
 var Container = styled("div", {
@@ -194,6 +223,10 @@ var ReactWidget = function () {
     return jsx(Container, { children: "I am ".concat(name) });
 };
 
+var App = function () {
+    return (jsxs("div", { children: [jsx(ReactWidget, {}), jsx(SayHello, { name: "ME" })] }));
+};
+
 var init = function (elementInput) {
     var mountNode = null;
     if (typeof elementInput !== "string") {
@@ -203,7 +236,7 @@ var init = function (elementInput) {
         mountNode = document.getElementById(elementInput);
     }
     if (mountNode !== null) {
-        render(jsx(ReactWidget, {}), mountNode);
+        render(jsx(App, {}), mountNode);
     }
 };
 

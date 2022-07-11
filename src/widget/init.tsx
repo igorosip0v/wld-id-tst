@@ -1,5 +1,5 @@
+import { App } from "App";
 import { render } from "react-dom";
-import { ReactWidget } from "../components";
 
 export const init = (elementInput: string | HTMLElement) => {
   let mountNode: HTMLElement | null = null;
@@ -13,6 +13,6 @@ export const init = (elementInput: string | HTMLElement) => {
   }
 
   if (mountNode !== null) {
-    render(<ReactWidget />, mountNode);
+    render(<App />, mountNode);
   }
 };

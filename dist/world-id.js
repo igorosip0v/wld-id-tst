@@ -227,10 +227,6 @@ var worldID = (function (exports) {
     uptime: uptime
   };
 
-  function getDefaultExportFromCjs (x) {
-  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-  }
-
   var jsxRuntime = {exports: {}};
 
   var reactJsxRuntime_production_min = {};
@@ -3012,16 +3008,21 @@ var worldID = (function (exports) {
   	return react_development.exports;
   }
 
-  (function (module) {
+  var hasRequiredReact;
 
-  	if (browser$1.env.NODE_ENV === 'production') {
-  	  module.exports = requireReact_production_min();
-  	} else {
-  	  module.exports = requireReact_development();
-  	}
+  function requireReact () {
+  	if (hasRequiredReact) return react.exports;
+  	hasRequiredReact = 1;
+  	(function (module) {
+
+  		if (browser$1.env.NODE_ENV === 'production') {
+  		  module.exports = requireReact_production_min();
+  		} else {
+  		  module.exports = requireReact_development();
+  		}
   } (react));
-
-  var Z = /*@__PURE__*/getDefaultExportFromCjs(react.exports);
+  	return react.exports;
+  }
 
   /**
    * @license React
@@ -3038,7 +3039,7 @@ var worldID = (function (exports) {
   function requireReactJsxRuntime_production_min () {
   	if (hasRequiredReactJsxRuntime_production_min) return reactJsxRuntime_production_min;
   	hasRequiredReactJsxRuntime_production_min = 1;
-  var f=react.exports,k=Symbol.for("react.element"),l=Symbol.for("react.fragment"),m=Object.prototype.hasOwnProperty,n=f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,p={key:!0,ref:!0,__self:!0,__source:!0};
+  var f=requireReact(),k=Symbol.for("react.element"),l=Symbol.for("react.fragment"),m=Object.prototype.hasOwnProperty,n=f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,p={key:!0,ref:!0,__self:!0,__source:!0};
   	function q(c,a,g){var b,d={},e=null,h=null;void 0!==g&&(e=""+g);void 0!==a.key&&(e=""+a.key);void 0!==a.ref&&(h=a.ref);for(b in a)m.call(a,b)&&!p.hasOwnProperty(b)&&(d[b]=a[b]);if(c&&c.defaultProps)for(b in a=c.defaultProps,a)void 0===d[b]&&(d[b]=a[b]);return {$$typeof:k,type:c,key:e,ref:h,props:d,_owner:n.current}}reactJsxRuntime_production_min.Fragment=l;reactJsxRuntime_production_min.jsx=q;reactJsxRuntime_production_min.jsxs=q;
   	return reactJsxRuntime_production_min;
   }
@@ -3054,7 +3055,7 @@ var worldID = (function (exports) {
   	if (browser$1.env.NODE_ENV !== "production") {
   	  (function() {
 
-  	var React = react.exports;
+  	var React = requireReact();
 
   	// ATTENTION
   	// When adding new symbols to this file,
@@ -4364,6 +4365,3050 @@ var worldID = (function (exports) {
   	}
   } (jsxRuntime));
 
+  /******************************************************************************
+  Copyright (c) Microsoft Corporation.
+
+  Permission to use, copy, modify, and/or distribute this software for any
+  purpose with or without fee is hereby granted.
+
+  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+  REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+  AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+  INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+  LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+  OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+  PERFORMANCE OF THIS SOFTWARE.
+  ***************************************************************************** */
+
+  var __assign = function() {
+      __assign = Object.assign || function __assign(t) {
+          for (var s, i = 1, n = arguments.length; i < n; i++) {
+              s = arguments[i];
+              for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+          }
+          return t;
+      };
+      return __assign.apply(this, arguments);
+  };
+
+  function __read(o, n) {
+      var m = typeof Symbol === "function" && o[Symbol.iterator];
+      if (!m) return o;
+      var i = m.call(o), r, ar = [], e;
+      try {
+          while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+      }
+      catch (error) { e = { error: error }; }
+      finally {
+          try {
+              if (r && !r.done && (m = i["return"])) m.call(i);
+          }
+          finally { if (e) throw e.error; }
+      }
+      return ar;
+  }
+
+  var reactExports = requireReact();
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      enumerableOnly && (symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      })), keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = null != arguments[i] ? arguments[i] : {};
+      i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+
+    return target;
+  }
+
+  /**
+   * Adapted from React: https://github.com/facebook/react/blob/master/packages/shared/formatProdErrorMessage.js
+   *
+   * Do not require this module directly! Use normal throw error calls. These messages will be replaced with error codes
+   * during build.
+   * @param {number} code
+   */
+  function formatProdErrorMessage(code) {
+    return "Minified Redux error #" + code + "; visit https://redux.js.org/Errors?code=" + code + " for the full message or " + 'use the non-minified dev environment for full errors. ';
+  }
+
+  // Inlined version of the `symbol-observable` polyfill
+  var $$observable = (function () {
+    return typeof Symbol === 'function' && Symbol.observable || '@@observable';
+  })();
+
+  /**
+   * These are private action types reserved by Redux.
+   * For any unknown actions, you must return the current state.
+   * If the current state is undefined, you must return the initial state.
+   * Do not reference these action types directly in your code.
+   */
+  var randomString = function randomString() {
+    return Math.random().toString(36).substring(7).split('').join('.');
+  };
+
+  var ActionTypes = {
+    INIT: "@@redux/INIT" + randomString(),
+    REPLACE: "@@redux/REPLACE" + randomString(),
+    PROBE_UNKNOWN_ACTION: function PROBE_UNKNOWN_ACTION() {
+      return "@@redux/PROBE_UNKNOWN_ACTION" + randomString();
+    }
+  };
+
+  /**
+   * @param {any} obj The object to inspect.
+   * @returns {boolean} True if the argument appears to be a plain object.
+   */
+  function isPlainObject(obj) {
+    if (typeof obj !== 'object' || obj === null) return false;
+    var proto = obj;
+
+    while (Object.getPrototypeOf(proto) !== null) {
+      proto = Object.getPrototypeOf(proto);
+    }
+
+    return Object.getPrototypeOf(obj) === proto;
+  }
+
+  // Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
+  function miniKindOf(val) {
+    if (val === void 0) return 'undefined';
+    if (val === null) return 'null';
+    var type = typeof val;
+
+    switch (type) {
+      case 'boolean':
+      case 'string':
+      case 'number':
+      case 'symbol':
+      case 'function':
+        {
+          return type;
+        }
+    }
+
+    if (Array.isArray(val)) return 'array';
+    if (isDate(val)) return 'date';
+    if (isError(val)) return 'error';
+    var constructorName = ctorName(val);
+
+    switch (constructorName) {
+      case 'Symbol':
+      case 'Promise':
+      case 'WeakMap':
+      case 'WeakSet':
+      case 'Map':
+      case 'Set':
+        return constructorName;
+    } // other
+
+
+    return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
+  }
+
+  function ctorName(val) {
+    return typeof val.constructor === 'function' ? val.constructor.name : null;
+  }
+
+  function isError(val) {
+    return val instanceof Error || typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number';
+  }
+
+  function isDate(val) {
+    if (val instanceof Date) return true;
+    return typeof val.toDateString === 'function' && typeof val.getDate === 'function' && typeof val.setDate === 'function';
+  }
+
+  function kindOf(val) {
+    var typeOfVal = typeof val;
+
+    if (browser$1.env.NODE_ENV !== 'production') {
+      typeOfVal = miniKindOf(val);
+    }
+
+    return typeOfVal;
+  }
+
+  /**
+   * @deprecated
+   *
+   * **We recommend using the `configureStore` method
+   * of the `@reduxjs/toolkit` package**, which replaces `createStore`.
+   *
+   * Redux Toolkit is our recommended approach for writing Redux logic today,
+   * including store setup, reducers, data fetching, and more.
+   *
+   * **For more details, please read this Redux docs page:**
+   * **https://redux.js.org/introduction/why-rtk-is-redux-today**
+   *
+   * `configureStore` from Redux Toolkit is an improved version of `createStore` that
+   * simplifies setup and helps avoid common bugs.
+   *
+   * You should not be using the `redux` core package by itself today, except for learning purposes.
+   * The `createStore` method from the core `redux` package will not be removed, but we encourage
+   * all users to migrate to using Redux Toolkit for all Redux code.
+   *
+   * If you want to use `createStore` without this visual deprecation warning, use
+   * the `legacy_createStore` import instead:
+   *
+   * `import { legacy_createStore as createStore} from 'redux'`
+   *
+   */
+
+  function createStore$1(reducer, preloadedState, enhancer) {
+    var _ref2;
+
+    if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') {
+      throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(0) : 'It looks like you are passing several store enhancers to ' + 'createStore(). This is not supported. Instead, compose them ' + 'together to a single function. See https://redux.js.org/tutorials/fundamentals/part-4-store#creating-a-store-with-enhancers for an example.');
+    }
+
+    if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+      enhancer = preloadedState;
+      preloadedState = undefined;
+    }
+
+    if (typeof enhancer !== 'undefined') {
+      if (typeof enhancer !== 'function') {
+        throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(1) : "Expected the enhancer to be a function. Instead, received: '" + kindOf(enhancer) + "'");
+      }
+
+      return enhancer(createStore$1)(reducer, preloadedState);
+    }
+
+    if (typeof reducer !== 'function') {
+      throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(2) : "Expected the root reducer to be a function. Instead, received: '" + kindOf(reducer) + "'");
+    }
+
+    var currentReducer = reducer;
+    var currentState = preloadedState;
+    var currentListeners = [];
+    var nextListeners = currentListeners;
+    var isDispatching = false;
+    /**
+     * This makes a shallow copy of currentListeners so we can use
+     * nextListeners as a temporary list while dispatching.
+     *
+     * This prevents any bugs around consumers calling
+     * subscribe/unsubscribe in the middle of a dispatch.
+     */
+
+    function ensureCanMutateNextListeners() {
+      if (nextListeners === currentListeners) {
+        nextListeners = currentListeners.slice();
+      }
+    }
+    /**
+     * Reads the state tree managed by the store.
+     *
+     * @returns {any} The current state tree of your application.
+     */
+
+
+    function getState() {
+      if (isDispatching) {
+        throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(3) : 'You may not call store.getState() while the reducer is executing. ' + 'The reducer has already received the state as an argument. ' + 'Pass it down from the top reducer instead of reading it from the store.');
+      }
+
+      return currentState;
+    }
+    /**
+     * Adds a change listener. It will be called any time an action is dispatched,
+     * and some part of the state tree may potentially have changed. You may then
+     * call `getState()` to read the current state tree inside the callback.
+     *
+     * You may call `dispatch()` from a change listener, with the following
+     * caveats:
+     *
+     * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+     * If you subscribe or unsubscribe while the listeners are being invoked, this
+     * will not have any effect on the `dispatch()` that is currently in progress.
+     * However, the next `dispatch()` call, whether nested or not, will use a more
+     * recent snapshot of the subscription list.
+     *
+     * 2. The listener should not expect to see all state changes, as the state
+     * might have been updated multiple times during a nested `dispatch()` before
+     * the listener is called. It is, however, guaranteed that all subscribers
+     * registered before the `dispatch()` started will be called with the latest
+     * state by the time it exits.
+     *
+     * @param {Function} listener A callback to be invoked on every dispatch.
+     * @returns {Function} A function to remove this change listener.
+     */
+
+
+    function subscribe(listener) {
+      if (typeof listener !== 'function') {
+        throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(4) : "Expected the listener to be a function. Instead, received: '" + kindOf(listener) + "'");
+      }
+
+      if (isDispatching) {
+        throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(5) : 'You may not call store.subscribe() while the reducer is executing. ' + 'If you would like to be notified after the store has been updated, subscribe from a ' + 'component and invoke store.getState() in the callback to access the latest state. ' + 'See https://redux.js.org/api/store#subscribelistener for more details.');
+      }
+
+      var isSubscribed = true;
+      ensureCanMutateNextListeners();
+      nextListeners.push(listener);
+      return function unsubscribe() {
+        if (!isSubscribed) {
+          return;
+        }
+
+        if (isDispatching) {
+          throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(6) : 'You may not unsubscribe from a store listener while the reducer is executing. ' + 'See https://redux.js.org/api/store#subscribelistener for more details.');
+        }
+
+        isSubscribed = false;
+        ensureCanMutateNextListeners();
+        var index = nextListeners.indexOf(listener);
+        nextListeners.splice(index, 1);
+        currentListeners = null;
+      };
+    }
+    /**
+     * Dispatches an action. It is the only way to trigger a state change.
+     *
+     * The `reducer` function, used to create the store, will be called with the
+     * current state tree and the given `action`. Its return value will
+     * be considered the **next** state of the tree, and the change listeners
+     * will be notified.
+     *
+     * The base implementation only supports plain object actions. If you want to
+     * dispatch a Promise, an Observable, a thunk, or something else, you need to
+     * wrap your store creating function into the corresponding middleware. For
+     * example, see the documentation for the `redux-thunk` package. Even the
+     * middleware will eventually dispatch plain object actions using this method.
+     *
+     * @param {Object} action A plain object representing “what changed”. It is
+     * a good idea to keep actions serializable so you can record and replay user
+     * sessions, or use the time travelling `redux-devtools`. An action must have
+     * a `type` property which may not be `undefined`. It is a good idea to use
+     * string constants for action types.
+     *
+     * @returns {Object} For convenience, the same action object you dispatched.
+     *
+     * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+     * return something else (for example, a Promise you can await).
+     */
+
+
+    function dispatch(action) {
+      if (!isPlainObject(action)) {
+        throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(7) : "Actions must be plain objects. Instead, the actual type was: '" + kindOf(action) + "'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.");
+      }
+
+      if (typeof action.type === 'undefined') {
+        throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(8) : 'Actions may not have an undefined "type" property. You may have misspelled an action type string constant.');
+      }
+
+      if (isDispatching) {
+        throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(9) : 'Reducers may not dispatch actions.');
+      }
+
+      try {
+        isDispatching = true;
+        currentState = currentReducer(currentState, action);
+      } finally {
+        isDispatching = false;
+      }
+
+      var listeners = currentListeners = nextListeners;
+
+      for (var i = 0; i < listeners.length; i++) {
+        var listener = listeners[i];
+        listener();
+      }
+
+      return action;
+    }
+    /**
+     * Replaces the reducer currently used by the store to calculate the state.
+     *
+     * You might need this if your app implements code splitting and you want to
+     * load some of the reducers dynamically. You might also need this if you
+     * implement a hot reloading mechanism for Redux.
+     *
+     * @param {Function} nextReducer The reducer for the store to use instead.
+     * @returns {void}
+     */
+
+
+    function replaceReducer(nextReducer) {
+      if (typeof nextReducer !== 'function') {
+        throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(10) : "Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
+      }
+
+      currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
+      // Any reducers that existed in both the new and old rootReducer
+      // will receive the previous state. This effectively populates
+      // the new state tree with any relevant data from the old one.
+
+      dispatch({
+        type: ActionTypes.REPLACE
+      });
+    }
+    /**
+     * Interoperability point for observable/reactive libraries.
+     * @returns {observable} A minimal observable of state changes.
+     * For more information, see the observable proposal:
+     * https://github.com/tc39/proposal-observable
+     */
+
+
+    function observable() {
+      var _ref;
+
+      var outerSubscribe = subscribe;
+      return _ref = {
+        /**
+         * The minimal observable subscription method.
+         * @param {Object} observer Any object that can be used as an observer.
+         * The observer object should have a `next` method.
+         * @returns {subscription} An object with an `unsubscribe` method that can
+         * be used to unsubscribe the observable from the store, and prevent further
+         * emission of values from the observable.
+         */
+        subscribe: function subscribe(observer) {
+          if (typeof observer !== 'object' || observer === null) {
+            throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(11) : "Expected the observer to be an object. Instead, received: '" + kindOf(observer) + "'");
+          }
+
+          function observeState() {
+            if (observer.next) {
+              observer.next(getState());
+            }
+          }
+
+          observeState();
+          var unsubscribe = outerSubscribe(observeState);
+          return {
+            unsubscribe: unsubscribe
+          };
+        }
+      }, _ref[$$observable] = function () {
+        return this;
+      }, _ref;
+    } // When a store is created, an "INIT" action is dispatched so that every
+    // reducer returns their initial state. This effectively populates
+    // the initial state tree.
+
+
+    dispatch({
+      type: ActionTypes.INIT
+    });
+    return _ref2 = {
+      dispatch: dispatch,
+      subscribe: subscribe,
+      getState: getState,
+      replaceReducer: replaceReducer
+    }, _ref2[$$observable] = observable, _ref2;
+  }
+  /**
+   * Creates a Redux store that holds the state tree.
+   *
+   * **We recommend using `configureStore` from the
+   * `@reduxjs/toolkit` package**, which replaces `createStore`:
+   * **https://redux.js.org/introduction/why-rtk-is-redux-today**
+   *
+   * The only way to change the data in the store is to call `dispatch()` on it.
+   *
+   * There should only be a single store in your app. To specify how different
+   * parts of the state tree respond to actions, you may combine several reducers
+   * into a single reducer function by using `combineReducers`.
+   *
+   * @param {Function} reducer A function that returns the next state tree, given
+   * the current state tree and the action to handle.
+   *
+   * @param {any} [preloadedState] The initial state. You may optionally specify it
+   * to hydrate the state from the server in universal apps, or to restore a
+   * previously serialized user session.
+   * If you use `combineReducers` to produce the root reducer function, this must be
+   * an object with the same shape as `combineReducers` keys.
+   *
+   * @param {Function} [enhancer] The store enhancer. You may optionally specify it
+   * to enhance the store with third-party capabilities such as middleware,
+   * time travel, persistence, etc. The only store enhancer that ships with Redux
+   * is `applyMiddleware()`.
+   *
+   * @returns {Store} A Redux store that lets you read the state, dispatch actions
+   * and subscribe to changes.
+   */
+
+  var legacy_createStore = createStore$1;
+
+  /**
+   * Prints a warning in the console if it exists.
+   *
+   * @param {String} message The warning message.
+   * @returns {void}
+   */
+  function warning(message) {
+    /* eslint-disable no-console */
+    if (typeof console !== 'undefined' && typeof console.error === 'function') {
+      console.error(message);
+    }
+    /* eslint-enable no-console */
+
+
+    try {
+      // This error was thrown as a convenience so that if you enable
+      // "break on all exceptions" in your console,
+      // it would pause the execution at this line.
+      throw new Error(message);
+    } catch (e) {} // eslint-disable-line no-empty
+
+  }
+
+  /**
+   * Composes single-argument functions from right to left. The rightmost
+   * function can take multiple arguments as it provides the signature for
+   * the resulting composite function.
+   *
+   * @param {...Function} funcs The functions to compose.
+   * @returns {Function} A function obtained by composing the argument functions
+   * from right to left. For example, compose(f, g, h) is identical to doing
+   * (...args) => f(g(h(...args))).
+   */
+  function compose() {
+    for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+      funcs[_key] = arguments[_key];
+    }
+
+    if (funcs.length === 0) {
+      return function (arg) {
+        return arg;
+      };
+    }
+
+    if (funcs.length === 1) {
+      return funcs[0];
+    }
+
+    return funcs.reduce(function (a, b) {
+      return function () {
+        return a(b.apply(void 0, arguments));
+      };
+    });
+  }
+
+  /**
+   * Creates a store enhancer that applies middleware to the dispatch method
+   * of the Redux store. This is handy for a variety of tasks, such as expressing
+   * asynchronous actions in a concise manner, or logging every action payload.
+   *
+   * See `redux-thunk` package as an example of the Redux middleware.
+   *
+   * Because middleware is potentially asynchronous, this should be the first
+   * store enhancer in the composition chain.
+   *
+   * Note that each middleware will be given the `dispatch` and `getState` functions
+   * as named arguments.
+   *
+   * @param {...Function} middlewares The middleware chain to be applied.
+   * @returns {Function} A store enhancer applying the middleware.
+   */
+
+  function applyMiddleware() {
+    for (var _len = arguments.length, middlewares = new Array(_len), _key = 0; _key < _len; _key++) {
+      middlewares[_key] = arguments[_key];
+    }
+
+    return function (createStore) {
+      return function () {
+        var store = createStore.apply(void 0, arguments);
+
+        var _dispatch = function dispatch() {
+          throw new Error(browser$1.env.NODE_ENV === "production" ? formatProdErrorMessage(15) : 'Dispatching while constructing your middleware is not allowed. ' + 'Other middleware would not be applied to this dispatch.');
+        };
+
+        var middlewareAPI = {
+          getState: store.getState,
+          dispatch: function dispatch() {
+            return _dispatch.apply(void 0, arguments);
+          }
+        };
+        var chain = middlewares.map(function (middleware) {
+          return middleware(middlewareAPI);
+        });
+        _dispatch = compose.apply(void 0, chain)(store.dispatch);
+        return _objectSpread2(_objectSpread2({}, store), {}, {
+          dispatch: _dispatch
+        });
+      };
+    };
+  }
+
+  /*
+   * This is a dummy function to check if the function name has been altered by minification.
+   * If the function has been minified and NODE_ENV !== 'production', warn the user.
+   */
+
+  function isCrushed() {}
+
+  if (browser$1.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+    warning('You are currently using minified code outside of NODE_ENV === "production". ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) ' + 'to ensure you have the correct code for your production build.');
+  }
+
+  // Cache implementation based on Erik Rasmussen's `lru-memoize`:
+  // https://github.com/erikras/lru-memoize
+  var NOT_FOUND = 'NOT_FOUND';
+
+  function createSingletonCache(equals) {
+    var entry;
+    return {
+      get: function get(key) {
+        if (entry && equals(entry.key, key)) {
+          return entry.value;
+        }
+
+        return NOT_FOUND;
+      },
+      put: function put(key, value) {
+        entry = {
+          key: key,
+          value: value
+        };
+      },
+      getEntries: function getEntries() {
+        return entry ? [entry] : [];
+      },
+      clear: function clear() {
+        entry = undefined;
+      }
+    };
+  }
+
+  function createLruCache(maxSize, equals) {
+    var entries = [];
+
+    function get(key) {
+      var cacheIndex = entries.findIndex(function (entry) {
+        return equals(key, entry.key);
+      }); // We found a cached entry
+
+      if (cacheIndex > -1) {
+        var entry = entries[cacheIndex]; // Cached entry not at top of cache, move it to the top
+
+        if (cacheIndex > 0) {
+          entries.splice(cacheIndex, 1);
+          entries.unshift(entry);
+        }
+
+        return entry.value;
+      } // No entry found in cache, return sentinel
+
+
+      return NOT_FOUND;
+    }
+
+    function put(key, value) {
+      if (get(key) === NOT_FOUND) {
+        // TODO Is unshift slow?
+        entries.unshift({
+          key: key,
+          value: value
+        });
+
+        if (entries.length > maxSize) {
+          entries.pop();
+        }
+      }
+    }
+
+    function getEntries() {
+      return entries;
+    }
+
+    function clear() {
+      entries = [];
+    }
+
+    return {
+      get: get,
+      put: put,
+      getEntries: getEntries,
+      clear: clear
+    };
+  }
+
+  var defaultEqualityCheck = function defaultEqualityCheck(a, b) {
+    return a === b;
+  };
+  function createCacheKeyComparator(equalityCheck) {
+    return function areArgumentsShallowlyEqual(prev, next) {
+      if (prev === null || next === null || prev.length !== next.length) {
+        return false;
+      } // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+
+
+      var length = prev.length;
+
+      for (var i = 0; i < length; i++) {
+        if (!equalityCheck(prev[i], next[i])) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+  }
+  // defaultMemoize now supports a configurable cache size with LRU behavior,
+  // and optional comparison of the result value with existing values
+  function defaultMemoize(func, equalityCheckOrOptions) {
+    var providedOptions = typeof equalityCheckOrOptions === 'object' ? equalityCheckOrOptions : {
+      equalityCheck: equalityCheckOrOptions
+    };
+    var _providedOptions$equa = providedOptions.equalityCheck,
+        equalityCheck = _providedOptions$equa === void 0 ? defaultEqualityCheck : _providedOptions$equa,
+        _providedOptions$maxS = providedOptions.maxSize,
+        maxSize = _providedOptions$maxS === void 0 ? 1 : _providedOptions$maxS,
+        resultEqualityCheck = providedOptions.resultEqualityCheck;
+    var comparator = createCacheKeyComparator(equalityCheck);
+    var cache = maxSize === 1 ? createSingletonCache(comparator) : createLruCache(maxSize, comparator); // we reference arguments instead of spreading them for performance reasons
+
+    function memoized() {
+      var value = cache.get(arguments);
+
+      if (value === NOT_FOUND) {
+        // @ts-ignore
+        value = func.apply(null, arguments);
+
+        if (resultEqualityCheck) {
+          var entries = cache.getEntries();
+          var matchingEntry = entries.find(function (entry) {
+            return resultEqualityCheck(entry.value, value);
+          });
+
+          if (matchingEntry) {
+            value = matchingEntry.value;
+          }
+        }
+
+        cache.put(arguments, value);
+      }
+
+      return value;
+    }
+
+    memoized.clearCache = function () {
+      return cache.clear();
+    };
+
+    return memoized;
+  }
+
+  function getDependencies(funcs) {
+    var dependencies = Array.isArray(funcs[0]) ? funcs[0] : funcs;
+
+    if (!dependencies.every(function (dep) {
+      return typeof dep === 'function';
+    })) {
+      var dependencyTypes = dependencies.map(function (dep) {
+        return typeof dep === 'function' ? "function " + (dep.name || 'unnamed') + "()" : typeof dep;
+      }).join(', ');
+      throw new Error("createSelector expects all input-selectors to be functions, but received the following types: [" + dependencyTypes + "]");
+    }
+
+    return dependencies;
+  }
+
+  function createSelectorCreator(memoize) {
+    for (var _len = arguments.length, memoizeOptionsFromArgs = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      memoizeOptionsFromArgs[_key - 1] = arguments[_key];
+    }
+
+    var createSelector = function createSelector() {
+      for (var _len2 = arguments.length, funcs = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        funcs[_key2] = arguments[_key2];
+      }
+
+      var _recomputations = 0;
+
+      var _lastResult; // Due to the intricacies of rest params, we can't do an optional arg after `...funcs`.
+      // So, start by declaring the default value here.
+      // (And yes, the words 'memoize' and 'options' appear too many times in this next sequence.)
+
+
+      var directlyPassedOptions = {
+        memoizeOptions: undefined
+      }; // Normally, the result func or "output selector" is the last arg
+
+      var resultFunc = funcs.pop(); // If the result func is actually an _object_, assume it's our options object
+
+      if (typeof resultFunc === 'object') {
+        directlyPassedOptions = resultFunc; // and pop the real result func off
+
+        resultFunc = funcs.pop();
+      }
+
+      if (typeof resultFunc !== 'function') {
+        throw new Error("createSelector expects an output function after the inputs, but received: [" + typeof resultFunc + "]");
+      } // Determine which set of options we're using. Prefer options passed directly,
+      // but fall back to options given to createSelectorCreator.
+
+
+      var _directlyPassedOption = directlyPassedOptions,
+          _directlyPassedOption2 = _directlyPassedOption.memoizeOptions,
+          memoizeOptions = _directlyPassedOption2 === void 0 ? memoizeOptionsFromArgs : _directlyPassedOption2; // Simplifying assumption: it's unlikely that the first options arg of the provided memoizer
+      // is an array. In most libs I've looked at, it's an equality function or options object.
+      // Based on that, if `memoizeOptions` _is_ an array, we assume it's a full
+      // user-provided array of options. Otherwise, it must be just the _first_ arg, and so
+      // we wrap it in an array so we can apply it.
+
+      var finalMemoizeOptions = Array.isArray(memoizeOptions) ? memoizeOptions : [memoizeOptions];
+      var dependencies = getDependencies(funcs);
+      var memoizedResultFunc = memoize.apply(void 0, [function recomputationWrapper() {
+        _recomputations++; // apply arguments instead of spreading for performance.
+
+        return resultFunc.apply(null, arguments);
+      }].concat(finalMemoizeOptions)); // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+
+      var selector = memoize(function dependenciesChecker() {
+        var params = [];
+        var length = dependencies.length;
+
+        for (var i = 0; i < length; i++) {
+          // apply arguments instead of spreading and mutate a local list of params for performance.
+          // @ts-ignore
+          params.push(dependencies[i].apply(null, arguments));
+        } // apply arguments instead of spreading for performance.
+
+
+        _lastResult = memoizedResultFunc.apply(null, params);
+        return _lastResult;
+      });
+      Object.assign(selector, {
+        resultFunc: resultFunc,
+        memoizedResultFunc: memoizedResultFunc,
+        dependencies: dependencies,
+        lastResult: function lastResult() {
+          return _lastResult;
+        },
+        recomputations: function recomputations() {
+          return _recomputations;
+        },
+        resetRecomputations: function resetRecomputations() {
+          return _recomputations = 0;
+        }
+      });
+      return selector;
+    }; // @ts-ignore
+
+
+    return createSelector;
+  }
+  var createSelector = /* #__PURE__ */createSelectorCreator(defaultMemoize);
+
+  function isLogicWrapper(logic) {
+    return '_isKea' in logic;
+  }
+  function isBuiltLogic(logic) {
+    return '_isKeaBuild' in logic;
+  }
+  var shallowCompare = function shallowCompare(obj1, obj2) {
+    var keys1 = Object.keys(obj1);
+    var keys2 = Object.keys(obj2);
+    return keys1.length === keys2.length && keys1.every(function (key) {
+      return obj2.hasOwnProperty(key) && obj1[key] === obj2[key];
+    });
+  };
+
+  function _extends() {
+    _extends = Object.assign || function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+
+      return target;
+    };
+
+    return _extends.apply(this, arguments);
+  }
+
+  function _objectWithoutPropertiesLoose(source, excluded) {
+    if (source == null) return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i;
+
+    for (i = 0; i < sourceKeys.length; i++) {
+      key = sourceKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      target[key] = source[key];
+    }
+
+    return target;
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _createForOfIteratorHelperLoose(o, allowArrayLike) {
+    var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+    if (it) return (it = it.call(o)).next.bind(it);
+
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+      if (it) o = it;
+      var i = 0;
+      return function () {
+        if (i >= o.length) return {
+          done: true
+        };
+        return {
+          done: false,
+          value: o[i++]
+        };
+      };
+    }
+
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  var reservedKeys = {
+    key: true,
+    path: true,
+    pathString: true,
+    props: true,
+    inputs: true,
+    wrapper: true,
+    wrap: true,
+    build: true,
+    mount: true,
+    unmount: true,
+    isMounted: true,
+    findMounted: true,
+    extend: true
+  };
+  function activatePlugin(pluginToActivate) {
+    var plugin = typeof pluginToActivate === 'function' ? pluginToActivate() : pluginToActivate;
+
+    var _getContext = getContext(),
+        plugins = _getContext.plugins;
+
+    if (!plugin.name) {
+      throw new Error('[KEA] Tried to activate a plugin without a name!');
+    }
+
+    if (plugins.activated.find(function (p) {
+      return p.name === plugin.name;
+    })) {
+      throw new Error("[KEA] Tried to activate plugin \"" + plugin.name + "\", but it was already installed!");
+    }
+
+    plugins.activated.push(plugin);
+
+    if (plugin.defaults) {
+      var fields = Object.keys(typeof plugin.defaults === 'function' ? plugin.defaults() : plugin.defaults);
+
+      for (var _i = 0, _fields = fields; _i < _fields.length; _i++) {
+        var key = _fields[_i];
+
+        if (browser$1.env.NODE_ENV !== 'production') {
+          if (plugins.logicFields[key] || reservedKeys[key]) {
+            console.error("[KEA] Plugin \"" + plugin.name + "\" redefines logic field \"" + key + "\". Previously defined by " + (plugins.logicFields[key] || 'core'));
+          }
+        }
+
+        plugins.logicFields[key] = plugin.name;
+      }
+    }
+
+    if (plugin.events) {
+      for (var _i2 = 0, _Object$keys = Object.keys(plugin.events); _i2 < _Object$keys.length; _i2++) {
+        var _key = _Object$keys[_i2];
+
+        if (!plugins.events[_key]) {
+          plugins.events[_key] = [];
+        }
+
+        plugins.events[_key].push(plugin.events[_key]);
+      }
+
+      plugin.events.afterPlugin && plugin.events.afterPlugin();
+    }
+  }
+  function runPlugins(key) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key2 = 1; _key2 < _len; _key2++) {
+      args[_key2 - 1] = arguments[_key2];
+    }
+
+    var _getContext2 = getContext(),
+        plugins = _getContext2.plugins,
+        debug = _getContext2.options.debug;
+
+    if (debug) {
+      var _console;
+
+      (_console = console).log.apply(_console, ["[KEA] Event: " + key].concat(args));
+    }
+
+    if (plugins && plugins.events[key]) {
+      plugins.events[key].forEach(function (pluginFunction) {
+        pluginFunction.apply(void 0, args);
+      });
+    }
+  }
+
+  var ATTACH_REDUCER$1 = '@KEA/ATTACH_REDUCER';
+  var DETACH_REDUCER$1 = '@KEA/DETACH_REDUCER';
+  var defaultState = {};
+  function initRootReducerTree(pathStart) {
+    var _getContext = getContext(),
+        _getContext$reducers = _getContext.reducers,
+        tree = _getContext$reducers.tree,
+        whitelist = _getContext$reducers.whitelist;
+
+    if (!tree[pathStart]) {
+      if (whitelist && !whitelist[pathStart]) {
+        throw new Error("[KEA] Can not start reducer's path with \"" + pathStart + "\"! Please add it to the whitelist");
+      }
+
+      tree[pathStart] = {};
+      regenerateRootReducer(pathStart);
+    }
+  }
+  function attachReducer(logic) {
+    var path = logic.path,
+        reducer = logic.reducer;
+
+    var _getContext3 = getContext(),
+        tree = _getContext3.reducers.tree,
+        attachStrategy = _getContext3.options.attachStrategy,
+        store = _getContext3.store;
+
+    var pathStart = path[0].toString();
+    initRootReducerTree(pathStart);
+    var pointer = tree;
+
+    for (var i = 0; i < path.length; i++) {
+      var pathPart = path[i].toString();
+
+      if (i === path.length - 1) {
+        if (pointer[pathPart]) {
+          if (i === 0 && typeof pointer[pathPart] === 'object' && Object.keys(pointer[pathPart]).length === 0) ; else if (typeof pointer[pathPart] !== 'function') {
+            console.error("[KEA] Can not add reducer to \"" + path.join('.') + "\". There is something in the way:", pointer[pathPart]);
+            return;
+          }
+        }
+
+        pointer[pathPart] = reducer;
+      } else {
+        if (!pointer[pathPart]) {
+          pointer[pathPart] = {};
+        }
+
+        pointer = pointer[pathPart];
+      }
+    }
+
+    regenerateRootReducer(pathStart);
+
+    if (attachStrategy === 'dispatch' || attachStrategy === 'replace') {
+      runPlugins('beforeAttach', logic);
+
+      if (attachStrategy === 'dispatch') {
+        store && store.dispatch({
+          type: ATTACH_REDUCER$1,
+          payload: {
+            path: path,
+            reducer: reducer
+          }
+        });
+      } else if (attachStrategy === 'replace') {
+        store && store.replaceReducer(createReduxStoreReducer());
+      }
+
+      runPlugins('afterAttach', logic);
+    }
+  }
+  function detachReducer(logic) {
+    var path = logic.path;
+
+    var _getContext4 = getContext(),
+        tree = _getContext4.reducers.tree,
+        detachStrategy = _getContext4.options.detachStrategy,
+        store = _getContext4.store;
+
+    var pathStart = path[0].toString();
+
+    if (detachStrategy === 'persist') {
+      return;
+    }
+
+    var detached = false;
+
+    for (var i = path.length - 2; i >= 0; i--) {
+      var pointerToHere = tree;
+
+      for (var j = 0; j <= i; j++) {
+        pointerToHere = pointerToHere && pointerToHere[path[j].toString()] || undefined;
+      }
+
+      if (pointerToHere) {
+        if (Object.keys(pointerToHere).length === 0) ; else if (Object.keys(pointerToHere).length >= 1 && i === path.length - 2 && typeof pointerToHere[path[i + 1].toString()] === 'function') {
+          delete pointerToHere[path[i + 1].toString()];
+          detached = true;
+        } else if (detached && Object.keys(pointerToHere).length >= 1 && i < path.length - 2 && Object.keys(pointerToHere[path[i + 1].toString()]).length === 0) {
+          delete pointerToHere[path[i + 1].toString()];
+        } else {
+          break;
+        }
+      }
+    }
+
+    regenerateRootReducer(pathStart);
+
+    if (detached) {
+      if (detachStrategy === 'dispatch' || detachStrategy === 'replace') {
+        runPlugins('beforeDetach', logic);
+
+        if (detachStrategy === 'dispatch') {
+          store && store.dispatch({
+            type: DETACH_REDUCER$1,
+            payload: {
+              path: path
+            }
+          });
+        } else if (detachStrategy === 'replace') {
+          store && store.replaceReducer(createReduxStoreReducer());
+        }
+
+        runPlugins('afterDetach', logic);
+      }
+    }
+  }
+  function regenerateRootReducer(pathStart) {
+    var _getContext5 = getContext(),
+        _getContext5$reducers = _getContext5.reducers,
+        tree = _getContext5$reducers.tree,
+        roots = _getContext5$reducers.roots,
+        whitelist = _getContext5$reducers.whitelist;
+
+    if (pathStart !== 'kea' && !whitelist && typeof tree[pathStart] === 'object' && Object.keys(tree[pathStart]).length === 0) {
+      delete roots[pathStart];
+    } else {
+      roots[pathStart] = recursiveCreateReducer(tree[pathStart]);
+    }
+
+    regenerateCombinedReducer();
+  }
+  function recursiveCreateReducer(treeNode) {
+    if (typeof treeNode === 'function') {
+      return treeNode;
+    }
+
+    var children = {};
+    Object.keys(treeNode).forEach(function (key) {
+      if (typeof treeNode[key] !== 'undefined') {
+        children[key] = recursiveCreateReducer(treeNode[key]);
+      }
+    });
+
+    if (Object.keys(children).length > 0) {
+      return combineKeaReducers(children);
+    } else {
+      var emptyObj = {};
+      return function () {
+        return emptyObj;
+      };
+    }
+  }
+  function combineKeaReducers(reducers) {
+    return function combination(state, action, fullState) {
+      if (state === void 0) {
+        state = {};
+      }
+
+      var reducerKeys = Object.keys(reducers);
+      var stateChanged = Object.keys(state).length !== reducerKeys.length;
+      var nextState = {};
+
+      for (var _i = 0, _reducerKeys = reducerKeys; _i < _reducerKeys.length; _i++) {
+        var key = _reducerKeys[_i];
+        var reducer = reducers[key];
+        var previousKeyState = state[key];
+        var nextKeyState = reducer(previousKeyState, action, fullState || state);
+
+        if (typeof nextKeyState === 'undefined') {
+          throw new Error("[KEA] Reducer \"" + key + "\" returned undefined for action \"" + (action && action.type) + "\"");
+        }
+
+        nextState[key] = nextKeyState;
+        stateChanged = stateChanged || nextKeyState !== previousKeyState;
+      }
+
+      return stateChanged ? nextState : state;
+    };
+  }
+
+  function regenerateCombinedReducer() {
+    var _getContext$reducers2 = getContext().reducers,
+        redux = _getContext$reducers2.redux,
+        roots = _getContext$reducers2.roots;
+
+    var reducers = _extends({}, redux, roots);
+
+    getContext().reducers.combined = combineKeaReducers(reducers);
+  }
+
+  function createReduxStoreReducer() {
+    regenerateCombinedReducer();
+    return function (state, action) {
+      var _getContext$reducers$, _getContext$reducers3;
+
+      if (state === void 0) {
+        state = defaultState;
+      }
+
+      return (_getContext$reducers$ = (_getContext$reducers3 = getContext().reducers).combined) === null || _getContext$reducers$ === void 0 ? void 0 : _getContext$reducers$.call(_getContext$reducers3, state, action, state);
+    };
+  }
+
+  var shim = {exports: {}};
+
+  var useSyncExternalStoreShim_production_min = {};
+
+  var e$1 = reactExports;
+  function h$1(a, b) { return a === b && (0 !== a || 1 / a === 1 / b) || a !== a && b !== b; }
+  var k$1 = "function" === typeof Object.is ? Object.is : h$1, l$1 = e$1.useState, m$1 = e$1.useEffect, n$1 = e$1.useLayoutEffect, p$1 = e$1.useDebugValue;
+  function q$1(a, b) { var d = b(), f = l$1({ inst: { value: d, getSnapshot: b } }), c = f[0].inst, g = f[1]; n$1(function () { c.value = d; c.getSnapshot = b; r$1(c) && g({ inst: c }); }, [a, d, b]); m$1(function () { r$1(c) && g({ inst: c }); return a(function () { r$1(c) && g({ inst: c }); }); }, [a]); p$1(d); return d; }
+  function r$1(a) { var b = a.getSnapshot; a = a.value; try {
+      var d = b();
+      return !k$1(a, d);
+  }
+  catch (f) {
+      return !0;
+  } }
+  function t$1(a, b) { return b(); }
+  var u$1 = "undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement ? t$1 : q$1;
+  useSyncExternalStoreShim_production_min.useSyncExternalStore = void 0 !== e$1.useSyncExternalStore ? e$1.useSyncExternalStore : u$1;
+
+  var useSyncExternalStoreShim_development = {};
+
+  if (browser$1.env.NODE_ENV !== "production") {
+      (function () {
+          if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
+              typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart ===
+                  'function') {
+              __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
+          }
+          var React = reactExports;
+          var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          function error(format) {
+              {
+                  {
+                      for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+                          args[_key2 - 1] = arguments[_key2];
+                      }
+                      printWarning('error', format, args);
+                  }
+              }
+          }
+          function printWarning(level, format, args) {
+              {
+                  var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+                  var stack = ReactDebugCurrentFrame.getStackAddendum();
+                  if (stack !== '') {
+                      format += '%s';
+                      args = args.concat([stack]);
+                  }
+                  var argsWithFormat = args.map(function (item) {
+                      return String(item);
+                  });
+                  argsWithFormat.unshift('Warning: ' + format);
+                  Function.prototype.apply.call(console[level], console, argsWithFormat);
+              }
+          }
+          function is(x, y) {
+              return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y;
+          }
+          var objectIs = typeof Object.is === 'function' ? Object.is : is;
+          var useState = React.useState, useEffect = React.useEffect, useLayoutEffect = React.useLayoutEffect, useDebugValue = React.useDebugValue;
+          var didWarnOld18Alpha = false;
+          var didWarnUncachedGetSnapshot = false;
+          function useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
+              {
+                  if (!didWarnOld18Alpha) {
+                      if (React.startTransition !== undefined) {
+                          didWarnOld18Alpha = true;
+                          error('You are using an outdated, pre-release alpha of React 18 that ' + 'does not support useSyncExternalStore. The ' + 'use-sync-external-store shim will not work correctly. Upgrade ' + 'to a newer pre-release.');
+                      }
+                  }
+              }
+              var value = getSnapshot();
+              {
+                  if (!didWarnUncachedGetSnapshot) {
+                      var cachedValue = getSnapshot();
+                      if (!objectIs(value, cachedValue)) {
+                          error('The result of getSnapshot should be cached to avoid an infinite loop');
+                          didWarnUncachedGetSnapshot = true;
+                      }
+                  }
+              }
+              var _useState = useState({
+                  inst: {
+                      value: value,
+                      getSnapshot: getSnapshot
+                  }
+              }), inst = _useState[0].inst, forceUpdate = _useState[1];
+              useLayoutEffect(function () {
+                  inst.value = value;
+                  inst.getSnapshot = getSnapshot;
+                  if (checkIfSnapshotChanged(inst)) {
+                      forceUpdate({
+                          inst: inst
+                      });
+                  }
+              }, [subscribe, value, getSnapshot]);
+              useEffect(function () {
+                  if (checkIfSnapshotChanged(inst)) {
+                      forceUpdate({
+                          inst: inst
+                      });
+                  }
+                  var handleStoreChange = function () {
+                      if (checkIfSnapshotChanged(inst)) {
+                          forceUpdate({
+                              inst: inst
+                          });
+                      }
+                  };
+                  return subscribe(handleStoreChange);
+              }, [subscribe]);
+              useDebugValue(value);
+              return value;
+          }
+          function checkIfSnapshotChanged(inst) {
+              var latestGetSnapshot = inst.getSnapshot;
+              var prevValue = inst.value;
+              try {
+                  var nextValue = latestGetSnapshot();
+                  return !objectIs(prevValue, nextValue);
+              }
+              catch (error) {
+                  return true;
+              }
+          }
+          function useSyncExternalStore$1(subscribe, getSnapshot, getServerSnapshot) {
+              return getSnapshot();
+          }
+          var canUseDOM = !!(typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
+          var isServerEnvironment = !canUseDOM;
+          var shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore;
+          var useSyncExternalStore$2 = React.useSyncExternalStore !== undefined ? React.useSyncExternalStore : shim;
+          useSyncExternalStoreShim_development.useSyncExternalStore = useSyncExternalStore$2;
+          if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' &&
+              typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop ===
+                  'function') {
+              __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
+          }
+      })();
+  }
+
+  if (browser$1.env.NODE_ENV === 'production') {
+      shim.exports = useSyncExternalStoreShim_production_min;
+  }
+  else {
+      shim.exports = useSyncExternalStoreShim_development;
+  }
+
+  var pauseCounter = 0;
+  var isPaused = function isPaused() {
+    return pauseCounter !== 0;
+  };
+
+  var getStoreState$1 = function getStoreState() {
+    return getContext().store.getState();
+  };
+
+  function useSelector(selector) {
+    return shim.exports.useSyncExternalStore(getContext().store.subscribe, function () {
+      return selector(getStoreState$1());
+    });
+  }
+  function useValues(logic) {
+    var builtLogic = useMountedLogic(logic);
+    return reactExports.useMemo(function () {
+      var response = {};
+
+      var _loop = function _loop() {
+        var key = _Object$keys[_i];
+        Object.defineProperty(response, key, {
+          get: function get() {
+            return useSelector(builtLogic.selectors[key]);
+          }
+        });
+      };
+
+      for (var _i = 0, _Object$keys = Object.keys(builtLogic.selectors); _i < _Object$keys.length; _i++) {
+        _loop();
+      }
+
+      return response;
+    }, [builtLogic.pathString]);
+  }
+  function useAllValues(logic) {
+    var builtLogic = useMountedLogic(logic);
+    var response = {};
+
+    for (var _i2 = 0, _Object$keys2 = Object.keys(builtLogic.selectors); _i2 < _Object$keys2.length; _i2++) {
+      var key = _Object$keys2[_i2];
+      response[key] = useSelector(builtLogic.selectors[key]);
+    }
+
+    return response;
+  }
+  function useActions(logic) {
+    var builtLogic = useMountedLogic(logic);
+    return builtLogic['actions'];
+  }
+  var blankContext = /*#__PURE__*/reactExports.createContext(undefined);
+  function useMountedLogic(logic) {
+    var builtLogicContext = isLogicWrapper(logic) ? getContext().react.contexts.get(logic) : null;
+    var defaultBuiltLogic = reactExports.useContext(builtLogicContext || blankContext);
+    var builtLogic = isLogicWrapper(logic) ? defaultBuiltLogic || logic.build() : logic;
+    var unmount = reactExports.useRef(undefined);
+
+    if (!unmount.current) {
+      batchChanges(function () {
+        unmount.current = builtLogic.mount();
+      });
+    }
+
+    var pathString = reactExports.useRef(builtLogic.pathString);
+
+    if (pathString.current !== builtLogic.pathString) {
+      batchChanges(function () {
+        var _unmount$current;
+
+        (_unmount$current = unmount.current) === null || _unmount$current === void 0 ? void 0 : _unmount$current.call(unmount);
+        unmount.current = builtLogic.mount();
+        pathString.current = builtLogic.pathString;
+      });
+    }
+
+    reactExports.useEffect(function useMountedLogicEffect() {
+      if (!unmount.current) {
+        batchChanges(function () {
+          unmount.current = builtLogic.mount();
+          pathString.current = builtLogic.pathString;
+        });
+      }
+
+      return function useMountedLogicEffectCleanup() {
+        batchChanges(function () {
+          unmount.current && unmount.current();
+          unmount.current = undefined;
+        });
+      };
+    }, []);
+    return builtLogic;
+  }
+  var timeout;
+  function batchChanges(callback) {
+    var previousState = getStoreState$1();
+    pauseCounter += 1;
+
+    try {
+      callback();
+    } catch (e) {} finally {
+      pauseCounter -= 1;
+    }
+
+    var newState = getStoreState$1();
+
+    if (previousState !== newState) {
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        return getContext().store.dispatch({
+          type: '@KEA/FLUSH'
+        });
+      }, 0);
+    }
+  }
+
+  var reduxDevToolsCompose = typeof window !== 'undefined' && window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] ? window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] : compose;
+
+  var createDefaultOptions = function createDefaultOptions() {
+    return {
+      paths: [],
+      reducers: {},
+      preloadedState: undefined,
+      middleware: [],
+      compose: reduxDevToolsCompose,
+      enhancers: [],
+      plugins: []
+    };
+  };
+
+  function createStore(opts) {
+    if (opts === void 0) {
+      opts = {};
+    }
+
+    var context = getContext();
+
+    if (!context) {
+      console.error('[KEA] Can not create a store without a Kea context.');
+      return;
+    }
+
+    if (context['__store']) {
+      console.error('[KEA] Already attached to a store! Exiting. Please reset the kea context before creating a store.');
+      return;
+    }
+
+    var options = _extends({}, createDefaultOptions(), opts);
+
+    context.reducers.redux = _extends({}, options.reducers);
+    runPlugins('beforeReduxStore', options);
+
+    if (options.middleware.length > 0) {
+      options.enhancers = [applyMiddleware.apply(void 0, options.middleware)].concat(options.enhancers);
+    }
+
+    var composeEnchancer = options.compose || compose;
+    var finalCreateStore = composeEnchancer.apply(void 0, [pauseListenersEnhancer].concat(options.enhancers))(legacy_createStore);
+
+    if (options.paths && options.paths.length > 0) {
+      context.reducers.whitelist = {};
+      options.paths.forEach(function (pathStart) {
+        context.reducers.whitelist[pathStart] = true;
+        initRootReducerTree(pathStart);
+      });
+    } else {
+      initRootReducerTree('kea');
+    }
+
+    var store = finalCreateStore(createReduxStoreReducer(), _extends({}, options.preloadedState));
+    context['__store'] = store;
+    runPlugins('afterReduxStore', options, store);
+    return store;
+  }
+  var pauseListenersEnhancer = function pauseListenersEnhancer(createStore) {
+    return function (reducer, initialState) {
+      var store = createStore(reducer, initialState);
+      var storeSubscribe = store.subscribe;
+
+      store.subscribe = function (observer) {
+        var pausedObserver = function pausedObserver() {
+          if (!isPaused()) {
+            observer();
+          }
+        };
+
+        return storeSubscribe(pausedObserver);
+      };
+
+      return store;
+    };
+  };
+
+  var _excluded = ["plugins", "createStore", "defaults"];
+  var context;
+  function getContext() {
+    return context;
+  }
+  var getStoreState = function getStoreState() {
+    return getContext().store.getState();
+  };
+  function setContext(newContext) {
+    context = newContext;
+  }
+  var contextId = 0;
+  function openContext(options, initial) {
+    if (options === void 0) {
+      options = {};
+    }
+
+    if (initial === void 0) {
+      initial = false;
+    }
+
+    if (context) {
+      console.error('[KEA] overwriting already opened context. This may lead to errors.');
+    }
+
+    var _options = options,
+        plugins = _options.plugins,
+        _options$createStore = _options.createStore,
+        createStoreOptions = _options$createStore === void 0 ? true : _options$createStore,
+        defaults = _options.defaults,
+        otherOptions = _objectWithoutPropertiesLoose(_options, _excluded);
+
+    var newContext = {
+      contextId: "kea-context-" + contextId++,
+      plugins: {
+        activated: [],
+        events: {},
+        logicFields: {},
+        contexts: {}
+      },
+      inputCounter: 0,
+      reducerDefaults: defaults,
+      wrapperContexts: new WeakMap(),
+      buildHeap: [],
+      mount: {
+        counter: {},
+        mounted: {}
+      },
+      react: {
+        contexts: new WeakMap()
+      },
+      reducers: {
+        tree: {},
+        roots: {},
+        redux: {},
+        whitelist: false,
+        combined: undefined
+      },
+      store: undefined,
+      __store: undefined,
+      options: _extends({
+        debug: false,
+        proxyFields: true,
+        flatDefaults: false,
+        attachStrategy: 'dispatch',
+        detachStrategy: 'dispatch',
+        defaultPath: ['kea', 'logic']
+      }, otherOptions)
+    };
+    Object.defineProperty(newContext, 'store', {
+      get: function get() {
+        var store = newContext['__store'];
+
+        if (!store && createStoreOptions) {
+          return createStore(typeof createStoreOptions === 'object' ? createStoreOptions : {});
+        }
+
+        return store;
+      },
+      set: function set(store) {
+        newContext['__store'] = store;
+      }
+    });
+    setContext(newContext);
+    activatePlugin(corePlugin);
+    runPlugins('afterOpenContext', newContext, options);
+
+    if (plugins) {
+      for (var _iterator = _createForOfIteratorHelperLoose(plugins), _step; !(_step = _iterator()).done;) {
+        var plugin = _step.value;
+        activatePlugin(plugin);
+      }
+    }
+
+    if (!initial && createStoreOptions) {
+      context.store;
+    }
+
+    return context;
+  }
+  function closeContext() {
+    if (context) {
+      runPlugins('beforeCloseContext', context);
+    }
+
+    context = undefined;
+  }
+  function resetContext(options, initial) {
+    if (options === void 0) {
+      options = {};
+    }
+
+    if (initial === void 0) {
+      initial = false;
+    }
+
+    if (context) {
+      closeContext();
+    }
+
+    return openContext(options, initial);
+  }
+  function getPluginContext(name) {
+    var _getContext = getContext(),
+        plugins = _getContext.plugins;
+
+    if (!plugins.contexts[name]) {
+      plugins.contexts[name] = {};
+    }
+
+    return plugins.contexts[name];
+  }
+  function setPluginContext(name, pluginContext) {
+    var _getContext2 = getContext(),
+        plugins = _getContext2.plugins;
+
+    plugins.contexts[name] = pluginContext;
+  }
+
+  function events(input) {
+    return function (logic) {
+      var events = typeof input === 'function' ? input(logic) : input;
+
+      var _loop = function _loop() {
+        var key = _Object$keys[_i];
+        var event = events[key];
+        var newEvent = Array.isArray(event) ? function (props, oldProps) {
+          return event.forEach(function (e) {
+            return e(props, oldProps);
+          });
+        } : event;
+
+        if (logic.events[key]) {
+          var oldEvent = logic.events[key];
+
+          logic.events[key] = function (props, oldProps) {
+            oldEvent === null || oldEvent === void 0 ? void 0 : oldEvent(props, oldProps);
+            newEvent === null || newEvent === void 0 ? void 0 : newEvent(props, oldProps);
+          };
+        } else if (newEvent) {
+          logic.events[key] = newEvent;
+        }
+      };
+
+      for (var _i = 0, _Object$keys = Object.keys(events); _i < _Object$keys.length; _i++) {
+        _loop();
+      }
+    };
+  }
+  function afterMount(input) {
+    return events(function (logic) {
+      return {
+        afterMount: function afterMount() {
+          return input(logic);
+        }
+      };
+    });
+  }
+  function beforeUnmount(input) {
+    return events(function (logic) {
+      return {
+        beforeUnmount: function beforeUnmount() {
+          return input(logic);
+        }
+      };
+    });
+  }
+
+  var LISTENERS_BREAKPOINT = 'kea-listeners breakpoint broke';
+  function listeners(input) {
+    return function (logic) {
+      var _logic$cache, _logic$cache$listener;
+
+      if (!logic.listeners) {
+        logic.listeners = {};
+        afterMount(function () {
+          addListeners(logic);
+        })(logic);
+        beforeUnmount(function () {
+          removeListeners(logic);
+
+          if (logic.cache.listenerBreakpointCounter) {
+            for (var _i = 0, _Object$keys = Object.keys(logic.cache.listenerBreakpointCounter); _i < _Object$keys.length; _i++) {
+              var key = _Object$keys[_i];
+              logic.cache.listenerBreakpointCounter[key] += 1;
+            }
+          }
+        })(logic);
+      }
+
+      (_logic$cache$listener = (_logic$cache = logic.cache).listenerBreakpointCounter) !== null && _logic$cache$listener !== void 0 ? _logic$cache$listener : _logic$cache.listenerBreakpointCounter = {};
+      var listeners = typeof input === 'function' ? input(logic) : input;
+
+      var _getContext = getContext(),
+          contextId = _getContext.contextId;
+
+      var _loop = function _loop() {
+        var actionKey = _Object$keys2[_i2];
+        var listenerArray = Array.isArray(listeners[actionKey]) ? listeners[actionKey] : [listeners[actionKey]];
+        var key = actionKey;
+
+        if (typeof logic.actions[key] !== 'undefined') {
+          key = logic.actions[key].toString();
+        }
+
+        var start = logic.listeners[key] ? logic.listeners[key].length : 0;
+        var listenerWrapperArray = listenerArray.map(function (listener, index) {
+          var listenerKey = contextId + "/" + key + "/" + (start + index);
+          return function (action, previousState) {
+            var breakCounter = (logic.cache.listenerBreakpointCounter[listenerKey] || 0) + 1;
+            logic.cache.listenerBreakpointCounter[listenerKey] = breakCounter;
+
+            var throwIfCalled = function throwIfCalled() {
+              if (logic.cache.listenerBreakpointCounter[listenerKey] !== breakCounter || contextId !== getContext().contextId) {
+                throw new Error(LISTENERS_BREAKPOINT);
+              }
+            };
+
+            var breakpoint = function breakpoint(ms) {
+              if (typeof ms !== 'undefined') {
+                return new Promise(function (resolve) {
+                  return setTimeout(resolve, ms);
+                }).then(function () {
+                  throwIfCalled();
+                });
+              } else {
+                throwIfCalled();
+              }
+            };
+
+            var response;
+
+            try {
+              response = listener(action.payload, breakpoint, action, previousState);
+
+              if (response && response.then && typeof response.then === 'function') {
+                trackPendingListener(logic, actionKey, response);
+                return response["catch"](function (e) {
+                  if (e.message !== LISTENERS_BREAKPOINT) {
+                    throw e;
+                  }
+                });
+              }
+            } catch (e) {
+              if (e.message !== LISTENERS_BREAKPOINT) {
+                throw e;
+              }
+            }
+
+            return response;
+          };
+        });
+
+        if (logic.listeners[key]) {
+          logic.listeners[key] = [].concat(logic.listeners[key], listenerWrapperArray);
+        } else {
+          logic.listeners[key] = listenerWrapperArray;
+        }
+      };
+
+      for (var _i2 = 0, _Object$keys2 = Object.keys(listeners); _i2 < _Object$keys2.length; _i2++) {
+        _loop();
+      }
+    };
+  }
+  function sharedListeners(input) {
+    return function (logic) {
+      logic.sharedListeners = _extends({}, logic.sharedListeners || {}, typeof input === 'function' ? input(logic) : input);
+    };
+  }
+
+  function addListeners(logic) {
+    var _logic$listeners;
+
+    var _getPluginContext = getPluginContext('listeners'),
+        byPath = _getPluginContext.byPath,
+        byAction = _getPluginContext.byAction;
+
+    byPath[logic.pathString] = (_logic$listeners = logic.listeners) !== null && _logic$listeners !== void 0 ? _logic$listeners : {};
+
+    for (var _i3 = 0, _Object$entries = Object.entries((_logic$listeners2 = logic.listeners) !== null && _logic$listeners2 !== void 0 ? _logic$listeners2 : {}); _i3 < _Object$entries.length; _i3++) {
+      var _logic$listeners2, _logic$actionTypes$ke;
+
+      var _Object$entries$_i = _Object$entries[_i3],
+          key = _Object$entries$_i[0],
+          listenerArray = _Object$entries$_i[1];
+      var type = (_logic$actionTypes$ke = logic.actionTypes[key]) !== null && _logic$actionTypes$ke !== void 0 ? _logic$actionTypes$ke : key;
+
+      if (!byAction[type]) {
+        byAction[type] = {};
+      }
+
+      byAction[type][logic.pathString] = listenerArray;
+    }
+  }
+
+  function removeListeners(logic) {
+    var _getPluginContext2 = getPluginContext('listeners'),
+        byPath = _getPluginContext2.byPath,
+        byAction = _getPluginContext2.byAction;
+
+    for (var _i4 = 0, _Object$keys3 = Object.keys((_logic$listeners3 = logic.listeners) !== null && _logic$listeners3 !== void 0 ? _logic$listeners3 : {}); _i4 < _Object$keys3.length; _i4++) {
+      var _logic$listeners3, _logic$actionTypes$ke2;
+
+      var key = _Object$keys3[_i4];
+      var type = (_logic$actionTypes$ke2 = logic.actionTypes[key]) !== null && _logic$actionTypes$ke2 !== void 0 ? _logic$actionTypes$ke2 : key;
+
+      if (byAction[type]) {
+        delete byAction[type][logic.pathString];
+
+        if (Object.keys(byAction[type]).length === 0) {
+          delete byAction[type];
+        }
+      }
+    }
+
+    delete byPath[logic.pathString];
+  }
+
+  function trackPendingListener(logic, actionKey, response) {
+    var _getPluginContext3 = getPluginContext('listeners'),
+        pendingPromises = _getPluginContext3.pendingPromises;
+
+    pendingPromises.set(response, [logic, actionKey]);
+
+    var remove = function remove() {
+      pendingPromises["delete"](response);
+    };
+
+    response.then(remove)["catch"](remove);
+  }
+
+  function actions(input) {
+    return function (logic) {
+      var actions = typeof input === 'function' ? input(logic) : input;
+
+      var _loop = function _loop() {
+        var _Object$entries$_i = _Object$entries[_i],
+            key = _Object$entries$_i[0],
+            payloadCreator = _Object$entries$_i[1];
+        var actionCreator = typeof payloadCreator === 'function' && '_isKeaAction' in payloadCreator ? payloadCreator : createActionCreator(createActionType(key, logic.pathString), payloadCreator !== null && payloadCreator !== void 0 ? payloadCreator : true);
+        var type = actionCreator.toString();
+        logic.actionCreators[key] = actionCreator;
+
+        logic.actions[key] = function () {
+          var builtAction = actionCreator.apply(void 0, arguments);
+          getContext().store.dispatch(builtAction);
+        };
+
+        logic.actions[key].toString = function () {
+          return type;
+        };
+
+        logic.actionKeys[type] = key;
+        logic.actionTypes[key] = type;
+      };
+
+      for (var _i = 0, _Object$entries = Object.entries(actions); _i < _Object$entries.length; _i++) {
+        _loop();
+      }
+    };
+  }
+  function createActionCreator(type, payloadCreator) {
+    var action = function action() {
+      return {
+        type: type,
+        payload: typeof payloadCreator === 'function' ? payloadCreator.apply(void 0, arguments) : {
+          value: true
+        }
+      };
+    };
+
+    action.toString = function () {
+      return type;
+    };
+
+    action._isKeaAction = true;
+    return action;
+  }
+  function createActionType(key, pathString) {
+    var toSpaces = function toSpaces(key) {
+      return key.replace(/(?:^|\.?)([A-Z])/g, function (x, y) {
+        return ' ' + y.toLowerCase();
+      }).replace(/^ /, '');
+    };
+
+    return toSpaces(key) + " (" + pathString + ")";
+  }
+
+  function connect(input) {
+    return function (logic) {
+      var props = logic.props || {};
+      var connect = typeof input === 'function' ? input(props) : input;
+      var connectLogic = Array.isArray(connect) ? connect : '_isKeaBuild' in connect || '_isKea' in connect ? [connect] : connect.logic;
+
+      if (connectLogic) {
+        for (var _iterator = _createForOfIteratorHelperLoose(connectLogic), _step; !(_step = _iterator()).done;) {
+          var otherLogic = _step.value;
+
+          if ('_isKea' in otherLogic) {
+            otherLogic = otherLogic(props);
+          }
+
+          addConnection(logic, otherLogic);
+        }
+      }
+
+      if ('_isKeaBuild' in connect || '_isKea' in connect || Array.isArray(connect)) {
+        return;
+      }
+
+      if (connect.actions) {
+        var response = deconstructMapping(connect.actions);
+
+        var _loop = function _loop() {
+          var _step2$value = _step2.value,
+              otherLogic = _step2$value[0],
+              from = _step2$value[1],
+              to = _step2$value[2];
+
+          if (browser$1.env.NODE_ENV !== 'production') {
+            if (typeof otherLogic !== 'function' && typeof otherLogic !== 'object') {
+              throw new Error("[KEA] Logic \"" + logic.pathString + "\" can not connect to " + typeof otherLogic + " to request action \"" + from + "\"");
+            }
+          }
+
+          if (isLogicWrapper(otherLogic)) {
+            otherLogic = otherLogic.build(props);
+          }
+
+          if (isBuiltLogic(otherLogic)) {
+            addConnection(logic, otherLogic);
+
+            if (getContext().buildHeap.includes(otherLogic)) {
+              logic.actionCreators[to] = function () {
+                var _otherLogic$actionCre;
+
+                return (_otherLogic$actionCre = otherLogic.actionCreators)[from].apply(_otherLogic$actionCre, arguments);
+              };
+
+              logic.actionCreators[to].toString = function () {
+                return createActionType(from, otherLogic.pathString);
+              };
+
+              logic.actionTypes[to] = logic.actionCreators[to].toString();
+            } else {
+              logic.actionCreators[to] = otherLogic.actionCreators[from];
+              logic.actionTypes[to] = otherLogic.actionTypes[from];
+            }
+          } else {
+            logic.actionCreators[to] = otherLogic[from];
+
+            if (logic.actionCreators[to]._isKeaAction) {
+              logic.actionTypes[to] = logic.actionCreators[to].toString();
+            } else {
+              logic.actionTypes[to] = logic.actionCreators[to]().type;
+            }
+          }
+
+          logic.actionKeys[logic.actionTypes[to]] = to;
+
+          if (typeof logic.actionCreators[to] === 'undefined') {
+            throw new Error("[KEA] Logic \"" + logic.pathString + "\", connecting to action \"" + from + "\" returns 'undefined'");
+          }
+
+          logic.actions[to] = function () {
+            var _logic$actionCreators;
+
+            var builtAction = (_logic$actionCreators = logic.actionCreators)[to].apply(_logic$actionCreators, arguments);
+
+            getContext().store.dispatch(builtAction);
+          };
+
+          logic.actions[to].toString = function () {
+            return logic.actionTypes[to];
+          };
+        };
+
+        for (var _iterator2 = _createForOfIteratorHelperLoose(response), _step2; !(_step2 = _iterator2()).done;) {
+          _loop();
+        }
+      }
+
+      if (connect.values) {
+        var _response = deconstructMapping(connect.values);
+
+        var _loop2 = function _loop2() {
+          var _step3$value = _step3.value,
+              otherLogic = _step3$value[0],
+              from = _step3$value[1],
+              to = _step3$value[2];
+
+          if (browser$1.env.NODE_ENV !== 'production') {
+            if (typeof otherLogic !== 'function' && typeof otherLogic !== 'object') {
+              throw new Error("[KEA] Logic \"" + logic.pathString + "\" can not connect to " + typeof otherLogic + " to request prop \"" + from + "\"");
+            }
+          }
+
+          if (isLogicWrapper(otherLogic)) {
+            otherLogic = otherLogic(props);
+          }
+
+          if (isBuiltLogic(otherLogic)) {
+            addConnection(logic, otherLogic);
+            var selector = from === '*' ? otherLogic.selector : otherLogic.selectors[from];
+
+            var throwError = function throwError() {
+              throw new Error("Connected selector \"" + to + "\" on logic \"" + logic.pathString + "\" is undefined.");
+            };
+
+            if (selector) {
+              logic.selectors[to] = selector;
+            } else if (getContext().buildHeap.includes(otherLogic)) {
+              logic.selectors[to] = function (state, props) {
+                return otherLogic.selectors[from] ? otherLogic.selectors[from](state, props) : throwError();
+              };
+            } else {
+              throwError();
+            }
+          } else if (typeof otherLogic === 'function') {
+            logic.selectors[to] = from === '*' ? otherLogic : function (state, props) {
+              var values = otherLogic(state, props);
+              return values && values[from];
+            };
+          }
+
+          if (logic.selectors[to] && !logic.values.hasOwnProperty(to)) {
+            Object.defineProperty(logic.values, to, {
+              get: function get() {
+                return logic.selectors[to](getStoreState(), logic.props);
+              },
+              enumerable: true
+            });
+          }
+        };
+
+        for (var _iterator3 = _createForOfIteratorHelperLoose(_response), _step3; !(_step3 = _iterator3()).done;) {
+          _loop2();
+        }
+      }
+    };
+  }
+
+  function deconstructMapping(mapping) {
+    if (mapping.length % 2 === 1) {
+      console.error(mapping);
+      throw new Error("[KEA] Uneven mapping given to connect");
+    }
+
+    var response = [];
+
+    for (var i = 0; i < mapping.length; i += 2) {
+      var logic = mapping[i];
+      var array = mapping[i + 1];
+
+      if (!Array.isArray(array)) {
+        console.error(mapping);
+        throw new Error('[KEA] Invalid mapping given to connect. Make sure every second element is an array!');
+      }
+
+      for (var j = 0; j < array.length; j++) {
+        if (array[j].includes(' as ')) {
+          var parts = array[j].split(' as ');
+          response.push([logic, parts[0], parts[1]]);
+        } else {
+          response.push([logic, array[j], array[j]]);
+        }
+      }
+    }
+
+    return response;
+  }
+
+  function addConnection(logic, otherLogic) {
+    if (!otherLogic.connections || Object.keys(otherLogic.connections).length === 0) {
+      return;
+    }
+
+    if (logic.connections[otherLogic.pathString]) {
+      return;
+    }
+
+    Object.keys(otherLogic.connections).forEach(function (path) {
+      if (!logic.connections[path]) {
+        logic.connections[path] = otherLogic.connections[path];
+      }
+    });
+  }
+
+  function defaults(input) {
+    return function (logic) {
+      var defaults = typeof input === 'function' ? input(logic) : input;
+
+      if (typeof defaults === 'function') {
+        logic.defaults['*'] = defaults;
+      } else if (typeof defaults === 'object') {
+        var contextDefaults = getContextDefaults(logic);
+
+        for (var _i = 0, _Object$entries = Object.entries(defaults); _i < _Object$entries.length; _i++) {
+          var _Object$entries$_i = _Object$entries[_i],
+              key = _Object$entries$_i[0],
+              value = _Object$entries$_i[1];
+          logic.defaults[key] = contextDefaults && typeof contextDefaults[key] !== 'undefined' ? contextDefaults[key] : value;
+        }
+      } else {
+        throw new Error("[KEA] Unknown defaults of type \"" + typeof defaults + "\" for logic \"" + logic.pathString + "\"");
+      }
+    };
+  }
+  function getContextDefaults(logic) {
+    var _getContext = getContext(),
+        reducerDefaults = _getContext.reducerDefaults;
+
+    if (reducerDefaults && !('_keaAutomaticPath' in logic.path)) {
+      if (getContext().options.flatDefaults) {
+        if (reducerDefaults[logic.pathString]) {
+          return reducerDefaults[logic.pathString];
+        }
+      } else {
+        for (var _iterator = _createForOfIteratorHelperLoose(logic.path), _step; !(_step = _iterator()).done;) {
+          var part = _step.value;
+          reducerDefaults = reducerDefaults[part.toString()];
+
+          if (typeof reducerDefaults !== 'object') {
+            return;
+          }
+        }
+
+        return reducerDefaults;
+      }
+    }
+  }
+
+  function selectors(input) {
+    return function (logic) {
+      var selectorInputs = typeof input === 'function' ? input(logic) : input;
+      var builtSelectors = {};
+
+      var _loop = function _loop() {
+        var key = _Object$keys[_i];
+
+        if (typeof logic.selectors[key] !== 'undefined') {
+          throw new Error("[KEA] Logic \"" + logic.pathString + "\" selector \"" + key + "\" already exists");
+        }
+
+        addSelectorAndValue(logic, key, function () {
+          return builtSelectors[key].apply(builtSelectors, arguments);
+        });
+      };
+
+      for (var _i = 0, _Object$keys = Object.keys(selectorInputs); _i < _Object$keys.length; _i++) {
+        _loop();
+      }
+
+      var _loop2 = function _loop2() {
+        var entry = _Object$entries[_i2];
+        var key = entry[0],
+            _entry$ = entry[1],
+            input = _entry$[0],
+            func = _entry$[1],
+            memoizeOptions = _entry$[2];
+        var args = input(logic.selectors);
+
+        if (args.filter(function (a) {
+          return typeof a !== 'function';
+        }).length > 0) {
+          var argTypes = args.map(function (a) {
+            return typeof a;
+          }).join(', ');
+          var msg = "[KEA] Logic \"" + logic.pathString + "\", selector \"" + key + "\" has incorrect input: [" + argTypes + "].";
+          throw new Error(msg);
+        }
+
+        builtSelectors[key] = createSelector(args, func, {
+          memoizeOptions: memoizeOptions
+        });
+        addSelectorAndValue(logic, key, function (state, props) {
+          if (state === void 0) {
+            state = getStoreState();
+          }
+
+          if (props === void 0) {
+            props = logic.props;
+          }
+
+          return builtSelectors[key](state, props);
+        });
+
+        if (!logic.values.hasOwnProperty(key)) {
+          Object.defineProperty(logic.values, key, {
+            get: function get() {
+              return logic.selectors[key](getStoreState(), logic.props);
+            },
+            enumerable: true
+          });
+        }
+      };
+
+      for (var _i2 = 0, _Object$entries = Object.entries(selectorInputs); _i2 < _Object$entries.length; _i2++) {
+        _loop2();
+      }
+    };
+  }
+  function addSelectorAndValue(logic, key, selector) {
+    logic.selectors[key] = selector;
+
+    if (!logic.values.hasOwnProperty(key)) {
+      Object.defineProperty(logic.values, key, {
+        get: function get() {
+          return logic.selectors[key](getStoreState(), logic.props);
+        },
+        enumerable: true
+      });
+    }
+  }
+
+  function rootReducer() {
+    return function (logic) {
+      logic.reducer = function (state, action, fullState) {
+        return combineKeaReducers(logic.reducers)(state, action, fullState);
+      };
+
+      if (!logic.selector) {
+        rootSelector()(logic);
+      }
+    };
+  }
+  function rootSelector() {
+    return function (logic) {
+      logic.selector = function (state) {
+        if (state === void 0) {
+          state = getStoreState();
+        }
+
+        return pathSelector(logic.path, state);
+      };
+    };
+  }
+  function reducers(input) {
+    return function (logic) {
+      var reducers = typeof input === 'function' ? input(logic) : input;
+
+      if (!logic.reducer) {
+        rootReducer()(logic);
+      }
+
+      if (!logic.selector) {
+        rootSelector()(logic);
+      }
+
+      var contextDefaults = getContextDefaults(logic);
+
+      var _loop = function _loop() {
+        var _logic$cache, _logic$cache$reducers, _logic$cache$reducers2, _logic$cache$reducers3;
+
+        var _Object$entries$_i = _Object$entries[_i],
+            key = _Object$entries$_i[0],
+            object = _Object$entries$_i[1];
+        var initialValue = void 0;
+        var reducerOptions = void 0;
+        var reducer = void 0;
+
+        if (Array.isArray(object)) {
+          var _object$, _object$Math$max;
+
+          initialValue = (_object$ = object[0]) !== null && _object$ !== void 0 ? _object$ : null;
+          reducer = (_object$Math$max = object[Math.max(1, object.length - 1)]) !== null && _object$Math$max !== void 0 ? _object$Math$max : {};
+
+          if (object.length === 3) {
+            reducerOptions = object[1];
+          }
+        } else if (typeof object === 'object') {
+          initialValue = null;
+          reducer = object;
+        } else {
+          throw new Error("[KEA] Logic \"" + logic.pathString + "\" reducer \"" + key + "\" is set to unsupported value");
+        }
+
+        if (reducerOptions) {
+          var _logic$reducerOptions;
+
+          logic.reducerOptions[key] = _extends({}, (_logic$reducerOptions = logic.reducerOptions[key]) !== null && _logic$reducerOptions !== void 0 ? _logic$reducerOptions : {}, reducerOptions);
+        }
+
+        if (typeof logic.defaults[key] === 'undefined') {
+          if (contextDefaults && typeof contextDefaults[key] !== 'undefined') {
+            logic.defaults[key] = contextDefaults[key];
+          } else if (typeof logic.defaults['*'] === 'function') {
+            logic.defaults[key] = function (state, props) {
+              var v = logic.defaults['*'](state, props)[key];
+              return typeof v === 'undefined' ? initialValue : typeof v === 'function' ? v(state, props) : v;
+            };
+          } else {
+            logic.defaults[key] = initialValue;
+          }
+        }
+
+        (_logic$cache$reducers = (_logic$cache = logic.cache).reducers) !== null && _logic$cache$reducers !== void 0 ? _logic$cache$reducers : _logic$cache.reducers = {};
+        (_logic$cache$reducers3 = (_logic$cache$reducers2 = logic.cache.reducers)[key]) !== null && _logic$cache$reducers3 !== void 0 ? _logic$cache$reducers3 : _logic$cache$reducers2[key] = {};
+        var mapping = logic.cache.reducers[key];
+
+        for (var _i2 = 0, _Object$keys = Object.keys((_reducer = reducer) !== null && _reducer !== void 0 ? _reducer : {}); _i2 < _Object$keys.length; _i2++) {
+          var _reducer;
+
+          var _key = _Object$keys[_i2];
+          var mappingKey = logic.actions[_key] ? logic.actions[_key].toString() : _key;
+          mapping[mappingKey] = reducer[_key];
+        }
+
+        if (typeof mapping['undefined'] !== 'undefined' && typeof logic.actions['undefined'] === 'undefined') {
+          throw new Error("[KEA] Logic \"" + logic.pathString + "\" reducer \"" + key + "\" is waiting for an action that is undefined: [" + Object.keys(mapping).join(', ') + "]");
+        }
+
+        if (!logic.reducers[key] && logic.selectors[key]) {
+          throw new Error("[KEA] Logic \"" + logic.pathString + "\" can't add reducer \"" + key + "\" because a selector with the same name exists.");
+        }
+
+        if (Object.keys(mapping).length === 0) {
+          logic.reducers[key] = function () {
+            return logic.defaults[key];
+          };
+        } else {
+          logic.reducers[key] = function (state, action, fullState) {
+            if (typeof state === 'undefined') {
+              state = getDefaultState(logic.defaults[key], fullState, key, logic);
+            }
+
+            if (mapping[action.type]) {
+              return mapping[action.type](state, action.payload, action.meta);
+            } else if (logic.actionKeys[action.type] && mapping[logic.actionKeys[action.type]]) {
+              return mapping[logic.actionKeys[action.type]](state, action.payload, action.meta);
+            } else {
+              return state;
+            }
+          };
+        }
+
+        if (!logic.selectors[key]) {
+          addSelectorAndValue(logic, key, createSelector(logic.selector, function (state) {
+            return state[key];
+          }));
+        }
+      };
+
+      for (var _i = 0, _Object$entries = Object.entries(reducers); _i < _Object$entries.length; _i++) {
+        _loop();
+      }
+    };
+  }
+
+  function getDefaultState(defaultValue, fullState, key, logic) {
+    if (typeof defaultValue === 'function') {
+      if (fullState) {
+        return defaultValue(fullState, logic.props);
+      } else {
+        if (browser$1.env.NODE_ENV !== 'production') {
+          console.error("[KEA] Store not initialized and can't get default value of \"" + key + "\" in \"" + logic.pathString + "\"");
+        }
+
+        return undefined;
+      }
+    }
+
+    return defaultValue;
+  }
+
+  function pathSelector(path, state) {
+    return [state].concat(path).reduce(function (v, a) {
+      if (a in v) {
+        return v[a];
+      }
+
+      throw new Error("[KEA] Can not find path \"" + path.join('.') + "\" in the store.");
+    });
+  }
+
+  function key(input) {
+    return function (logic) {
+      var key = input(logic.props);
+
+      if (typeof logic.keyBuilder !== 'undefined') {
+        throw new Error("[KEA] Already defined key builder for logic \"" + logic.pathString + "\".");
+      }
+
+      if (typeof key === 'undefined') {
+        throw new Error("[KEA] Undefined key for logic \"" + logic.pathString + "\"");
+      }
+
+      if (Object.keys(logic.actions).length > 0) {
+        throw new Error("[KEA] Can not add key to logic \"" + logic.pathString + "\" after adding actions: " + Object.keys(logic.actions).join(', '));
+      }
+
+      logic.key = key;
+      logic.keyBuilder = input;
+      var isAutomaticPath = ('_keaAutomaticPath' in logic.path);
+      logic.path = [].concat(logic.path, [logic.key]);
+      logic.pathString = logic.path.join('.');
+
+      if (isAutomaticPath) {
+        logic.path['_keaAutomaticPath'] = true;
+      }
+    };
+  }
+
+  function props(input) {
+    return function (logic) {
+      var newProps = _extends({}, input, logic.props);
+
+      if (!shallowCompare(logic.props, newProps)) {
+        logic.props = newProps;
+      }
+    };
+  }
+
+  function path(input) {
+    return function (logic) {
+      if (logic.path && !('_keaAutomaticPath' in logic.path)) {
+        return;
+      }
+
+      if (Object.keys(logic.actions).length > 0) {
+        throw new Error("[KEA] Can not add path to logic \"" + logic.pathString + "\" after adding actions: " + Object.keys(logic.actions).join(', '));
+      }
+
+      if (typeof input === 'function') {
+        logic.path = input(logic.key).filter(function (l) {
+          return typeof l !== 'undefined';
+        });
+      } else {
+        logic.path = typeof logic.key !== 'undefined' ? [].concat(input, [logic.key]) : input;
+      }
+
+      logic.pathString = logic.path.join('.');
+    };
+  }
+
+  var corePlugin = {
+    name: 'core',
+    defaults: function defaults() {
+      return {
+        actionCreators: {},
+        actionKeys: {},
+        actionTypes: {},
+        actions: {},
+        cache: {},
+        connections: {},
+        defaults: {},
+        listeners: undefined,
+        reducers: {},
+        reducer: undefined,
+        reducerOptions: {},
+        selector: undefined,
+        selectors: {},
+        sharedListeners: undefined,
+        values: {},
+        events: {}
+      };
+    },
+    events: {
+      afterPlugin: function afterPlugin() {
+        setPluginContext('listeners', {
+          byAction: {},
+          byPath: {},
+          pendingPromises: new Map()
+        });
+      },
+      beforeReduxStore: function beforeReduxStore(options) {
+        options.middleware.push(function (store) {
+          return function (next) {
+            return function (action) {
+              var previousState = store.getState();
+              var response = next(action);
+
+              var _getPluginContext = getPluginContext('listeners'),
+                  byAction = _getPluginContext.byAction;
+
+              var listeners = byAction[action.type];
+
+              if (listeners) {
+                for (var _i = 0, _Object$values = Object.values(listeners); _i < _Object$values.length; _i++) {
+                  var listenerArray = _Object$values[_i];
+
+                  for (var _iterator = _createForOfIteratorHelperLoose(listenerArray), _step; !(_step = _iterator()).done;) {
+                    var innerListener = _step.value;
+                    innerListener(action, previousState);
+                  }
+                }
+              }
+
+              return response;
+            };
+          };
+        });
+      },
+      legacyBuild: function legacyBuild(logic, input) {
+        'connect' in input && input.connect && connect(input.connect)(logic);
+        runPlugins('legacyBuildAfterConnect', logic, input);
+        'actions' in input && input.actions && actions(input.actions)(logic);
+        'defaults' in input && input.defaults && defaults(input.defaults)(logic);
+        runPlugins('legacyBuildAfterDefaults', logic, input);
+        'reducers' in input && input.reducers && reducers(input.reducers)(logic);
+        'selectors' in input && input.selectors && selectors(input.selectors)(logic);
+        'sharedListeners' in input && sharedListeners(input.sharedListeners)(logic);
+        'listeners' in input && input.listeners && listeners(input.listeners)(logic);
+        'events' in input && input.events && events(input.events)(logic);
+      }
+    }
+  };
+
+  function mountLogic(logic, count) {
+    if (count === void 0) {
+      count = 1;
+    }
+
+    var _getContext = getContext(),
+        _getContext$mount = _getContext.mount,
+        counter = _getContext$mount.counter,
+        mounted = _getContext$mount.mounted;
+
+    var pathStrings = Object.keys(logic.connections).filter(function (k) {
+      return k !== logic.pathString;
+    }).concat([logic.pathString]);
+
+    for (var _iterator = _createForOfIteratorHelperLoose(pathStrings), _step; !(_step = _iterator()).done;) {
+      var pathString = _step.value;
+      counter[pathString] = (counter[pathString] || 0) + count;
+
+      if (counter[pathString] === count) {
+        var _connectedLogic$event, _connectedLogic$event2, _connectedLogic$event3, _connectedLogic$event4;
+
+        var connectedLogic = logic.connections[pathString];
+
+        if (typeof connectedLogic === 'undefined') {
+          throw new Error("[KEA] Can not find connected logic at \"" + pathString + "\". Got \"undefined\" instead of the logic when trying to mount \"" + logic.pathString + "\".");
+        }
+
+        runPlugins('beforeMount', connectedLogic);
+        (_connectedLogic$event = (_connectedLogic$event2 = connectedLogic.events).beforeMount) === null || _connectedLogic$event === void 0 ? void 0 : _connectedLogic$event.call(_connectedLogic$event2);
+        mounted[pathString] = connectedLogic;
+
+        if (connectedLogic.reducer) {
+          attachReducer(connectedLogic);
+        }
+
+        runPlugins('afterMount', connectedLogic);
+        (_connectedLogic$event3 = (_connectedLogic$event4 = connectedLogic.events).afterMount) === null || _connectedLogic$event3 === void 0 ? void 0 : _connectedLogic$event3.call(_connectedLogic$event4);
+      }
+    }
+  }
+  function unmountLogic(logic) {
+    var _getContext2 = getContext(),
+        _getContext2$mount = _getContext2.mount,
+        counter = _getContext2$mount.counter,
+        mounted = _getContext2$mount.mounted;
+
+    var pathStrings = Object.keys(logic.connections).filter(function (k) {
+      return k !== logic.pathString;
+    }).concat([logic.pathString]).reverse();
+
+    for (var _iterator2 = _createForOfIteratorHelperLoose(pathStrings), _step2; !(_step2 = _iterator2()).done;) {
+      var pathString = _step2.value;
+      counter[pathString] = (counter[pathString] || 0) - 1;
+
+      if (counter[pathString] === 0) {
+        var _connectedLogic$event5, _connectedLogic$event6, _connectedLogic$event7, _connectedLogic$event8, _getContext$wrapperCo;
+
+        var connectedLogic = logic.connections[pathString];
+        runPlugins('beforeUnmount', connectedLogic);
+        (_connectedLogic$event5 = (_connectedLogic$event6 = connectedLogic.events).beforeUnmount) === null || _connectedLogic$event5 === void 0 ? void 0 : _connectedLogic$event5.call(_connectedLogic$event6);
+        delete mounted[pathString];
+        delete counter[pathString];
+
+        if (connectedLogic.reducer) {
+          detachReducer(connectedLogic);
+        }
+
+        runPlugins('afterUnmount', connectedLogic);
+        (_connectedLogic$event7 = (_connectedLogic$event8 = connectedLogic.events).afterUnmount) === null || _connectedLogic$event7 === void 0 ? void 0 : _connectedLogic$event7.call(_connectedLogic$event8);
+        (_getContext$wrapperCo = getContext().wrapperContexts.get(logic.wrapper)) === null || _getContext$wrapperCo === void 0 ? void 0 : _getContext$wrapperCo.builtLogics["delete"](logic.key);
+      }
+    }
+  }
+
+  function applyInputToLogic(logic, input) {
+    runPlugins('beforeLogic', logic, input);
+
+    if (typeof input === 'function') {
+      input(logic);
+    } else {
+      'props' in input && props(input.props)(logic);
+      'key' in input && typeof input.key !== 'undefined' && key(input.key)(logic);
+      'path' in input && input.path && path(input.path)(logic);
+
+      if (input.inherit) {
+        for (var _iterator = _createForOfIteratorHelperLoose(input.inherit), _step; !(_step = _iterator()).done;) {
+          var inheritLogic = _step.value;
+
+          for (var _iterator2 = _createForOfIteratorHelperLoose(inheritLogic.inputs), _step2; !(_step2 = _iterator2()).done;) {
+            var inheritInput = _step2.value;
+            applyInputToLogic(logic, inheritInput);
+          }
+        }
+      }
+
+      runPlugins('legacyBuild', logic, input);
+
+      if (input.extend) {
+        for (var _iterator3 = _createForOfIteratorHelperLoose(input.extend), _step3; !(_step3 = _iterator3()).done;) {
+          var innerInput = _step3.value;
+          applyInputToLogic(logic, innerInput);
+        }
+      }
+    }
+
+    runPlugins('afterLogic', logic, input);
+    return logic;
+  }
+
+  function getBuiltLogic(wrapper, props) {
+    var wrapperContext = getWrapperContext(wrapper);
+
+    if (wrapperContext.isBuilding) {
+      throw new Error("[KEA] Circular build detected.");
+    }
+
+    var cachedLogic = getCachedBuiltLogic(wrapper, props);
+
+    if (cachedLogic) {
+      var oldProps = cachedLogic.props;
+
+      if (props && (!cachedLogic.props || cachedLogic.props !== props && !shallowCompare(cachedLogic.props, props))) {
+        cachedLogic.props = _extends({}, cachedLogic.props, props);
+      }
+
+      if (oldProps !== cachedLogic.props && cachedLogic.events.propsChanged) {
+        batchChanges(function () {
+          var _cachedLogic$events$p, _cachedLogic$events;
+
+          (_cachedLogic$events$p = (_cachedLogic$events = cachedLogic.events).propsChanged) === null || _cachedLogic$events$p === void 0 ? void 0 : _cachedLogic$events$p.call(_cachedLogic$events, cachedLogic.props, oldProps);
+        });
+      }
+
+      return cachedLogic;
+    }
+
+    var uniqueId = ++getContext().inputCounter;
+    var path = [].concat(getContext().options.defaultPath, [uniqueId]);
+    path['_keaAutomaticPath'] = true;
+    wrapperContext.isBuilding = true;
+    var logic = {
+      _isKeaBuild: true,
+      key: undefined,
+      keyBuilder: undefined,
+      path: path,
+      pathString: path.join('.'),
+      props: props !== null && props !== void 0 ? props : {},
+      wrapper: wrapper,
+      extend: function extend(input) {
+        return applyInputToLogic(logic, input);
+      },
+      mount: function mount() {
+        if (wrapperContext.isBuilding) {
+          throw new Error("[KEA] Tried to mount logic \"" + logic.pathString + "\" before it finished building");
+        }
+
+        mountLogic(logic);
+        var unmounted = false;
+        return function () {
+          if (unmounted) {
+            throw new Error("[KEA] Tried to unmount logic \"" + logic.pathString + "\" for a second time");
+          }
+
+          unmountLogic(logic);
+          unmounted = true;
+        };
+      },
+      unmount: function unmount() {
+        return unmountLogic(logic);
+      },
+      isMounted: function isMounted() {
+        var counter = getContext().mount.counter[logic.pathString];
+        return typeof counter === 'number' && counter > 0;
+      }
+    };
+
+    var _getContext = getContext(),
+        buildHeap = _getContext.buildHeap;
+
+    try {
+      buildHeap.push(logic);
+
+      for (var _iterator4 = _createForOfIteratorHelperLoose(getContext().plugins.activated), _step4; !(_step4 = _iterator4()).done;) {
+        var plugin = _step4.value;
+
+        if (plugin.defaults) {
+          var newLogicProperties = typeof plugin.defaults === 'function' ? plugin.defaults() : plugin.defaults;
+          Object.assign(logic, newLogicProperties);
+        }
+      }
+
+      runPlugins('beforeBuild', logic, wrapper.inputs);
+
+      for (var _iterator5 = _createForOfIteratorHelperLoose(wrapper.inputs), _step5; !(_step5 = _iterator5()).done;) {
+        var input = _step5.value;
+        applyInputToLogic(logic, input);
+      }
+
+      logic.connections[logic.pathString] = logic;
+      wrapperContext.keyBuilder = logic.keyBuilder;
+      wrapperContext.builtLogics.set(logic.key, logic);
+      runPlugins('afterBuild', logic, wrapper.inputs);
+    } catch (e) {
+      throw e;
+    } finally {
+      wrapperContext.isBuilding = false;
+      buildHeap.pop();
+    }
+
+    if (buildHeap.length > 0) {
+      if (!buildHeap[buildHeap.length - 1].connections[logic.pathString]) {
+        addConnection(buildHeap[buildHeap.length - 1], logic);
+      }
+    }
+
+    return logic;
+  }
+  function getCachedBuiltLogic(wrapper, props) {
+    var _wrapperContext$keyBu;
+
+    var wrapperContext = getWrapperContext(wrapper);
+    var builtLogic = wrapperContext.builtLogics.get(wrapperContext === null || wrapperContext === void 0 ? void 0 : (_wrapperContext$keyBu = wrapperContext.keyBuilder) === null || _wrapperContext$keyBu === void 0 ? void 0 : _wrapperContext$keyBu.call(wrapperContext, props !== null && props !== void 0 ? props : {}));
+    return builtLogic !== null && builtLogic !== void 0 ? builtLogic : null;
+  }
+  function getWrapperContext(wrapper) {
+    var _getContext2 = getContext(),
+        wrapperContexts = _getContext2.wrapperContexts;
+
+    var wrapperContext = wrapperContexts.get(wrapper);
+
+    if (!wrapperContext) {
+      wrapperContext = {
+        keyBuilder: undefined,
+        builtLogics: new Map(),
+        isBuilding: false
+      };
+      wrapperContexts.set(wrapper, wrapperContext);
+    }
+
+    return wrapperContext;
+  }
+
+  function wrapComponent(Component, wrapper) {
+    runPlugins('beforeWrap', wrapper, Component);
+    injectActionsIntoClass(Component);
+
+    var Kea = function Kea(props) {
+      var _props$actions;
+
+      var logic = wrapper.build(props);
+      var values = useAllValues(logic);
+
+      var actions = _extends({}, (_props$actions = props.actions) !== null && _props$actions !== void 0 ? _props$actions : {}, useActions(logic));
+
+      runPlugins('beforeRender', logic, props);
+      return /*#__PURE__*/reactExports.createElement(Component, _extends({}, props, values, {
+        dispatch: getContext().store.dispatch,
+        actions: actions
+      }));
+    };
+
+    Kea._wrapper = wrapper;
+    Kea._wrappedComponent = Component;
+    runPlugins('afterWrap', wrapper, Component, Kea);
+    return Kea;
+  }
+
+  function injectActionsIntoClass(Component) {
+    function isStateless(Component) {
+      return typeof Component === 'function' && !(Component.prototype && Component.prototype.isReactComponent);
+    }
+
+    if (!isStateless(Component)) {
+      if (!Object.getOwnPropertyDescriptor(Component.prototype, 'actions')) {
+        Object.defineProperty(Component.prototype, 'actions', {
+          get: function actions() {
+            return this.props.actions;
+          }
+        });
+      }
+    }
+  }
+
+  function kea(input) {
+    var wrapper = function wrapper(props) {
+      if (typeof props === 'object' || typeof props === 'undefined') {
+        return wrapper.build(props);
+      }
+
+      return wrapper.wrap(props);
+    };
+
+    wrapper._isKea = true;
+    wrapper.inputs = Array.isArray(input) ? input : [input];
+
+    wrapper.wrap = function (Component) {
+      return wrapComponent(Component, wrapper);
+    };
+
+    wrapper.build = function (props) {
+      return getBuiltLogic(wrapper, props);
+    };
+
+    wrapper.mount = function () {
+      return wrapper.build().mount();
+    };
+
+    wrapper.unmount = function () {
+      return wrapper.build().unmount();
+    };
+
+    wrapper.isMounted = function (props) {
+      var builtLogic = getCachedBuiltLogic(wrapper, props);
+
+      if (!builtLogic) {
+        return false;
+      }
+
+      var counter = getContext().mount.counter[builtLogic.pathString];
+      return typeof counter === 'number' && counter > 0;
+    };
+
+    wrapper.findMounted = function (props) {
+      return wrapper.isMounted(props) ? getCachedBuiltLogic(wrapper, props) : null;
+    };
+
+    wrapper.extend = function (extendedInput) {
+      var wrapperContext = getContext().wrapperContexts.get(wrapper);
+
+      if (wrapperContext) {
+        throw new Error("[KEA] Can not extend logic once it has been built.");
+      }
+
+      if (Array.isArray(extendedInput)) {
+        wrapper.inputs = wrapper.inputs.concat(extendedInput);
+      } else {
+        wrapper.inputs.push(extendedInput);
+      }
+
+      return wrapper;
+    };
+
+    if (getContext().options.proxyFields) {
+      proxyFields(wrapper);
+    }
+
+    return wrapper;
+  }
+  function proxyFieldToLogic(wrapper, key) {
+    if (!wrapper.hasOwnProperty(key)) {
+      Object.defineProperty(wrapper, key, {
+        get: function get() {
+          var logic = wrapper.findMounted();
+
+          if (!logic && getContext().buildHeap.length > 0) {
+            logic = wrapper.build();
+          }
+
+          if (logic) {
+            return logic[key];
+          } else {
+            throw new Error(unmountedActionError(String(key), wrapper.build().pathString));
+          }
+        }
+      });
+    }
+  }
+  function proxyFields(wrapper) {
+    var reservedProxiedKeys = ['path', 'pathString', 'props'];
+
+    for (var _i = 0, _reservedProxiedKeys = reservedProxiedKeys; _i < _reservedProxiedKeys.length; _i++) {
+      var key = _reservedProxiedKeys[_i];
+      proxyFieldToLogic(wrapper, key);
+    }
+
+    for (var _i2 = 0, _Object$keys = Object.keys(getContext().plugins.logicFields); _i2 < _Object$keys.length; _i2++) {
+      var _key = _Object$keys[_i2];
+      proxyFieldToLogic(wrapper, _key);
+    }
+  }
+  function unmountedActionError(key, path) {
+    return "[KEA] Can not access \"" + key + "\" on logic \"" + path + "\" because it is not mounted!\nThis can happen in several situations:\n- You may need to add the \"connect(otherLogic)\" logic builder, or \"useMountedLogic(otherLogic)\" hook to make sure the logic is mounted.\n- If \"otherLogic\" is undefined, your bundler may import and execute code in an unfavourable order. Switch to a function: \"connect(() => otherLogic)\" \n- It may be that the logic has already unmounted. Do you have a listener that is missing a breakpoint?";
+  }
+
+  browser$1.env.NODE_ENV === 'test' || browser$1.env.NODE_ENV === 'production';
+  resetContext({}, true);
+
+  var widgetLogic = kea([
+      path(["worldId", "widgetLogic"]),
+      actions({
+          setName: function (name) { return ({ name: name }); },
+      }),
+      reducers({
+          name: [
+              "Default Name",
+              { setName: function (_, _a) {
+                      var name = _a.name;
+                      return name;
+                  } },
+          ],
+      }),
+  ]);
+
+  function SayHello(props) {
+      var name = useValues(widgetLogic).name;
+      var setName = useActions(widgetLogic).setName;
+      reactExports.useEffect(function () {
+          setName(props.name);
+      }, [props]);
+      return (jsxRuntime.exports.jsxs("div", { children: [jsxRuntime.exports.jsx("button", __assign({ onClick: function () { return setName(crypto.randomUUID()); } }, { children: name })), jsxRuntime.exports.jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] })] }));
+  }
+
+  var e="colors",t="sizes",r="space",n={gap:r,gridGap:r,columnGap:r,gridColumnGap:r,rowGap:r,gridRowGap:r,inset:r,insetBlock:r,insetBlockEnd:r,insetBlockStart:r,insetInline:r,insetInlineEnd:r,insetInlineStart:r,margin:r,marginTop:r,marginRight:r,marginBottom:r,marginLeft:r,marginBlock:r,marginBlockEnd:r,marginBlockStart:r,marginInline:r,marginInlineEnd:r,marginInlineStart:r,padding:r,paddingTop:r,paddingRight:r,paddingBottom:r,paddingLeft:r,paddingBlock:r,paddingBlockEnd:r,paddingBlockStart:r,paddingInline:r,paddingInlineEnd:r,paddingInlineStart:r,top:r,right:r,bottom:r,left:r,scrollMargin:r,scrollMarginTop:r,scrollMarginRight:r,scrollMarginBottom:r,scrollMarginLeft:r,scrollMarginX:r,scrollMarginY:r,scrollMarginBlock:r,scrollMarginBlockEnd:r,scrollMarginBlockStart:r,scrollMarginInline:r,scrollMarginInlineEnd:r,scrollMarginInlineStart:r,scrollPadding:r,scrollPaddingTop:r,scrollPaddingRight:r,scrollPaddingBottom:r,scrollPaddingLeft:r,scrollPaddingX:r,scrollPaddingY:r,scrollPaddingBlock:r,scrollPaddingBlockEnd:r,scrollPaddingBlockStart:r,scrollPaddingInline:r,scrollPaddingInlineEnd:r,scrollPaddingInlineStart:r,fontSize:"fontSizes",background:e,backgroundColor:e,backgroundImage:e,borderImage:e,border:e,borderBlock:e,borderBlockEnd:e,borderBlockStart:e,borderBottom:e,borderBottomColor:e,borderColor:e,borderInline:e,borderInlineEnd:e,borderInlineStart:e,borderLeft:e,borderLeftColor:e,borderRight:e,borderRightColor:e,borderTop:e,borderTopColor:e,caretColor:e,color:e,columnRuleColor:e,fill:e,outline:e,outlineColor:e,stroke:e,textDecorationColor:e,fontFamily:"fonts",fontWeight:"fontWeights",lineHeight:"lineHeights",letterSpacing:"letterSpacings",blockSize:t,minBlockSize:t,maxBlockSize:t,inlineSize:t,minInlineSize:t,maxInlineSize:t,width:t,minWidth:t,maxWidth:t,height:t,minHeight:t,maxHeight:t,flexBasis:t,gridTemplateColumns:t,gridTemplateRows:t,borderWidth:"borderWidths",borderTopWidth:"borderWidths",borderRightWidth:"borderWidths",borderBottomWidth:"borderWidths",borderLeftWidth:"borderWidths",borderStyle:"borderStyles",borderTopStyle:"borderStyles",borderRightStyle:"borderStyles",borderBottomStyle:"borderStyles",borderLeftStyle:"borderStyles",borderRadius:"radii",borderTopLeftRadius:"radii",borderTopRightRadius:"radii",borderBottomRightRadius:"radii",borderBottomLeftRadius:"radii",boxShadow:"shadows",textShadow:"shadows",transition:"transitions",zIndex:"zIndices"},i=(e,t)=>"function"==typeof t?{"()":Function.prototype.toString.call(t)}:t,o=()=>{const e=Object.create(null);return (t,r,...n)=>{const o=(e=>JSON.stringify(e,i))(t);return o in e?e[o]:e[o]=r(t,...n)}},l=Symbol.for("sxs.internal"),s=(e,t)=>Object.defineProperties(e,Object.getOwnPropertyDescriptors(t)),a=e=>{for(const t in e)return !0;return !1},{hasOwnProperty:c}=Object.prototype,d=e=>e.includes("-")?e:e.replace(/[A-Z]/g,(e=>"-"+e.toLowerCase())),g=/\s+(?![^()]*\))/,p=e=>t=>e(..."string"==typeof t?String(t).split(g):[t]),u={appearance:e=>({WebkitAppearance:e,appearance:e}),backfaceVisibility:e=>({WebkitBackfaceVisibility:e,backfaceVisibility:e}),backdropFilter:e=>({WebkitBackdropFilter:e,backdropFilter:e}),backgroundClip:e=>({WebkitBackgroundClip:e,backgroundClip:e}),boxDecorationBreak:e=>({WebkitBoxDecorationBreak:e,boxDecorationBreak:e}),clipPath:e=>({WebkitClipPath:e,clipPath:e}),content:e=>({content:e.includes('"')||e.includes("'")||/^([A-Za-z]+\([^]*|[^]*-quote|inherit|initial|none|normal|revert|unset)$/.test(e)?e:`"${e}"`}),hyphens:e=>({WebkitHyphens:e,hyphens:e}),maskImage:e=>({WebkitMaskImage:e,maskImage:e}),maskSize:e=>({WebkitMaskSize:e,maskSize:e}),tabSize:e=>({MozTabSize:e,tabSize:e}),textSizeAdjust:e=>({WebkitTextSizeAdjust:e,textSizeAdjust:e}),userSelect:e=>({WebkitUserSelect:e,userSelect:e}),marginBlock:p(((e,t)=>({marginBlockStart:e,marginBlockEnd:t||e}))),marginInline:p(((e,t)=>({marginInlineStart:e,marginInlineEnd:t||e}))),maxSize:p(((e,t)=>({maxBlockSize:e,maxInlineSize:t||e}))),minSize:p(((e,t)=>({minBlockSize:e,minInlineSize:t||e}))),paddingBlock:p(((e,t)=>({paddingBlockStart:e,paddingBlockEnd:t||e}))),paddingInline:p(((e,t)=>({paddingInlineStart:e,paddingInlineEnd:t||e})))},h=/([\d.]+)([^]*)/,f=(e,t)=>e.length?e.reduce(((e,r)=>(e.push(...t.map((e=>e.includes("&")?e.replace(/&/g,/[ +>|~]/.test(r)&&/&.*&/.test(e)?`:is(${r})`:r):r+" "+e))),e)),[]):t,m=(e,t)=>e in b&&"string"==typeof t?t.replace(/^((?:[^]*[^\w-])?)(fit-content|stretch)((?:[^\w-][^]*)?)$/,((t,r,n,i)=>r+("stretch"===n?`-moz-available${i};${d(e)}:${r}-webkit-fill-available`:`-moz-fit-content${i};${d(e)}:${r}fit-content`)+i)):String(t),b={blockSize:1,height:1,inlineSize:1,maxBlockSize:1,maxHeight:1,maxInlineSize:1,maxWidth:1,minBlockSize:1,minHeight:1,minInlineSize:1,minWidth:1,width:1},S=e=>e?e+"-":"",k=(e,t,r)=>e.replace(/([+-])?((?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][+-]?\d+)?)?(\$|--)([$\w-]+)/g,((e,n,i,o,l)=>"$"==o==!!i?e:(n||"--"==o?"calc(":"")+"var(--"+("$"===o?S(t)+(l.includes("$")?"":S(r))+l.replace(/\$/g,"-"):l)+")"+(n||"--"==o?"*"+(n||"")+(i||"1")+")":""))),y=/\s*,\s*(?![^()]*\))/,B=Object.prototype.toString,$=(e,t,r,n,i)=>{let o,l,s;const a=(e,t,r)=>{let c,g;const p=e=>{for(c in e){const R=64===c.charCodeAt(0),z=R&&Array.isArray(e[c])?e[c]:[e[c]];for(g of z){const e=/[A-Z]/.test($=c)?$:$.replace(/-[^]/g,(e=>e[1].toUpperCase())),z="object"==typeof g&&g&&g.toString===B&&(!n.utils[e]||!t.length);if(e in n.utils&&!z){const t=n.utils[e];if(t!==l){l=t,p(t(g)),l=null;continue}}else if(e in u){const t=u[e];if(t!==s){s=t,p(t(g)),s=null;continue}}if(R&&(b=c.slice(1)in n.media?"@media "+n.media[c.slice(1)]:c,c=b.replace(/\(\s*([\w-]+)\s*(=|<|<=|>|>=)\s*([\w-]+)\s*(?:(<|<=|>|>=)\s*([\w-]+)\s*)?\)/g,((e,t,r,n,i,o)=>{const l=h.test(t),s=.0625*(l?-1:1),[a,c]=l?[n,t]:[t,n];return "("+("="===r[0]?"":">"===r[0]===l?"max-":"min-")+a+":"+("="!==r[0]&&1===r.length?c.replace(h,((e,t,n)=>Number(t)+s*(">"===r?1:-1)+n)):c)+(i?") and ("+(">"===i[0]?"min-":"max-")+a+":"+(1===i.length?o.replace(h,((e,t,r)=>Number(t)+s*(">"===i?-1:1)+r)):o):"")+")"}))),z){const e=R?r.concat(c):[...r],n=R?[...t]:f(t,c.split(y));void 0!==o&&i(x(...o)),o=void 0,a(g,n,e);}else void 0===o&&(o=[[],t,r]),c=R||36!==c.charCodeAt(0)?c:`--${S(n.prefix)}${c.slice(1).replace(/\$/g,"-")}`,g=z?g:"number"==typeof g?g&&e in I?String(g)+"px":String(g):k(m(e,null==g?"":g),n.prefix,n.themeMap[e]),o[0].push(`${R?`${c} `:`${d(c)}:`}${g}`);}}var b,$;};p(e),void 0!==o&&i(x(...o)),o=void 0;};a(e,t,r);},x=(e,t,r)=>`${r.map((e=>`${e}{`)).join("")}${t.length?`${t.join(",")}{`:""}${e.join(";")}${t.length?"}":""}${Array(r.length?r.length+1:0).join("}")}`,I={animationDelay:1,animationDuration:1,backgroundSize:1,blockSize:1,border:1,borderBlock:1,borderBlockEnd:1,borderBlockEndWidth:1,borderBlockStart:1,borderBlockStartWidth:1,borderBlockWidth:1,borderBottom:1,borderBottomLeftRadius:1,borderBottomRightRadius:1,borderBottomWidth:1,borderEndEndRadius:1,borderEndStartRadius:1,borderInlineEnd:1,borderInlineEndWidth:1,borderInlineStart:1,borderInlineStartWidth:1,borderInlineWidth:1,borderLeft:1,borderLeftWidth:1,borderRadius:1,borderRight:1,borderRightWidth:1,borderSpacing:1,borderStartEndRadius:1,borderStartStartRadius:1,borderTop:1,borderTopLeftRadius:1,borderTopRightRadius:1,borderTopWidth:1,borderWidth:1,bottom:1,columnGap:1,columnRule:1,columnRuleWidth:1,columnWidth:1,containIntrinsicSize:1,flexBasis:1,fontSize:1,gap:1,gridAutoColumns:1,gridAutoRows:1,gridTemplateColumns:1,gridTemplateRows:1,height:1,inlineSize:1,inset:1,insetBlock:1,insetBlockEnd:1,insetBlockStart:1,insetInline:1,insetInlineEnd:1,insetInlineStart:1,left:1,letterSpacing:1,margin:1,marginBlock:1,marginBlockEnd:1,marginBlockStart:1,marginBottom:1,marginInline:1,marginInlineEnd:1,marginInlineStart:1,marginLeft:1,marginRight:1,marginTop:1,maxBlockSize:1,maxHeight:1,maxInlineSize:1,maxWidth:1,minBlockSize:1,minHeight:1,minInlineSize:1,minWidth:1,offsetDistance:1,offsetRotate:1,outline:1,outlineOffset:1,outlineWidth:1,overflowClipMargin:1,padding:1,paddingBlock:1,paddingBlockEnd:1,paddingBlockStart:1,paddingBottom:1,paddingInline:1,paddingInlineEnd:1,paddingInlineStart:1,paddingLeft:1,paddingRight:1,paddingTop:1,perspective:1,right:1,rowGap:1,scrollMargin:1,scrollMarginBlock:1,scrollMarginBlockEnd:1,scrollMarginBlockStart:1,scrollMarginBottom:1,scrollMarginInline:1,scrollMarginInlineEnd:1,scrollMarginInlineStart:1,scrollMarginLeft:1,scrollMarginRight:1,scrollMarginTop:1,scrollPadding:1,scrollPaddingBlock:1,scrollPaddingBlockEnd:1,scrollPaddingBlockStart:1,scrollPaddingBottom:1,scrollPaddingInline:1,scrollPaddingInlineEnd:1,scrollPaddingInlineStart:1,scrollPaddingLeft:1,scrollPaddingRight:1,scrollPaddingTop:1,shapeMargin:1,textDecoration:1,textDecorationThickness:1,textIndent:1,textUnderlineOffset:1,top:1,transitionDelay:1,transitionDuration:1,verticalAlign:1,width:1,wordSpacing:1},R=e=>String.fromCharCode(e+(e>25?39:97)),z=e=>(e=>{let t,r="";for(t=Math.abs(e);t>52;t=t/52|0)r=R(t%52)+r;return R(t%52)+r})(((e,t)=>{let r=t.length;for(;r;)e=33*e^t.charCodeAt(--r);return e})(5381,JSON.stringify(e))>>>0),W=["themed","global","styled","onevar","resonevar","allvar","inline"],j=e=>{if(e.href&&!e.href.startsWith(location.origin))return !1;try{return !!e.cssRules}catch(e){return !1}},E=e=>{let t;const r=()=>{const{cssRules:e}=t.sheet;return [].map.call(e,((r,n)=>{const{cssText:i}=r;let o="";if(i.startsWith("--sxs"))return "";if(e[n-1]&&(o=e[n-1].cssText).startsWith("--sxs")){if(!r.cssRules.length)return "";for(const e in t.rules)if(t.rules[e].group===r)return `--sxs{--sxs:${[...t.rules[e].cache].join(" ")}}${i}`;return r.cssRules.length?`${o}${i}`:""}return i})).join("")},n=()=>{if(t){const{rules:e,sheet:r}=t;if(!r.deleteRule){for(;3===Object(Object(r.cssRules)[0]).type;)r.cssRules.splice(0,1);r.cssRules=[];}for(const t in e)delete e[t];}const i=Object(e).styleSheets||[];for(const e of i)if(j(e)){for(let i=0,o=e.cssRules;o[i];++i){const l=Object(o[i]);if(1!==l.type)continue;const s=Object(o[i+1]);if(4!==s.type)continue;++i;const{cssText:a}=l;if(!a.startsWith("--sxs"))continue;const c=a.slice(14,-3).trim().split(/\s+/),d=W[c[0]];d&&(t||(t={sheet:e,reset:n,rules:{},toString:r}),t.rules[d]={group:s,index:i,cache:new Set(c)});}if(t)break}if(!t){const i=(e,t)=>({type:t,cssRules:[],insertRule(e,t){this.cssRules.splice(t,0,i(e,{import:3,undefined:1}[(e.toLowerCase().match(/^@([a-z]+)/)||[])[1]]||4));},get cssText(){return "@media{}"===e?`@media{${[].map.call(this.cssRules,(e=>e.cssText)).join("")}}`:e}});t={sheet:e?(e.head||e).appendChild(document.createElement("style")).sheet:i("","text/css"),rules:{},reset:n,toString:r};}const{sheet:o,rules:l}=t;for(let e=W.length-1;e>=0;--e){const t=W[e];if(!l[t]){const r=W[e+1],n=l[r]?l[r].index:o.cssRules.length;o.insertRule("@media{}",n),o.insertRule(`--sxs{--sxs:${e}}`,n),l[t]={group:o.cssRules[n+1],index:n,cache:new Set([e])};}v(l[t]);}};return n(),t},v=e=>{const t=e.group;let r=t.cssRules.length;e.apply=e=>{try{t.insertRule(e,r),++r;}catch(e){}};},T=Symbol(),w=o(),M=(e,t)=>w(e,(()=>(...r)=>{let n={type:null,composers:new Set};for(const t of r)if(null!=t)if(t[l]){null==n.type&&(n.type=t[l].type);for(const e of t[l].composers)n.composers.add(e);}else t.constructor!==Object||t.$$typeof?null==n.type&&(n.type=t):n.composers.add(C(t,e));return null==n.type&&(n.type="span"),n.composers.size||n.composers.add(["PJLV",{},[],[],{},[]]),P(e,n,t)})),C=({variants:e,compoundVariants:t,defaultVariants:r,...n},i)=>{const o=`${S(i.prefix)}c-${z(n)}`,l=[],s=[],d=Object.create(null),g=[];for(const e in r)d[e]=String(r[e]);if("object"==typeof e&&e)for(const t in e){p=d,u=t,c.call(p,u)||(d[t]="undefined");const r=e[t];for(const e in r){const n={[t]:String(e)};"undefined"===String(e)&&g.push(t);const i=r[e],o=[n,i,!a(i)];l.push(o);}}var p,u;if("object"==typeof t&&t)for(const e of t){let{css:t,...r}=e;t="object"==typeof t&&t||{};for(const e in r)r[e]=String(r[e]);const n=[r,t,!a(t)];s.push(n);}return [o,n,l,s,d,g]},P=(e,t,r)=>{const[n,i,o,a]=L(t.composers),c="function"==typeof t.type||t.type.$$typeof?(e=>{function t(){for(let r=0;r<t[T].length;r++){const[n,i]=t[T][r];e.rules[n].apply(i);}return t[T]=[],null}return t[T]=[],t.rules={},W.forEach((e=>t.rules[e]={apply:r=>t[T].push([e,r])})),t})(r):null,d=(c||r).rules,g=`.${n}${i.length>1?`:where(.${i.slice(1).join(".")})`:""}`,p=l=>{l="object"==typeof l&&l||A;const{css:s,...p}=l,u={};for(const e in o)if(delete p[e],e in l){let t=l[e];"object"==typeof t&&t?u[e]={"@initial":o[e],...t}:(t=String(t),u[e]="undefined"!==t||a.has(e)?t:o[e]);}else u[e]=o[e];const h=new Set([...i]);for(const[n,i,o,l]of t.composers){r.rules.styled.cache.has(n)||(r.rules.styled.cache.add(n),$(i,[`.${n}`],[],e,(e=>{d.styled.apply(e);})));const t=O(o,u,e.media),s=O(l,u,e.media,!0);for(const i of t)if(void 0!==i)for(const[t,o,l]of i){const i=`${n}-${z(o)}-${t}`;h.add(i);const s=(l?r.rules.resonevar:r.rules.onevar).cache,a=l?d.resonevar:d.onevar;s.has(i)||(s.add(i),$(o,[`.${i}`],[],e,(e=>{a.apply(e);})));}for(const t of s)if(void 0!==t)for(const[i,o]of t){const t=`${n}-${z(o)}-${i}`;h.add(t),r.rules.allvar.cache.has(t)||(r.rules.allvar.cache.add(t),$(o,[`.${t}`],[],e,(e=>{d.allvar.apply(e);})));}}if("object"==typeof s&&s){const t=`${n}-i${z(s)}-css`;h.add(t),r.rules.inline.cache.has(t)||(r.rules.inline.cache.add(t),$(s,[`.${t}`],[],e,(e=>{d.inline.apply(e);})));}for(const e of String(l.className||"").trim().split(/\s+/))e&&h.add(e);const f=p.className=[...h].join(" ");return {type:t.type,className:f,selector:g,props:p,toString:()=>f,deferredInjector:c}};return s(p,{className:n,selector:g,[l]:t,toString:()=>(r.rules.styled.cache.has(n)||p(),n)})},L=e=>{let t="";const r=[],n={},i=[];for(const[o,,,,l,s]of e){""===t&&(t=o),r.push(o),i.push(...s);for(const e in l){const t=l[e];(void 0===n[e]||"undefined"!==t||s.includes(t))&&(n[e]=t);}}return [t,r,n,new Set(i)]},O=(e,t,r,n)=>{const i=[];e:for(let[o,l,s]of e){if(s)continue;let e,a=0,c=!1;for(e in o){const n=o[e];let i=t[e];if(i!==n){if("object"!=typeof i||!i)continue e;{let e,t,o=0;for(const l in i){if(n===String(i[l])){if("@initial"!==l){const e=l.slice(1);(t=t||[]).push(e in r?r[e]:l.replace(/^@media ?/,"")),c=!0;}a+=o,e=!0;}++o;}if(t&&t.length&&(l={["@media "+t.join(", ")]:l}),!e)continue e}}}(i[a]=i[a]||[]).push([n?"cv":`${e}-${o[e]}`,l,c]);}return i},A={},N=o(),D=(e,t)=>N(e,(()=>(...r)=>{const n=()=>{for(let n of r){n="object"==typeof n&&n||{};let r=z(n);if(!t.rules.global.cache.has(r)){if(t.rules.global.cache.add(r),"@import"in n){let e=[].indexOf.call(t.sheet.cssRules,t.rules.themed.group)-1;for(let r of [].concat(n["@import"]))r=r.includes('"')||r.includes("'")?r:`"${r}"`,t.sheet.insertRule(`@import ${r};`,e++);delete n["@import"];}$(n,[],[],e,(e=>{t.rules.global.apply(e);}));}}return ""};return s(n,{toString:n})})),H=o(),V=(e,t)=>H(e,(()=>r=>{const n=`${S(e.prefix)}k-${z(r)}`,i=()=>{if(!t.rules.global.cache.has(n)){t.rules.global.cache.add(n);const i=[];$(r,[],[],e,(e=>i.push(e)));const o=`@keyframes ${n}{${i.join("")}}`;t.rules.global.apply(o);}return n};return s(i,{get name(){return i()},toString:i})})),G=class{constructor(e,t,r,n){this.token=null==e?"":String(e),this.value=null==t?"":String(t),this.scale=null==r?"":String(r),this.prefix=null==n?"":String(n);}get computedValue(){return "var("+this.variable+")"}get variable(){return "--"+S(this.prefix)+S(this.scale)+this.token}toString(){return this.computedValue}},F=o(),J=(e,t)=>F(e,(()=>(r,n)=>{n="object"==typeof r&&r||Object(n);const i=`.${r=(r="string"==typeof r?r:"")||`${S(e.prefix)}t-${z(n)}`}`,o={},l=[];for(const t in n){o[t]={};for(const r in n[t]){const i=`--${S(e.prefix)}${t}-${r}`,s=k(String(n[t][r]),e.prefix,t);o[t][r]=new G(r,s,t,e.prefix),l.push(`${i}:${s}`);}}const s=()=>{if(l.length&&!t.rules.themed.cache.has(r)){t.rules.themed.cache.add(r);const i=`${n===e.theme?":root,":""}.${r}{${l.join(";")}}`;t.rules.themed.apply(i);}return r};return {...o,get className(){return s()},selector:i,toString:s}})),U=o();var X,Y=o(),q=e=>{const t=(e=>{let t=!1;const r=U(e,(e=>{t=!0;const r="prefix"in(e="object"==typeof e&&e||{})?String(e.prefix):"",i="object"==typeof e.media&&e.media||{},o="object"==typeof e.root?e.root||null:globalThis.document||null,l="object"==typeof e.theme&&e.theme||{},s={prefix:r,media:i,theme:l,themeMap:"object"==typeof e.themeMap&&e.themeMap||{...n},utils:"object"==typeof e.utils&&e.utils||{}},a=E(o),c={css:M(s,a),globalCss:D(s,a),keyframes:V(s,a),createTheme:J(s,a),reset(){a.reset(),c.theme.toString();},theme:{},sheet:a,config:s,prefix:r,getCssText:a.toString,toString:a.toString};return String(c.theme=c.createTheme(l)),c}));return t||r.reset(),r})(e);return t.styled=(({config:e,sheet:t})=>Y(e,(()=>{const r=M(e,t);return (...e)=>{const t=r(...e),n=t[l].type,i=reactExports.forwardRef(((e,r)=>{const i=e&&e.as||n,{props:o,deferredInjector:l}=t(e);return delete o.as,o.ref=r,l?reactExports.createElement(reactExports.Fragment,null,reactExports.createElement(i,o),reactExports.createElement(l,null)):reactExports.createElement(i,o)}));return i.className=t.className,i.displayName=`Styled.${n.displayName||n.name||n}`,i.selector=t.selector,i.toString=()=>t.selector,i[l]=t[l],i}})))(t),t},K=()=>X||(X=q()),re=(...e)=>K().styled(...e);//# sourceMappingUrl=index.map
+
+  var Container = re("div", {
+      backgroundColor: "Aquamarine",
+      fontSize: "20px",
+  });
+  var ReactWidget = function () {
+      var _a = __read(reactExports.useState("Name"), 2), name = _a[0]; _a[1];
+      return jsxRuntime.exports.jsx(Container, { children: "I am ".concat(name) });
+  };
+
+  var App = function () {
+      return (jsxRuntime.exports.jsxs("div", { children: [jsxRuntime.exports.jsx(ReactWidget, {}), jsxRuntime.exports.jsx(SayHello, { name: "ME" })] }));
+  };
+
   var reactDom = {exports: {}};
 
   var reactDom_production_min = {};
@@ -5054,7 +8099,7 @@ var worldID = (function (exports) {
   function requireReactDom_production_min () {
   	if (hasRequiredReactDom_production_min) return reactDom_production_min;
   	hasRequiredReactDom_production_min = 1;
-  var aa=react.exports,ca=requireScheduler();function p(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return "Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}var da=new Set,ea={};function fa(a,b){ha(a,b);ha(a+"Capture",b);}
+  var aa=requireReact(),ca=requireScheduler();function p(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return "Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}var da=new Set,ea={};function fa(a,b){ha(a,b);ha(a+"Capture",b);}
   	function ha(a,b){ea[a]=b;for(a=0;a<b.length;a++)da.add(b[a]);}
   	var ia=!("undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement),ja=Object.prototype.hasOwnProperty,ka=/^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/,la=
   	{},ma={};function oa(a){if(ja.call(ma,a))return !0;if(ja.call(la,a))return !1;if(ka.test(a))return ma[a]=!0;la[a]=!0;return !1}function pa(a,b,c,d){if(null!==c&&0===c.type)return !1;switch(typeof b){case "function":case "symbol":return !0;case "boolean":if(d)return !1;if(null!==c)return !c.acceptsBooleans;a=a.toLowerCase().slice(0,5);return "data-"!==a&&"aria-"!==a;default:return !1}}
@@ -5386,7 +8431,7 @@ var worldID = (function (exports) {
   	) {
   	  __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
   	}
-  	          var React = react.exports;
+  	          var React = requireReact();
   	var Scheduler = requireScheduler();
 
   	var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
@@ -35248,49 +38293,6 @@ var worldID = (function (exports) {
   	}
   } (reactDom));
 
-  /******************************************************************************
-  Copyright (c) Microsoft Corporation.
-
-  Permission to use, copy, modify, and/or distribute this software for any
-  purpose with or without fee is hereby granted.
-
-  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-  REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-  AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-  INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-  LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-  OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-  PERFORMANCE OF THIS SOFTWARE.
-  ***************************************************************************** */
-
-  function __read(o, n) {
-      var m = typeof Symbol === "function" && o[Symbol.iterator];
-      if (!m) return o;
-      var i = m.call(o), r, ar = [], e;
-      try {
-          while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-      }
-      catch (error) { e = { error: error }; }
-      finally {
-          try {
-              if (r && !r.done && (m = i["return"])) m.call(i);
-          }
-          finally { if (e) throw e.error; }
-      }
-      return ar;
-  }
-
-  var e="colors",t="sizes",r="space",n={gap:r,gridGap:r,columnGap:r,gridColumnGap:r,rowGap:r,gridRowGap:r,inset:r,insetBlock:r,insetBlockEnd:r,insetBlockStart:r,insetInline:r,insetInlineEnd:r,insetInlineStart:r,margin:r,marginTop:r,marginRight:r,marginBottom:r,marginLeft:r,marginBlock:r,marginBlockEnd:r,marginBlockStart:r,marginInline:r,marginInlineEnd:r,marginInlineStart:r,padding:r,paddingTop:r,paddingRight:r,paddingBottom:r,paddingLeft:r,paddingBlock:r,paddingBlockEnd:r,paddingBlockStart:r,paddingInline:r,paddingInlineEnd:r,paddingInlineStart:r,top:r,right:r,bottom:r,left:r,scrollMargin:r,scrollMarginTop:r,scrollMarginRight:r,scrollMarginBottom:r,scrollMarginLeft:r,scrollMarginX:r,scrollMarginY:r,scrollMarginBlock:r,scrollMarginBlockEnd:r,scrollMarginBlockStart:r,scrollMarginInline:r,scrollMarginInlineEnd:r,scrollMarginInlineStart:r,scrollPadding:r,scrollPaddingTop:r,scrollPaddingRight:r,scrollPaddingBottom:r,scrollPaddingLeft:r,scrollPaddingX:r,scrollPaddingY:r,scrollPaddingBlock:r,scrollPaddingBlockEnd:r,scrollPaddingBlockStart:r,scrollPaddingInline:r,scrollPaddingInlineEnd:r,scrollPaddingInlineStart:r,fontSize:"fontSizes",background:e,backgroundColor:e,backgroundImage:e,borderImage:e,border:e,borderBlock:e,borderBlockEnd:e,borderBlockStart:e,borderBottom:e,borderBottomColor:e,borderColor:e,borderInline:e,borderInlineEnd:e,borderInlineStart:e,borderLeft:e,borderLeftColor:e,borderRight:e,borderRightColor:e,borderTop:e,borderTopColor:e,caretColor:e,color:e,columnRuleColor:e,fill:e,outline:e,outlineColor:e,stroke:e,textDecorationColor:e,fontFamily:"fonts",fontWeight:"fontWeights",lineHeight:"lineHeights",letterSpacing:"letterSpacings",blockSize:t,minBlockSize:t,maxBlockSize:t,inlineSize:t,minInlineSize:t,maxInlineSize:t,width:t,minWidth:t,maxWidth:t,height:t,minHeight:t,maxHeight:t,flexBasis:t,gridTemplateColumns:t,gridTemplateRows:t,borderWidth:"borderWidths",borderTopWidth:"borderWidths",borderRightWidth:"borderWidths",borderBottomWidth:"borderWidths",borderLeftWidth:"borderWidths",borderStyle:"borderStyles",borderTopStyle:"borderStyles",borderRightStyle:"borderStyles",borderBottomStyle:"borderStyles",borderLeftStyle:"borderStyles",borderRadius:"radii",borderTopLeftRadius:"radii",borderTopRightRadius:"radii",borderBottomRightRadius:"radii",borderBottomLeftRadius:"radii",boxShadow:"shadows",textShadow:"shadows",transition:"transitions",zIndex:"zIndices"},i=(e,t)=>"function"==typeof t?{"()":Function.prototype.toString.call(t)}:t,o=()=>{const e=Object.create(null);return (t,r,...n)=>{const o=(e=>JSON.stringify(e,i))(t);return o in e?e[o]:e[o]=r(t,...n)}},l=Symbol.for("sxs.internal"),s=(e,t)=>Object.defineProperties(e,Object.getOwnPropertyDescriptors(t)),a=e=>{for(const t in e)return !0;return !1},{hasOwnProperty:c}=Object.prototype,d=e=>e.includes("-")?e:e.replace(/[A-Z]/g,(e=>"-"+e.toLowerCase())),g=/\s+(?![^()]*\))/,p=e=>t=>e(..."string"==typeof t?String(t).split(g):[t]),u={appearance:e=>({WebkitAppearance:e,appearance:e}),backfaceVisibility:e=>({WebkitBackfaceVisibility:e,backfaceVisibility:e}),backdropFilter:e=>({WebkitBackdropFilter:e,backdropFilter:e}),backgroundClip:e=>({WebkitBackgroundClip:e,backgroundClip:e}),boxDecorationBreak:e=>({WebkitBoxDecorationBreak:e,boxDecorationBreak:e}),clipPath:e=>({WebkitClipPath:e,clipPath:e}),content:e=>({content:e.includes('"')||e.includes("'")||/^([A-Za-z]+\([^]*|[^]*-quote|inherit|initial|none|normal|revert|unset)$/.test(e)?e:`"${e}"`}),hyphens:e=>({WebkitHyphens:e,hyphens:e}),maskImage:e=>({WebkitMaskImage:e,maskImage:e}),maskSize:e=>({WebkitMaskSize:e,maskSize:e}),tabSize:e=>({MozTabSize:e,tabSize:e}),textSizeAdjust:e=>({WebkitTextSizeAdjust:e,textSizeAdjust:e}),userSelect:e=>({WebkitUserSelect:e,userSelect:e}),marginBlock:p(((e,t)=>({marginBlockStart:e,marginBlockEnd:t||e}))),marginInline:p(((e,t)=>({marginInlineStart:e,marginInlineEnd:t||e}))),maxSize:p(((e,t)=>({maxBlockSize:e,maxInlineSize:t||e}))),minSize:p(((e,t)=>({minBlockSize:e,minInlineSize:t||e}))),paddingBlock:p(((e,t)=>({paddingBlockStart:e,paddingBlockEnd:t||e}))),paddingInline:p(((e,t)=>({paddingInlineStart:e,paddingInlineEnd:t||e})))},h=/([\d.]+)([^]*)/,f=(e,t)=>e.length?e.reduce(((e,r)=>(e.push(...t.map((e=>e.includes("&")?e.replace(/&/g,/[ +>|~]/.test(r)&&/&.*&/.test(e)?`:is(${r})`:r):r+" "+e))),e)),[]):t,m=(e,t)=>e in b&&"string"==typeof t?t.replace(/^((?:[^]*[^\w-])?)(fit-content|stretch)((?:[^\w-][^]*)?)$/,((t,r,n,i)=>r+("stretch"===n?`-moz-available${i};${d(e)}:${r}-webkit-fill-available`:`-moz-fit-content${i};${d(e)}:${r}fit-content`)+i)):String(t),b={blockSize:1,height:1,inlineSize:1,maxBlockSize:1,maxHeight:1,maxInlineSize:1,maxWidth:1,minBlockSize:1,minHeight:1,minInlineSize:1,minWidth:1,width:1},S=e=>e?e+"-":"",k=(e,t,r)=>e.replace(/([+-])?((?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][+-]?\d+)?)?(\$|--)([$\w-]+)/g,((e,n,i,o,l)=>"$"==o==!!i?e:(n||"--"==o?"calc(":"")+"var(--"+("$"===o?S(t)+(l.includes("$")?"":S(r))+l.replace(/\$/g,"-"):l)+")"+(n||"--"==o?"*"+(n||"")+(i||"1")+")":""))),y=/\s*,\s*(?![^()]*\))/,B=Object.prototype.toString,$=(e,t,r,n,i)=>{let o,l,s;const a=(e,t,r)=>{let c,g;const p=e=>{for(c in e){const R=64===c.charCodeAt(0),z=R&&Array.isArray(e[c])?e[c]:[e[c]];for(g of z){const e=/[A-Z]/.test($=c)?$:$.replace(/-[^]/g,(e=>e[1].toUpperCase())),z="object"==typeof g&&g&&g.toString===B&&(!n.utils[e]||!t.length);if(e in n.utils&&!z){const t=n.utils[e];if(t!==l){l=t,p(t(g)),l=null;continue}}else if(e in u){const t=u[e];if(t!==s){s=t,p(t(g)),s=null;continue}}if(R&&(b=c.slice(1)in n.media?"@media "+n.media[c.slice(1)]:c,c=b.replace(/\(\s*([\w-]+)\s*(=|<|<=|>|>=)\s*([\w-]+)\s*(?:(<|<=|>|>=)\s*([\w-]+)\s*)?\)/g,((e,t,r,n,i,o)=>{const l=h.test(t),s=.0625*(l?-1:1),[a,c]=l?[n,t]:[t,n];return "("+("="===r[0]?"":">"===r[0]===l?"max-":"min-")+a+":"+("="!==r[0]&&1===r.length?c.replace(h,((e,t,n)=>Number(t)+s*(">"===r?1:-1)+n)):c)+(i?") and ("+(">"===i[0]?"min-":"max-")+a+":"+(1===i.length?o.replace(h,((e,t,r)=>Number(t)+s*(">"===i?-1:1)+r)):o):"")+")"}))),z){const e=R?r.concat(c):[...r],n=R?[...t]:f(t,c.split(y));void 0!==o&&i(x(...o)),o=void 0,a(g,n,e);}else void 0===o&&(o=[[],t,r]),c=R||36!==c.charCodeAt(0)?c:`--${S(n.prefix)}${c.slice(1).replace(/\$/g,"-")}`,g=z?g:"number"==typeof g?g&&e in I?String(g)+"px":String(g):k(m(e,null==g?"":g),n.prefix,n.themeMap[e]),o[0].push(`${R?`${c} `:`${d(c)}:`}${g}`);}}var b,$;};p(e),void 0!==o&&i(x(...o)),o=void 0;};a(e,t,r);},x=(e,t,r)=>`${r.map((e=>`${e}{`)).join("")}${t.length?`${t.join(",")}{`:""}${e.join(";")}${t.length?"}":""}${Array(r.length?r.length+1:0).join("}")}`,I={animationDelay:1,animationDuration:1,backgroundSize:1,blockSize:1,border:1,borderBlock:1,borderBlockEnd:1,borderBlockEndWidth:1,borderBlockStart:1,borderBlockStartWidth:1,borderBlockWidth:1,borderBottom:1,borderBottomLeftRadius:1,borderBottomRightRadius:1,borderBottomWidth:1,borderEndEndRadius:1,borderEndStartRadius:1,borderInlineEnd:1,borderInlineEndWidth:1,borderInlineStart:1,borderInlineStartWidth:1,borderInlineWidth:1,borderLeft:1,borderLeftWidth:1,borderRadius:1,borderRight:1,borderRightWidth:1,borderSpacing:1,borderStartEndRadius:1,borderStartStartRadius:1,borderTop:1,borderTopLeftRadius:1,borderTopRightRadius:1,borderTopWidth:1,borderWidth:1,bottom:1,columnGap:1,columnRule:1,columnRuleWidth:1,columnWidth:1,containIntrinsicSize:1,flexBasis:1,fontSize:1,gap:1,gridAutoColumns:1,gridAutoRows:1,gridTemplateColumns:1,gridTemplateRows:1,height:1,inlineSize:1,inset:1,insetBlock:1,insetBlockEnd:1,insetBlockStart:1,insetInline:1,insetInlineEnd:1,insetInlineStart:1,left:1,letterSpacing:1,margin:1,marginBlock:1,marginBlockEnd:1,marginBlockStart:1,marginBottom:1,marginInline:1,marginInlineEnd:1,marginInlineStart:1,marginLeft:1,marginRight:1,marginTop:1,maxBlockSize:1,maxHeight:1,maxInlineSize:1,maxWidth:1,minBlockSize:1,minHeight:1,minInlineSize:1,minWidth:1,offsetDistance:1,offsetRotate:1,outline:1,outlineOffset:1,outlineWidth:1,overflowClipMargin:1,padding:1,paddingBlock:1,paddingBlockEnd:1,paddingBlockStart:1,paddingBottom:1,paddingInline:1,paddingInlineEnd:1,paddingInlineStart:1,paddingLeft:1,paddingRight:1,paddingTop:1,perspective:1,right:1,rowGap:1,scrollMargin:1,scrollMarginBlock:1,scrollMarginBlockEnd:1,scrollMarginBlockStart:1,scrollMarginBottom:1,scrollMarginInline:1,scrollMarginInlineEnd:1,scrollMarginInlineStart:1,scrollMarginLeft:1,scrollMarginRight:1,scrollMarginTop:1,scrollPadding:1,scrollPaddingBlock:1,scrollPaddingBlockEnd:1,scrollPaddingBlockStart:1,scrollPaddingBottom:1,scrollPaddingInline:1,scrollPaddingInlineEnd:1,scrollPaddingInlineStart:1,scrollPaddingLeft:1,scrollPaddingRight:1,scrollPaddingTop:1,shapeMargin:1,textDecoration:1,textDecorationThickness:1,textIndent:1,textUnderlineOffset:1,top:1,transitionDelay:1,transitionDuration:1,verticalAlign:1,width:1,wordSpacing:1},R=e=>String.fromCharCode(e+(e>25?39:97)),z=e=>(e=>{let t,r="";for(t=Math.abs(e);t>52;t=t/52|0)r=R(t%52)+r;return R(t%52)+r})(((e,t)=>{let r=t.length;for(;r;)e=33*e^t.charCodeAt(--r);return e})(5381,JSON.stringify(e))>>>0),W=["themed","global","styled","onevar","resonevar","allvar","inline"],j=e=>{if(e.href&&!e.href.startsWith(location.origin))return !1;try{return !!e.cssRules}catch(e){return !1}},E=e=>{let t;const r=()=>{const{cssRules:e}=t.sheet;return [].map.call(e,((r,n)=>{const{cssText:i}=r;let o="";if(i.startsWith("--sxs"))return "";if(e[n-1]&&(o=e[n-1].cssText).startsWith("--sxs")){if(!r.cssRules.length)return "";for(const e in t.rules)if(t.rules[e].group===r)return `--sxs{--sxs:${[...t.rules[e].cache].join(" ")}}${i}`;return r.cssRules.length?`${o}${i}`:""}return i})).join("")},n=()=>{if(t){const{rules:e,sheet:r}=t;if(!r.deleteRule){for(;3===Object(Object(r.cssRules)[0]).type;)r.cssRules.splice(0,1);r.cssRules=[];}for(const t in e)delete e[t];}const i=Object(e).styleSheets||[];for(const e of i)if(j(e)){for(let i=0,o=e.cssRules;o[i];++i){const l=Object(o[i]);if(1!==l.type)continue;const s=Object(o[i+1]);if(4!==s.type)continue;++i;const{cssText:a}=l;if(!a.startsWith("--sxs"))continue;const c=a.slice(14,-3).trim().split(/\s+/),d=W[c[0]];d&&(t||(t={sheet:e,reset:n,rules:{},toString:r}),t.rules[d]={group:s,index:i,cache:new Set(c)});}if(t)break}if(!t){const i=(e,t)=>({type:t,cssRules:[],insertRule(e,t){this.cssRules.splice(t,0,i(e,{import:3,undefined:1}[(e.toLowerCase().match(/^@([a-z]+)/)||[])[1]]||4));},get cssText(){return "@media{}"===e?`@media{${[].map.call(this.cssRules,(e=>e.cssText)).join("")}}`:e}});t={sheet:e?(e.head||e).appendChild(document.createElement("style")).sheet:i("","text/css"),rules:{},reset:n,toString:r};}const{sheet:o,rules:l}=t;for(let e=W.length-1;e>=0;--e){const t=W[e];if(!l[t]){const r=W[e+1],n=l[r]?l[r].index:o.cssRules.length;o.insertRule("@media{}",n),o.insertRule(`--sxs{--sxs:${e}}`,n),l[t]={group:o.cssRules[n+1],index:n,cache:new Set([e])};}v(l[t]);}};return n(),t},v=e=>{const t=e.group;let r=t.cssRules.length;e.apply=e=>{try{t.insertRule(e,r),++r;}catch(e){}};},T=Symbol(),w=o(),M=(e,t)=>w(e,(()=>(...r)=>{let n={type:null,composers:new Set};for(const t of r)if(null!=t)if(t[l]){null==n.type&&(n.type=t[l].type);for(const e of t[l].composers)n.composers.add(e);}else t.constructor!==Object||t.$$typeof?null==n.type&&(n.type=t):n.composers.add(C(t,e));return null==n.type&&(n.type="span"),n.composers.size||n.composers.add(["PJLV",{},[],[],{},[]]),P(e,n,t)})),C=({variants:e,compoundVariants:t,defaultVariants:r,...n},i)=>{const o=`${S(i.prefix)}c-${z(n)}`,l=[],s=[],d=Object.create(null),g=[];for(const e in r)d[e]=String(r[e]);if("object"==typeof e&&e)for(const t in e){p=d,u=t,c.call(p,u)||(d[t]="undefined");const r=e[t];for(const e in r){const n={[t]:String(e)};"undefined"===String(e)&&g.push(t);const i=r[e],o=[n,i,!a(i)];l.push(o);}}var p,u;if("object"==typeof t&&t)for(const e of t){let{css:t,...r}=e;t="object"==typeof t&&t||{};for(const e in r)r[e]=String(r[e]);const n=[r,t,!a(t)];s.push(n);}return [o,n,l,s,d,g]},P=(e,t,r)=>{const[n,i,o,a]=L(t.composers),c="function"==typeof t.type||t.type.$$typeof?(e=>{function t(){for(let r=0;r<t[T].length;r++){const[n,i]=t[T][r];e.rules[n].apply(i);}return t[T]=[],null}return t[T]=[],t.rules={},W.forEach((e=>t.rules[e]={apply:r=>t[T].push([e,r])})),t})(r):null,d=(c||r).rules,g=`.${n}${i.length>1?`:where(.${i.slice(1).join(".")})`:""}`,p=l=>{l="object"==typeof l&&l||A;const{css:s,...p}=l,u={};for(const e in o)if(delete p[e],e in l){let t=l[e];"object"==typeof t&&t?u[e]={"@initial":o[e],...t}:(t=String(t),u[e]="undefined"!==t||a.has(e)?t:o[e]);}else u[e]=o[e];const h=new Set([...i]);for(const[n,i,o,l]of t.composers){r.rules.styled.cache.has(n)||(r.rules.styled.cache.add(n),$(i,[`.${n}`],[],e,(e=>{d.styled.apply(e);})));const t=O(o,u,e.media),s=O(l,u,e.media,!0);for(const i of t)if(void 0!==i)for(const[t,o,l]of i){const i=`${n}-${z(o)}-${t}`;h.add(i);const s=(l?r.rules.resonevar:r.rules.onevar).cache,a=l?d.resonevar:d.onevar;s.has(i)||(s.add(i),$(o,[`.${i}`],[],e,(e=>{a.apply(e);})));}for(const t of s)if(void 0!==t)for(const[i,o]of t){const t=`${n}-${z(o)}-${i}`;h.add(t),r.rules.allvar.cache.has(t)||(r.rules.allvar.cache.add(t),$(o,[`.${t}`],[],e,(e=>{d.allvar.apply(e);})));}}if("object"==typeof s&&s){const t=`${n}-i${z(s)}-css`;h.add(t),r.rules.inline.cache.has(t)||(r.rules.inline.cache.add(t),$(s,[`.${t}`],[],e,(e=>{d.inline.apply(e);})));}for(const e of String(l.className||"").trim().split(/\s+/))e&&h.add(e);const f=p.className=[...h].join(" ");return {type:t.type,className:f,selector:g,props:p,toString:()=>f,deferredInjector:c}};return s(p,{className:n,selector:g,[l]:t,toString:()=>(r.rules.styled.cache.has(n)||p(),n)})},L=e=>{let t="";const r=[],n={},i=[];for(const[o,,,,l,s]of e){""===t&&(t=o),r.push(o),i.push(...s);for(const e in l){const t=l[e];(void 0===n[e]||"undefined"!==t||s.includes(t))&&(n[e]=t);}}return [t,r,n,new Set(i)]},O=(e,t,r,n)=>{const i=[];e:for(let[o,l,s]of e){if(s)continue;let e,a=0,c=!1;for(e in o){const n=o[e];let i=t[e];if(i!==n){if("object"!=typeof i||!i)continue e;{let e,t,o=0;for(const l in i){if(n===String(i[l])){if("@initial"!==l){const e=l.slice(1);(t=t||[]).push(e in r?r[e]:l.replace(/^@media ?/,"")),c=!0;}a+=o,e=!0;}++o;}if(t&&t.length&&(l={["@media "+t.join(", ")]:l}),!e)continue e}}}(i[a]=i[a]||[]).push([n?"cv":`${e}-${o[e]}`,l,c]);}return i},A={},N=o(),D=(e,t)=>N(e,(()=>(...r)=>{const n=()=>{for(let n of r){n="object"==typeof n&&n||{};let r=z(n);if(!t.rules.global.cache.has(r)){if(t.rules.global.cache.add(r),"@import"in n){let e=[].indexOf.call(t.sheet.cssRules,t.rules.themed.group)-1;for(let r of [].concat(n["@import"]))r=r.includes('"')||r.includes("'")?r:`"${r}"`,t.sheet.insertRule(`@import ${r};`,e++);delete n["@import"];}$(n,[],[],e,(e=>{t.rules.global.apply(e);}));}}return ""};return s(n,{toString:n})})),H=o(),V=(e,t)=>H(e,(()=>r=>{const n=`${S(e.prefix)}k-${z(r)}`,i=()=>{if(!t.rules.global.cache.has(n)){t.rules.global.cache.add(n);const i=[];$(r,[],[],e,(e=>i.push(e)));const o=`@keyframes ${n}{${i.join("")}}`;t.rules.global.apply(o);}return n};return s(i,{get name(){return i()},toString:i})})),G=class{constructor(e,t,r,n){this.token=null==e?"":String(e),this.value=null==t?"":String(t),this.scale=null==r?"":String(r),this.prefix=null==n?"":String(n);}get computedValue(){return "var("+this.variable+")"}get variable(){return "--"+S(this.prefix)+S(this.scale)+this.token}toString(){return this.computedValue}},F=o(),J=(e,t)=>F(e,(()=>(r,n)=>{n="object"==typeof r&&r||Object(n);const i=`.${r=(r="string"==typeof r?r:"")||`${S(e.prefix)}t-${z(n)}`}`,o={},l=[];for(const t in n){o[t]={};for(const r in n[t]){const i=`--${S(e.prefix)}${t}-${r}`,s=k(String(n[t][r]),e.prefix,t);o[t][r]=new G(r,s,t,e.prefix),l.push(`${i}:${s}`);}}const s=()=>{if(l.length&&!t.rules.themed.cache.has(r)){t.rules.themed.cache.add(r);const i=`${n===e.theme?":root,":""}.${r}{${l.join(";")}}`;t.rules.themed.apply(i);}return r};return {...o,get className(){return s()},selector:i,toString:s}})),U=o();var X,Y=o(),q=e=>{const t=(e=>{let t=!1;const r=U(e,(e=>{t=!0;const r="prefix"in(e="object"==typeof e&&e||{})?String(e.prefix):"",i="object"==typeof e.media&&e.media||{},o="object"==typeof e.root?e.root||null:globalThis.document||null,l="object"==typeof e.theme&&e.theme||{},s={prefix:r,media:i,theme:l,themeMap:"object"==typeof e.themeMap&&e.themeMap||{...n},utils:"object"==typeof e.utils&&e.utils||{}},a=E(o),c={css:M(s,a),globalCss:D(s,a),keyframes:V(s,a),createTheme:J(s,a),reset(){a.reset(),c.theme.toString();},theme:{},sheet:a,config:s,prefix:r,getCssText:a.toString,toString:a.toString};return String(c.theme=c.createTheme(l)),c}));return t||r.reset(),r})(e);return t.styled=(({config:e,sheet:t})=>Y(e,(()=>{const r=M(e,t);return (...e)=>{const t=r(...e),n=t[l].type,i=Z.forwardRef(((e,r)=>{const i=e&&e.as||n,{props:o,deferredInjector:l}=t(e);return delete o.as,o.ref=r,l?Z.createElement(Z.Fragment,null,Z.createElement(i,o),Z.createElement(l,null)):Z.createElement(i,o)}));return i.className=t.className,i.displayName=`Styled.${n.displayName||n.name||n}`,i.selector=t.selector,i.toString=()=>t.selector,i[l]=t[l],i}})))(t),t},K=()=>X||(X=q()),re=(...e)=>K().styled(...e);//# sourceMappingUrl=index.map
-
-  var Container = re("div", {
-      backgroundColor: "Aquamarine",
-      fontSize: "20px",
-  });
-  var ReactWidget = function () {
-      var _a = __read(react.exports.useState("Name"), 2), name = _a[0]; _a[1];
-      return jsxRuntime.exports.jsx(Container, { children: "I am ".concat(name) });
-  };
-
   var init$1 = function (elementInput) {
       var mountNode = null;
       if (typeof elementInput !== "string") {
@@ -35300,7 +38302,7 @@ var worldID = (function (exports) {
           mountNode = document.getElementById(elementInput);
       }
       if (mountNode !== null) {
-          reactDom.exports.render(jsxRuntime.exports.jsx(ReactWidget, {}), mountNode);
+          reactDom.exports.render(jsxRuntime.exports.jsx(App, {}), mountNode);
       }
   };
 

@@ -5,9 +5,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var sha3 = require('js-sha3');
 var bytes = require('@ethersproject/bytes');
 var jsxRuntime = require('react/jsx-runtime');
-var reactDom = require('react-dom');
 var react = require('react');
+var kea = require('kea');
 var react$1 = require('@stitches/react');
+var reactDom = require('react-dom');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -129,6 +130,17 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
 function __values(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
@@ -185,12 +197,29 @@ var verifyVerificationResponse = function (result) {
     return true;
 };
 
+var widgetLogic = kea.kea([
+    kea.path(["worldId", "widgetLogic"]),
+    kea.actions({
+        setName: function (name) { return ({ name: name }); },
+    }),
+    kea.reducers({
+        name: [
+            "Default Name",
+            { setName: function (_, _a) {
+                    var name = _a.name;
+                    return name;
+                } },
+        ],
+    }),
+]);
+
 function SayHello(props) {
-    var _a = __read(react.useState(props.name), 2), name = _a[0], setName = _a[1];
+    var name = kea.useValues(widgetLogic).name;
+    var setName = kea.useActions(widgetLogic).setName;
     react.useEffect(function () {
         setName(props.name);
     }, [props]);
-    return jsxRuntime.jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] });
+    return (jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("button", __assign({ onClick: function () { return setName(crypto.randomUUID()); } }, { children: name })), jsxRuntime.jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] })] }));
 }
 
 var Container = react$1.styled("div", {
@@ -202,6 +231,10 @@ var ReactWidget = function () {
     return jsxRuntime.jsx(Container, { children: "I am ".concat(name) });
 };
 
+var App = function () {
+    return (jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx(ReactWidget, {}), jsxRuntime.jsx(SayHello, { name: "ME" })] }));
+};
+
 var init = function (elementInput) {
     var mountNode = null;
     if (typeof elementInput !== "string") {
@@ -211,7 +244,7 @@ var init = function (elementInput) {
         mountNode = document.getElementById(elementInput);
     }
     if (mountNode !== null) {
-        reactDom.render(jsxRuntime.jsx(ReactWidget, {}), mountNode);
+        reactDom.render(jsxRuntime.jsx(App, {}), mountNode);
     }
 };
 
