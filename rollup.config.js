@@ -49,23 +49,14 @@ export default [
     input: "src/browser/index.tsx",
     output: {
       file: "dist/world-id.js",
-      format: "umd",
+      format: "iife",
       name: "worldID",
     },
-    globals: {
-      "react/jsx-runtime": "jsxRuntime",
-      "react-dom": "ReactDOM",
-    },
-    externals: ["react-dom", "react/jsx-runtime"],
     plugins: [
-      external({ includeDependencies: true }),
-      resolve({ browser: true }),
+      commonjs(),
       nodePolyfills(),
-      commonjs({
-        include: ["node_modules/**"],
-        namedExports: {
-          "node_modules/react-dom/index.js": ["render"],
-        },
+      resolve({
+        browser: true,
       }),
       typescript({ tsconfig: "./tsconfig.json", inlineSources: true }),
       // terser(),

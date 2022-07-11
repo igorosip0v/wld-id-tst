@@ -193,7 +193,8 @@ function SayHello(props) {
 }
 
 var ReactWidget = function () {
-    return jsxRuntime.jsx("div", { children: "I am React Widget" });
+    var _a = __read(react.useState('Name'), 2), name = _a[0]; _a[1];
+    return jsxRuntime.jsx("div", { children: "I am ".concat(name) });
 };
 
 var init = function (elementInput) {

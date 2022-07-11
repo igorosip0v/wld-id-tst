@@ -185,7 +185,8 @@ function SayHello(props) {
 }
 
 var ReactWidget = function () {
-    return jsx("div", { children: "I am React Widget" });
+    var _a = __read(useState('Name'), 2), name = _a[0]; _a[1];
+    return jsx("div", { children: "I am ".concat(name) });
 };
 
 var init = function (elementInput) {

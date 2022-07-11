@@ -1,3 +1,6 @@
+import { useState } from "react";
+
 export const ReactWidget = (): JSX.Element => {
-  return <div>I am React Widget</div>;
+  const [name, _setName] = useState('Name')
+  return <div>{`I am ${name}`}</div>;
 };
