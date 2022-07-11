@@ -20,7 +20,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc && rollup -c",
-    "dev": "parcel watch -p 3000",
+    "dev": "rollup -c rollup.config.dev.js -w",
     "typecheck": "tsc --noEmit",
     "rebuild": "npm run build && git add . && git commit -m \"rebuild\" && git push"
   },
@@ -38,8 +38,10 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.76.0",
     "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-polyfill-node": "^0.10.1",
+    "rollup-plugin-serve": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"

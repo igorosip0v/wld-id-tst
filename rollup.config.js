@@ -12,7 +12,7 @@ const globals = {
   "js-sha3": "sha3",
   "@ethersproject/bytes": "bytes",
   "react/jsx-runtime": "jsxRuntime",
-  "react-dom": "reactDom",
+  "react-dom": "ReactDOM",
   react: "react",
 };
 
