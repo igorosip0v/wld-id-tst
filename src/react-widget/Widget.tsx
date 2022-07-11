@@ -1,4 +1,4 @@
-import { AppProps } from "types";
+import { AppProps } from "../types";
 import { styled } from "@stitches/react";
 import { useActions } from "kea";
 import { widgetLogic } from "./widgetLogic";

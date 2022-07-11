@@ -1,7 +1,5 @@
 /// <reference types="node" />
 /// <reference types="react" />
-import { AppProps as AppProps$1 } from 'types';
-
 interface AppProps {
     action_id: string;
     signal?: string;
@@ -44,7 +42,7 @@ declare function hashBytes(input: string | Buffer): {
  */
 declare function keccak256(value: Buffer): string;
 
-declare const Widget: (props: AppProps$1) => JSX.Element;
+declare const Widget: (props: AppProps) => JSX.Element;
 
 declare const utils: {
     buildVerificationRequest: (props: AppProps) => VerificationRequest;
