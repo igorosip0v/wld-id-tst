@@ -7,6 +7,7 @@ var bytes = require('@ethersproject/bytes');
 var jsxRuntime = require('react/jsx-runtime');
 var reactDom = require('react-dom');
 var react = require('react');
+var react$1 = require('@stitches/react');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -192,9 +193,13 @@ function SayHello(props) {
     return jsxRuntime.jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] });
 }
 
+var Container = react$1.styled("div", {
+    backgroundColor: "Aquamarine",
+    fontSize: "20px",
+});
 var ReactWidget = function () {
-    var _a = __read(react.useState('Name'), 2), name = _a[0]; _a[1];
-    return jsxRuntime.jsx("div", { children: "I am ".concat(name) });
+    var _a = __read(react.useState("Name"), 2), name = _a[0]; _a[1];
+    return jsxRuntime.jsx(Container, { children: "I am ".concat(name) });
 };
 
 var init = function (elementInput) {

@@ -3,6 +3,7 @@ import { arrayify, hexlify, concat } from '@ethersproject/bytes';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { render } from 'react-dom';
 import { useState, useEffect } from 'react';
+import { styled } from '@stitches/react';
 
 /**
  * Partial implementation of `keccak256` hash from @ethersproject/solidity; only supports hashing a single BytesLike value
@@ -184,9 +185,13 @@ function SayHello(props) {
     return jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] });
 }
 
+var Container = styled("div", {
+    backgroundColor: "Aquamarine",
+    fontSize: "20px",
+});
 var ReactWidget = function () {
-    var _a = __read(useState('Name'), 2), name = _a[0]; _a[1];
-    return jsx("div", { children: "I am ".concat(name) });
+    var _a = __read(useState("Name"), 2), name = _a[0]; _a[1];
+    return jsx(Container, { children: "I am ".concat(name) });
 };
 
 var init = function (elementInput) {
