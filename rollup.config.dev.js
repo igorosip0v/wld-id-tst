@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
+import image from "@rollup/plugin-image";
 
 const globals = {
   "js-sha3": "sha3",
@@ -26,6 +27,7 @@ export default [
     plugins: [
       commonjs(),
       nodePolyfills(),
+      image(),
       resolve({ browser: true }),
       typescript({ tsconfig: "./tsconfig.json", inlineSources: true }),
       serve({

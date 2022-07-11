@@ -1,9 +1,8 @@
 import sha3 from 'js-sha3';
 import { arrayify, hexlify, concat } from '@ethersproject/bytes';
-import { jsxs, jsx } from 'react/jsx-runtime';
-import { useEffect, useState } from 'react';
-import { kea, path, actions, reducers, useValues, useActions } from 'kea';
+import { jsx, jsxs } from 'react/jsx-runtime';
 import { styled } from '@stitches/react';
+import { kea, path, actions, reducers, useActions, useValues } from 'kea';
 import { render } from 'react-dom';
 
 /**
@@ -145,23 +144,6 @@ function __values(o) {
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 }
 
-function __read(o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-}
-
 /**
  * Verifies that the response from the WLD app is valid
  * @param result expects a valid `VerificationResponse`
@@ -192,42 +174,88 @@ var verifyVerificationResponse = function (result) {
 var widgetLogic = kea([
     path(["worldId", "widgetLogic"]),
     actions({
-        setName: function (name) { return ({ name: name }); },
+        setModalVisibility: function (visible) { return visible; },
     }),
     reducers({
-        name: [
-            "Default Name",
-            { setName: function (_, _a) {
-                    var name = _a.name;
-                    return name;
-                } },
+        modalVisibility: [
+            false,
+            {
+                setModalVisibility: function (_, visible) {
+                    return visible;
+                },
+            },
         ],
     }),
 ]);
 
-function SayHello(props) {
-    var name = useValues(widgetLogic).name;
-    var setName = useActions(widgetLogic).setName;
-    useEffect(function () {
-        setName(props.name);
-    }, [props]);
-    return (jsxs("div", { children: [jsx("button", __assign({ onClick: function () { return setName(crypto.randomUUID()); } }, { children: name })), jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] })] }));
-}
-
-var Container = styled("div", {
-    backgroundColor: "Aquamarine",
-    fontSize: "20px",
+// import logo from "assets/worldcoin-logo.svg";
+// console.log(logo);
+var ModalOverlay = styled("div", {
+    width: "100%",
+    height: "100vh",
+    position: "fixed",
+    top: "0",
+    bottom: "0",
+    left: "0",
+    right: "0",
+    backgroundColor: "rgba(0,0,0,0.6)",
+    color: "#FFFFFF",
+    display: "grid",
+    justifyContent: "center",
+    alignContent: "center",
+    transition: "opacity, visibility ease-out 1s",
+    opacity: "0",
+    pointerEvents: "none",
+    visibility: "hidden",
+    variants: {
+        visible: {
+            true: { opacity: "1", pointerEvents: "all", visibility: "visible" },
+            false: { opacity: "0", pointerEvents: "none", visibility: "hidden" },
+        },
+    },
 });
-var ReactWidget = function () {
-    var _a = __read(useState("Name"), 2), name = _a[0]; _a[1];
-    return jsx(Container, { children: "I am ".concat(name) });
+var ModalBox = styled("div", {
+    display: "grid",
+    rowGap: "6px",
+});
+var MainModalBox = styled("div", {
+    background: "#FFFFFF",
+    borderRadius: "12px",
+    boxShadow: "0px 8px 64px rgba(0, 0, 0, 0.08);",
+    padding: "32px",
+    color: "#191C20",
+});
+var InfoModalBox = MainModalBox;
+var Modal = function (props) {
+    var setModalVisibility = useActions(widgetLogic).setModalVisibility;
+    return (jsx(ModalOverlay, __assign({ visible: props.visible, onClick: function (e) {
+            return e.currentTarget === e.target ? setModalVisibility(false) : undefined;
+        } }, { children: jsxs(ModalBox, { children: [jsx(MainModalBox, { children: "test" }), jsx(InfoModalBox, { children: "test2" })] }) })));
 };
 
-var App = function () {
-    return (jsxs("div", { children: [jsx(ReactWidget, {}), jsx(SayHello, { name: "ME" })] }));
+var WidgetBox = styled("div", {
+    border: "1px solid black",
+    padding: "8px 16px",
+});
+var Widget = function (props) {
+    console.log(props);
+    var setModalVisibility = useActions(widgetLogic).setModalVisibility;
+    var modalVisibility = useValues(widgetLogic).modalVisibility;
+    return (jsxs("div", { children: [jsx(WidgetBox, __assign({ onClick: function () { return setModalVisibility(true); } }, { children: "I\u2019m a unique person" })), jsx(Modal, { visible: modalVisibility })] }));
 };
 
-var init = function (elementInput) {
+var AppBox = styled("div", {
+    width: "100%",
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+});
+var App = function (props) {
+    return (jsx(AppBox, { children: jsx(Widget, __assign({}, props)) }));
+};
+
+var init = function (elementInput, options) {
     var mountNode = null;
     if (typeof elementInput !== "string") {
         mountNode = elementInput;
@@ -236,7 +264,7 @@ var init = function (elementInput) {
         mountNode = document.getElementById(elementInput);
     }
     if (mountNode !== null) {
-        render(jsx(App, {}), mountNode);
+        render(jsx(App, { action_id: options.action_id }), mountNode);
     }
 };
 
@@ -251,5 +279,5 @@ var utils = {
 };
 var index = { init: init };
 
-export { ReactWidget, SayHello, index as default, utils };
+export { Widget, index as default, utils };
 //# sourceMappingURL=module.js.map

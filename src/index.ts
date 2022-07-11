@@ -10,7 +10,7 @@ import {
 
 import { init } from "./widget";
 
-export * from "./components";
+export * from "./react-widget";
 
 export const utils = {
   buildVerificationRequest,

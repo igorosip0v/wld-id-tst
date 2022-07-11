@@ -1,5 +1,5 @@
 import { hashBytes, keccak256 } from "./utils";
-export * from "./components";
+export * from "./react-widget";
 export declare const utils: {
     buildVerificationRequest: (props: import("./types").AppProps) => import("./types").VerificationRequest;
     hashBytes: typeof hashBytes;
@@ -13,6 +13,6 @@ export declare const utils: {
     verifyVerificationResponse: (result: Record<string, string | undefined>) => boolean;
 };
 declare const _default: {
-    init: (elementInput: string | HTMLElement) => void;
+    init: (elementInput: string | HTMLElement, options: import("./types").AppProps) => void;
 };
 export default _default;

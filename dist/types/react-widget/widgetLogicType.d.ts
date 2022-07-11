@@ -1,24 +1,22 @@
 import type { Logic } from 'kea';
 export interface widgetLogicType extends Logic {
     actionCreators: {
-        setName: (name: string) => ({
-            type: "set name (worldId.widgetLogic)";
-            payload: {
-                name: string;
-            };
+        setModalVisibility: (visible: boolean) => ({
+            type: "set modal visibility (worldId.widgetLogic)";
+            payload: boolean;
         });
     };
     actionKeys: {
-        "set name (worldId.widgetLogic)": "setName";
+        "set modal visibility (worldId.widgetLogic)": "setModalVisibility";
     };
     actionTypes: {
-        setName: "set name (worldId.widgetLogic)";
+        setModalVisibility: "set modal visibility (worldId.widgetLogic)";
     };
     actions: {
-        setName: (name: string) => void;
+        setModalVisibility: (visible: boolean) => void;
     };
     defaults: {
-        name: string;
+        modalVisibility: boolean;
     };
     events: {};
     key: undefined;
@@ -30,20 +28,20 @@ export interface widgetLogicType extends Logic {
     pathString: "worldId.widgetLogic";
     props: Record<string, unknown>;
     reducer: (state: any, action: any, fullState: any) => {
-        name: string;
+        modalVisibility: boolean;
     };
     reducers: {
-        name: (state: string, action: any, fullState: any) => string;
+        modalVisibility: (state: boolean, action: any, fullState: any) => boolean;
     };
     selector: (state: any) => {
-        name: string;
+        modalVisibility: boolean;
     };
     selectors: {
-        name: (state: any, props?: any) => string;
+        modalVisibility: (state: any, props?: any) => boolean;
     };
     sharedListeners: {};
     values: {
-        name: string;
+        modalVisibility: boolean;
     };
     _isKea: true;
     _isKeaWithKey: false;

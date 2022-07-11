@@ -5,6 +5,7 @@ import { terser } from "rollup-plugin-terser";
 import external from "rollup-plugin-peer-deps-external";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 import dts from "rollup-plugin-dts";
+import image from "@rollup/plugin-image";
 
 const packageJson = require("./package.json");
 
@@ -39,6 +40,7 @@ export default [
     plugins: [
       nodePolyfills(),
       external(),
+      image(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
@@ -55,6 +57,7 @@ export default [
     plugins: [
       commonjs(),
       nodePolyfills(),
+      image(),
       resolve({
         browser: true,
       }),

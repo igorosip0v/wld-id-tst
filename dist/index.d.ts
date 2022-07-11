@@ -1,5 +1,7 @@
 /// <reference types="node" />
 /// <reference types="react" />
+import { AppProps as AppProps$1 } from 'types';
+
 interface AppProps {
     action_id: string;
     signal?: string;
@@ -42,11 +44,7 @@ declare function hashBytes(input: string | Buffer): {
  */
 declare function keccak256(value: Buffer): string;
 
-declare function SayHello(props: {
-    name: string;
-}): JSX.Element;
-
-declare const ReactWidget: () => JSX.Element;
+declare const Widget: (props: AppProps$1) => JSX.Element;
 
 declare const utils: {
     buildVerificationRequest: (props: AppProps) => VerificationRequest;
@@ -61,7 +59,7 @@ declare const utils: {
     verifyVerificationResponse: (result: Record<string, string | undefined>) => boolean;
 };
 declare const _default: {
-    init: (elementInput: string | HTMLElement) => void;
+    init: (elementInput: string | HTMLElement, options: AppProps) => void;
 };
 
-export { ReactWidget, SayHello, _default as default, utils };
+export { Widget, _default as default, utils };

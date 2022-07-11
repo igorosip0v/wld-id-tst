@@ -5,9 +5,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var sha3 = require('js-sha3');
 var bytes = require('@ethersproject/bytes');
 var jsxRuntime = require('react/jsx-runtime');
-var react = require('react');
+var react = require('@stitches/react');
 var kea = require('kea');
-var react$1 = require('@stitches/react');
 var reactDom = require('react-dom');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
@@ -153,23 +152,6 @@ function __values(o) {
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 }
 
-function __read(o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-}
-
 /**
  * Verifies that the response from the WLD app is valid
  * @param result expects a valid `VerificationResponse`
@@ -200,42 +182,88 @@ var verifyVerificationResponse = function (result) {
 var widgetLogic = kea.kea([
     kea.path(["worldId", "widgetLogic"]),
     kea.actions({
-        setName: function (name) { return ({ name: name }); },
+        setModalVisibility: function (visible) { return visible; },
     }),
     kea.reducers({
-        name: [
-            "Default Name",
-            { setName: function (_, _a) {
-                    var name = _a.name;
-                    return name;
-                } },
+        modalVisibility: [
+            false,
+            {
+                setModalVisibility: function (_, visible) {
+                    return visible;
+                },
+            },
         ],
     }),
 ]);
 
-function SayHello(props) {
-    var name = kea.useValues(widgetLogic).name;
-    var setName = kea.useActions(widgetLogic).setName;
-    react.useEffect(function () {
-        setName(props.name);
-    }, [props]);
-    return (jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("button", __assign({ onClick: function () { return setName(crypto.randomUUID()); } }, { children: name })), jsxRuntime.jsxs("div", { children: ["Hey ", name, ", say hello to TypeScript."] })] }));
-}
-
-var Container = react$1.styled("div", {
-    backgroundColor: "Aquamarine",
-    fontSize: "20px",
+// import logo from "assets/worldcoin-logo.svg";
+// console.log(logo);
+var ModalOverlay = react.styled("div", {
+    width: "100%",
+    height: "100vh",
+    position: "fixed",
+    top: "0",
+    bottom: "0",
+    left: "0",
+    right: "0",
+    backgroundColor: "rgba(0,0,0,0.6)",
+    color: "#FFFFFF",
+    display: "grid",
+    justifyContent: "center",
+    alignContent: "center",
+    transition: "opacity, visibility ease-out 1s",
+    opacity: "0",
+    pointerEvents: "none",
+    visibility: "hidden",
+    variants: {
+        visible: {
+            true: { opacity: "1", pointerEvents: "all", visibility: "visible" },
+            false: { opacity: "0", pointerEvents: "none", visibility: "hidden" },
+        },
+    },
 });
-var ReactWidget = function () {
-    var _a = __read(react.useState("Name"), 2), name = _a[0]; _a[1];
-    return jsxRuntime.jsx(Container, { children: "I am ".concat(name) });
+var ModalBox = react.styled("div", {
+    display: "grid",
+    rowGap: "6px",
+});
+var MainModalBox = react.styled("div", {
+    background: "#FFFFFF",
+    borderRadius: "12px",
+    boxShadow: "0px 8px 64px rgba(0, 0, 0, 0.08);",
+    padding: "32px",
+    color: "#191C20",
+});
+var InfoModalBox = MainModalBox;
+var Modal = function (props) {
+    var setModalVisibility = kea.useActions(widgetLogic).setModalVisibility;
+    return (jsxRuntime.jsx(ModalOverlay, __assign({ visible: props.visible, onClick: function (e) {
+            return e.currentTarget === e.target ? setModalVisibility(false) : undefined;
+        } }, { children: jsxRuntime.jsxs(ModalBox, { children: [jsxRuntime.jsx(MainModalBox, { children: "test" }), jsxRuntime.jsx(InfoModalBox, { children: "test2" })] }) })));
 };
 
-var App = function () {
-    return (jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx(ReactWidget, {}), jsxRuntime.jsx(SayHello, { name: "ME" })] }));
+var WidgetBox = react.styled("div", {
+    border: "1px solid black",
+    padding: "8px 16px",
+});
+var Widget = function (props) {
+    console.log(props);
+    var setModalVisibility = kea.useActions(widgetLogic).setModalVisibility;
+    var modalVisibility = kea.useValues(widgetLogic).modalVisibility;
+    return (jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx(WidgetBox, __assign({ onClick: function () { return setModalVisibility(true); } }, { children: "I\u2019m a unique person" })), jsxRuntime.jsx(Modal, { visible: modalVisibility })] }));
 };
 
-var init = function (elementInput) {
+var AppBox = react.styled("div", {
+    width: "100%",
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+});
+var App = function (props) {
+    return (jsxRuntime.jsx(AppBox, { children: jsxRuntime.jsx(Widget, __assign({}, props)) }));
+};
+
+var init = function (elementInput, options) {
     var mountNode = null;
     if (typeof elementInput !== "string") {
         mountNode = elementInput;
@@ -244,7 +272,7 @@ var init = function (elementInput) {
         mountNode = document.getElementById(elementInput);
     }
     if (mountNode !== null) {
-        reactDom.render(jsxRuntime.jsx(App, {}), mountNode);
+        reactDom.render(jsxRuntime.jsx(App, { action_id: options.action_id }), mountNode);
     }
 };
 
@@ -259,8 +287,7 @@ var utils = {
 };
 var index = { init: init };
 
-exports.ReactWidget = ReactWidget;
-exports.SayHello = SayHello;
+exports.Widget = Widget;
 exports["default"] = index;
 exports.utils = utils;
 //# sourceMappingURL=main.cjs.map
